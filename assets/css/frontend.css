@@ -1,0 +1,157 @@
+/* WooCommerce to B2B Frontend Styles */
+
+/* Order details page */
+.wc-b2b-order-details {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.wc-b2b-order-details h1 {
+    color: #333;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.order-status {
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border-left: 4px solid #0073aa;
+}
+
+.order-info table,
+.order-items table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.order-info th,
+.order-info td,
+.order-items th,
+.order-items td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.order-info th,
+.order-items th {
+    background: #f5f5f5;
+    font-weight: bold;
+    color: #333;
+}
+
+.order-items tfoot td {
+    background: #f9f9f9;
+    font-weight: bold;
+}
+
+.customer-message {
+    margin: 30px 0;
+}
+
+.customer-message div {
+    background: #f9f9f9;
+    padding: 15px;
+    border-left: 3px solid #0073aa;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Action buttons */
+.order-actions {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.wc-b2b-confirm-btn,
+.wc-b2b-cancel-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.wc-b2b-confirm-btn {
+    background: #28a745;
+    color: white;
+}
+
+.wc-b2b-confirm-btn:hover {
+    background: #218838;
+}
+
+.wc-b2b-cancel-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.wc-b2b-cancel-btn:hover {
+    background: #c82333;
+}
+
+/* Messages */
+.wc-b2b-message {
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 3px;
+}
+
+.wc-b2b-message.success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.wc-b2b-message.error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .wc-b2b-order-details {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    .order-info th,
+    .order-info td {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+    }
+    
+    .order-info th {
+        font-weight: bold;
+        border-bottom: none;
+    }
+    
+    .order-items table {
+        font-size: 14px;
+    }
+    
+    .order-items th,
+    .order-items td {
+        padding: 8px 6px;
+    }
+    
+    .wc-b2b-confirm-btn,
+    .wc-b2b-cancel-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,858 @@
+# WooCommerce to B2B Chinese Translation
+# Copyright (C) 2026 huwencai.com
+# This file is distributed under the same license as the WooCommerce to B2B package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce to B2B 1.5.3\n"
+"Report-Msgid-Bugs-To: https://github.com/hwc0212/wc-to-b2b/issues\n"
+"POT-Creation-Date: 2026-01-08 12:00+0000\n"
+"PO-Revision-Date: 2026-01-08 12:00+0000\n"
+"Last-Translator: huwencai.com\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: wc-to-b2b.php
+msgid "WooCommerce to B2B requires WooCommerce to be installed and active. You can download %s here."
+msgstr "WooCommerce to B2B 需要安装并激活 WooCommerce。您可以在 %s 下载。"
+
+#: includes/class-wc-b2b-checkout.php
+msgid "Phone"
+msgstr "电话"
+
+msgid "Message"
+msgstr "留言"
+
+msgid "Please leave your message or special requirements here..."
+msgstr "请在此留下您的留言或特殊要求..."
+
+msgid "Phone is a required field."
+msgstr "电话是必填字段。"
+
+msgid "Email is a required field."
+msgstr "邮箱是必填字段。"
+
+msgid "Please enter a valid email address."
+msgstr "请输入有效的邮箱地址。"
+
+msgid "Order created, awaiting customer verification."
+msgstr "订单已创建，等待客户验证。"
+
+msgid "Submit Order for Verification"
+msgstr "提交订单进行验证"
+
+#: includes/class-wc-b2b-order.php
+msgid "Pending Verification"
+msgstr "待验证"
+
+msgid "Verified"
+msgstr "已验证"
+
+msgid "Quote Sent"
+msgstr "报价已发送"
+
+msgid "Order verified by customer."
+msgstr "订单已被客户验证。"
+
+msgid "Invalid or expired verification token."
+msgstr "无效或过期的验证令牌。"
+
+msgid "Order verified successfully!"
+msgstr "订单验证成功！"
+
+msgid "Order not found."
+msgstr "未找到订单。"
+
+msgid "Access denied."
+msgstr "访问被拒绝。"
+
+msgid "Customer confirmed the quote."
+msgstr "客户已确认报价。"
+
+msgid "Order confirmed successfully!"
+msgstr "订单确认成功！"
+
+msgid "Order cancelled by customer."
+msgstr "订单已被客户取消。"
+
+msgid "Order cancelled successfully."
+msgstr "订单取消成功。"
+
+#: includes/class-wc-b2b-email.php
+msgid "Please verify your order #%s"
+msgstr "请验证您的订单 #%s"
+
+msgid "Order #%s has been verified"
+msgstr "订单 #%s 已被验证"
+
+msgid "Your quote for order #%s is ready"
+msgstr "您的订单 #%s 报价已准备就绪"
+
+msgid "Order Verification Required"
+msgstr "需要订单验证"
+
+msgid "Hello %s,"
+msgstr "您好 %s，"
+
+msgid "Thank you for your order #%s. To proceed with your order, please verify your email address by clicking the button below:"
+msgstr "感谢您的订单 #%s。要继续处理您的订单，请点击下面的按钮验证您的邮箱地址："
+
+msgid "Verify Order"
+msgstr "验证订单"
+
+msgid "If the button doesn't work, you can copy and paste this link into your browser:"
+msgstr "如果按钮不起作用，您可以复制并粘贴此链接到您的浏览器："
+
+msgid "Order Details:"
+msgstr "订单详情："
+
+msgid "Order Number:"
+msgstr "订单号："
+
+msgid "Order Date:"
+msgstr "订单日期："
+
+msgid "Total:"
+msgstr "总计："
+
+msgid "Your Message:"
+msgstr "您的留言："
+
+msgid "This verification link will expire in 24 hours."
+msgstr "此验证链接将在24小时后过期。"
+
+msgid "Order Verified - Action Required"
+msgstr "订单已验证 - 需要操作"
+
+msgid "Order #%s has been verified by the customer and is ready for review."
+msgstr "订单 #%s 已被客户验证，准备审核。"
+
+msgid "Customer Information:"
+msgstr "客户信息："
+
+msgid "Name:"
+msgstr "姓名："
+
+msgid "Email:"
+msgstr "邮箱："
+
+msgid "Customer Message:"
+msgstr "客户留言："
+
+msgid "Review Order"
+msgstr "审核订单"
+
+msgid "Please review the order details, adjust pricing and shipping if needed, then send the quote to the customer."
+msgstr "请审核订单详情，如需要请调整价格和运费，然后向客户发送报价。"
+
+msgid "Your Quote is Ready"
+msgstr "您的报价已准备就绪"
+
+msgid "Your quote for order #%s is ready for review. Please find the details below:"
+msgstr "您的订单 #%s 报价已准备就绪。请查看以下详情："
+
+msgid "Order Summary:"
+msgstr "订单摘要："
+
+msgid "Quantity:"
+msgstr "数量："
+
+msgid "Price:"
+msgstr "价格："
+
+msgid "Subtotal:"
+msgstr "小计："
+
+msgid "Shipping:"
+msgstr "运费："
+
+msgid "Please review the quote and choose one of the following options:"
+msgstr "请审核报价并选择以下选项之一："
+
+msgid "Accept Quote"
+msgstr "接受报价"
+
+msgid "Cancel Order"
+msgstr "取消订单"
+
+msgid "If you accept the quote, you will be redirected to complete the payment."
+msgstr "如果您接受报价，将被重定向到完成付款。"
+
+#: includes/class-wc-b2b-admin.php
+msgid "B2B Order Actions"
+msgstr "B2B订单操作"
+
+msgid "B2B Order Information"
+msgstr "B2B订单信息"
+
+msgid "This is not a B2B order."
+msgstr "这不是B2B订单。"
+
+msgid "Order Status:"
+msgstr "订单状态："
+
+msgid "Resend Verification Email"
+msgstr "重新发送验证邮件"
+
+msgid "Manual Verify"
+msgstr "手动验证"
+
+msgid "Verified - Ready for Quote"
+msgstr "已验证 - 准备报价"
+
+msgid "You can now modify the order pricing and shipping, then send the quote to customer."
+msgstr "您现在可以修改订单价格和运费，然后向客户发送报价。"
+
+msgid "Quote Sent - Awaiting Customer Response"
+msgstr "报价已发送 - 等待客户回复"
+
+msgid "Customer Message:"
+msgstr "客户留言："
+
+msgid "Verification Token:"
+msgstr "验证令牌："
+
+msgid "This token is used for email verification."
+msgstr "此令牌用于邮箱验证。"
+
+msgid "B2B Settings"
+msgstr "B2B设置"
+
+msgid "WooCommerce to B2B Settings"
+msgstr "WooCommerce to B2B 设置"
+
+msgid "Admin Email"
+msgstr "管理员邮箱"
+
+msgid "Email address to receive order notifications."
+msgstr "接收订单通知的邮箱地址。"
+
+msgid "Verification Expiry"
+msgstr "验证过期时间"
+
+msgid "hours"
+msgstr "小时"
+
+msgid "How long verification links remain valid."
+msgstr "验证链接保持有效的时间。"
+
+msgid "Enable WhatsApp"
+msgstr "启用WhatsApp"
+
+msgid "Enable WhatsApp integration"
+msgstr "启用WhatsApp集成"
+
+msgid "WhatsApp API URL"
+msgstr "WhatsApp API URL"
+
+msgid "WhatsApp API endpoint URL."
+msgstr "WhatsApp API端点URL。"
+
+msgid "WhatsApp API Key"
+msgstr "WhatsApp API密钥"
+
+msgid "WhatsApp API authentication key."
+msgstr "WhatsApp API认证密钥。"
+
+msgid "Settings saved successfully!"
+msgstr "设置保存成功！"
+
+msgid "Resend verification email"
+msgstr "重新发送验证邮件"
+
+msgid "Manual verify order"
+msgstr "手动验证订单"
+
+msgid "Send quote to customer"
+msgstr "向客户发送报价"
+
+msgid "Verification email resent to customer."
+msgstr "验证邮件已重新发送给客户。"
+
+msgid "Order manually verified by admin."
+msgstr "订单已被管理员手动验证。"
+
+msgid "Quote sent to customer."
+msgstr "报价已发送给客户。"
+
+msgid "Verification email sent successfully!"
+msgstr "验证邮件发送成功！"
+
+msgid "An error occurred. Please try again."
+msgstr "发生错误，请重试。"
+
+#: includes/class-wc-b2b-whatsapp.php
+msgid "Hello %s!\n\nYour order #%s needs verification.\n\nClick here to verify: %s\n\nOr reply with: VERIFY %s"
+msgstr "您好 %s！\n\n您的订单 #%s 需要验证。\n\n点击此处验证：%s\n\n或回复：VERIFY %s"
+
+msgid "Hello %s!\n\nYour quote for order #%s is ready.\n\nTotal: %s\n\nTo accept: %s\nTo cancel: %s\n\nOr reply:\nACCEPT %d - to accept\nCANCEL %d - to cancel"
+msgstr "您好 %s！\n\n您的订单 #%s 报价已准备就绪。\n\n总计：%s\n\n接受：%s\n取消：%s\n\n或回复：\nACCEPT %d - 接受\nCANCEL %d - 取消"
+
+msgid "Invalid verification link."
+msgstr "无效的验证链接。"
+
+msgid "Order verified successfully! You will receive updates via email."
+msgstr "订单验证成功！您将通过邮件收到更新。"
+
+msgid "Invalid or expired verification code."
+msgstr "无效或过期的验证码。"
+
+msgid "Order #%s confirmed! Payment link: %s"
+msgstr "订单 #%s 已确认！付款链接：%s"
+
+msgid "Invalid order or phone number mismatch."
+msgstr "无效订单或电话号码不匹配。"
+
+msgid "Order #%s has been cancelled."
+msgstr "订单 #%s 已被取消。"
+
+msgid "Customer confirmed quote via WhatsApp."
+msgstr "客户通过WhatsApp确认报价。"
+
+msgid "Order cancelled by customer via WhatsApp."
+msgstr "客户通过WhatsApp取消订单。"
+
+#: includes/class-wc-b2b-ajax.php
+msgid "Invalid order ID."
+msgstr "无效的订单ID。"
+
+msgid "Security check failed."
+msgstr "安全检查失败。"
+
+msgid "Invalid action."
+msgstr "无效操作。"
+
+msgid "This order cannot be confirmed at this time."
+msgstr "此订单目前无法确认。"
+
+msgid "Order confirmed successfully! You will be redirected to payment."
+msgstr "订单确认成功！您将被重定向到付款页面。"
+
+msgid "This order cannot be cancelled at this time."
+msgstr "此订单目前无法取消。"
+
+msgid "Order #%s Details"
+msgstr "订单 #%s 详情"
+
+msgid "Status:"
+msgstr "状态："
+
+msgid "Order Information"
+msgstr "订单信息"
+
+msgid "Customer:"
+msgstr "客户："
+
+msgid "Order Items"
+msgstr "订单项目"
+
+msgid "Product"
+msgstr "产品"
+
+msgid "Your Message"
+msgstr "您的留言"
+
+msgid "Accept Quote & Proceed to Payment"
+msgstr "接受报价并继续付款"
+
+msgid "Are you sure you want to accept this quote?"
+msgstr "您确定要接受此报价吗？"
+
+msgid "Are you sure you want to cancel this order?"
+msgstr "您确定要取消此订单吗？"
+
+msgid "Processing..."
+msgstr "处理中..."
+
+#: includes/class-wc-b2b-admin.php
+msgid "Invalid B2B order."
+msgstr "无效的B2B订单。"
+
+msgid "Order cannot be modified in current status."
+msgstr "当前状态下订单无法修改。"
+
+msgid "Order item not found."
+msgstr "未找到订单项目。"
+
+msgid "Item \"%s\" price updated to %s by admin."
+msgstr "管理员将项目"%s"的价格更新为%s。"
+
+msgid "Item price updated successfully!"
+msgstr "项目价格更新成功！"
+
+msgid "Shipping cost updated to %s by admin."
+msgstr "管理员将运费更新为%s。"
+
+msgid "Shipping cost updated successfully!"
+msgstr "运费更新成功！"
+
+msgid "Custom Shipping"
+msgstr "自定义运费"
+
+msgid "B2B Price Management"
+msgstr "B2B价格管理"
+
+msgid "You can modify item prices and shipping costs for this B2B order."
+msgstr "您可以修改此B2B订单的项目价格和运费。"
+
+msgid "Item"
+msgstr "项目"
+
+msgid "Original Price"
+msgstr "原价"
+
+msgid "Current Price"
+msgstr "当前价格"
+
+msgid "New Price"
+msgstr "新价格"
+
+msgid "Action"
+msgstr "操作"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Shipping Cost"
+msgstr "运费"
+
+msgid "Current Shipping:"
+msgstr "当前运费："
+
+msgid "New Shipping Cost:"
+msgstr "新运费："
+
+msgid "Update Shipping"
+msgstr "更新运费"
+
+msgid "Order Total"
+msgstr "订单总计"
+
+msgid "Current Total:"
+msgstr "当前总计："
+
+msgid "B2B Price"
+msgstr "B2B价格"
+
+msgid "Custom:"
+msgstr "自定义："
+
+msgid "Unit Price:"
+msgstr "单价："
+
+msgid "(Custom B2B Price)"
+msgstr "（自定义B2B价格）"
+
+#: includes/class-wc-b2b-whatsapp-button.php
+msgid "Order via WhatsApp"
+msgstr "通过WhatsApp下单"
+
+msgid "Hello! I'm interested in this product:\n\n*%s*\nPrice: %s\nLink: %s\n\nCould you please provide more information?"
+msgstr "您好！我对这个产品感兴趣：\n\n*%s*\n价格：%s\n链接：%s\n\n您能提供更多信息吗？"
+
+msgid "Product not found."
+msgstr "未找到产品。"
+
+msgid "WhatsApp phone number not configured."
+msgstr "WhatsApp电话号码未配置。"
+
+msgid "Error generating WhatsApp message."
+msgstr "生成WhatsApp消息时出错。"
+
+msgid "WhatsApp Quick Buy Settings"
+msgstr "WhatsApp快速购买设置"
+
+msgid "Configure WhatsApp quick buy button settings."
+msgstr "配置WhatsApp快速购买按钮设置。"
+
+msgid "Enable WhatsApp Button"
+msgstr "启用WhatsApp按钮"
+
+msgid "Replace add to cart buttons with WhatsApp buttons"
+msgstr "用WhatsApp按钮替换添加到购物车按钮"
+
+msgid "WhatsApp Phone Number"
+msgstr "WhatsApp电话号码"
+
+msgid "Enter your WhatsApp business phone number (with country code, no + sign)"
+msgstr "输入您的WhatsApp商务电话号码（包含国家代码，不要+号）"
+
+msgid "Button Text"
+msgstr "按钮文字"
+
+msgid "Text displayed on the WhatsApp button"
+msgstr "WhatsApp按钮上显示的文字"
+
+msgid "Custom Message Template"
+msgstr "自定义消息模板"
+
+msgid "Custom message template. Use {product_name}, {product_price}, {product_url}, {site_name} as placeholders. Leave empty for default message."
+msgstr "自定义消息模板。使用{product_name}、{product_price}、{product_url}、{site_name}作为占位符。留空使用默认消息。"
+
+msgid "Hello! I'm interested in {product_name} from {site_name}. Could you provide more details?"
+msgstr "您好！我对来自{site_name}的{product_name}感兴趣。您能提供更多详情吗？"
+
+msgid "Button Style"
+msgstr "按钮样式"
+
+msgid "Choose the WhatsApp button style"
+msgstr "选择WhatsApp按钮样式"
+
+msgid "Official WhatsApp Style"
+msgstr "官方WhatsApp样式"
+
+msgid "Custom Style"
+msgstr "自定义样式"
+
+msgid "Enter your WhatsApp business phone number (with country code, no + sign)."
+msgstr "输入您的WhatsApp商务电话号码（包含国家代码，不要+号）。"
+
+msgid "Text displayed on the WhatsApp button."
+msgstr "WhatsApp按钮上显示的文字。"
+
+#: includes/class-wc-b2b-order-manager.php
+msgid "Order automatically cancelled due to expiry (3 weeks without payment)."
+msgstr "订单因过期自动取消（3周未付款）。"
+
+msgid "Order automatically cancelled after 3 weeks without payment."
+msgstr "订单在3周未付款后自动取消。"
+
+msgid "Payment reminder sent to customer."
+msgstr "付款提醒已发送给客户。"
+
+msgid "Payment Reminder for Order #%s"
+msgstr "订单 #%s 的付款提醒"
+
+msgid "Payment Reminder"
+msgstr "付款提醒"
+
+msgid "This is a friendly reminder that your order #%s is still awaiting payment."
+msgstr "这是一个友好的提醒，您的订单 #%s 仍在等待付款。"
+
+msgid "Important:"
+msgstr "重要："
+
+msgid "Your order will be automatically cancelled in %d days (on %s) if payment is not received."
+msgstr "如果未收到付款，您的订单将在 %d 天后（%s）自动取消。"
+
+msgid "Order Summary:"
+msgstr "订单摘要："
+
+msgid "Total Amount:"
+msgstr "总金额："
+
+msgid "Pay Now"
+msgstr "立即付款"
+
+msgid "If you have already made the payment or have any questions, please contact us immediately."
+msgstr "如果您已经付款或有任何问题，请立即联系我们。"
+
+msgid "Thank you for your business!"
+msgstr "感谢您的惠顾！"
+
+msgid "This is an automated reminder. Order expires on: %s"
+msgstr "这是自动提醒。订单过期时间：%s"
+
+msgid "Mark as Paid (Manual Payment)"
+msgstr "标记为已付款（手动付款）"
+
+msgid "Cancel Order Manually"
+msgstr "手动取消订单"
+
+msgid "Order marked as paid manually (offline payment received)."
+msgstr "订单已手动标记为已付款（已收到线下付款）。"
+
+msgid "Order cancelled manually by admin."
+msgstr "订单已被管理员手动取消。"
+
+msgid "Order marked as paid successfully!"
+msgstr "订单已成功标记为已付款！"
+
+msgid "Payment reminder sent manually by admin."
+msgstr "付款提醒已由管理员手动发送。"
+
+msgid "Payment reminder sent successfully!"
+msgstr "付款提醒发送成功！"
+
+msgid "Failed to send payment reminder."
+msgstr "发送付款提醒失败。"
+
+msgid "B2B Order Expiry & Payment"
+msgstr "B2B订单过期和付款"
+
+msgid "Order Expiry:"
+msgstr "订单过期："
+
+msgid "%d days remaining"
+msgstr "剩余 %d 天"
+
+msgid "Order expired"
+msgstr "订单已过期"
+
+msgid "Payment Status:"
+msgstr "付款状态："
+
+msgid "Paid"
+msgstr "已付款"
+
+msgid "Manually Paid"
+msgstr "手动付款"
+
+msgid "Marked as paid:"
+msgstr "标记为已付款："
+
+msgid "Unpaid"
+msgstr "未付款"
+
+msgid "Mark as Paid"
+msgstr "标记为已付款"
+
+msgid "Payment Reminders:"
+msgstr "付款提醒："
+
+msgid "Last reminder:"
+msgstr "最后提醒："
+
+msgid "No reminders sent yet"
+msgstr "尚未发送提醒"
+
+msgid "Send Payment Reminder"
+msgstr "发送付款提醒"
+
+msgid "Order Expiry"
+msgstr "订单过期"
+
+msgid "days"
+msgstr "天"
+
+msgid "Orders will be automatically cancelled after this period without payment."
+msgstr "订单在此期间内未付款将自动取消。"
+
+msgid "Payment Reminder Interval"
+msgstr "付款提醒间隔"
+
+msgid "How often to send payment reminder emails to customers."
+msgstr "向客户发送付款提醒邮件的频率。"
+
+msgid "Order #%s has been cancelled"
+msgstr "订单 #%s 已被取消"
+
+msgid "Order Cancelled"
+msgstr "订单已取消"
+
+msgid "We regret to inform you that your order #%s has been cancelled due to non-payment within the specified time period."
+msgstr "我们很遗憾地通知您，您的订单 #%s 因在指定时间内未付款而被取消。"
+
+msgid "Cancelled Order Details:"
+msgstr "已取消订单详情："
+
+msgid "If you are still interested in these products, please feel free to place a new order or contact us directly."
+msgstr "如果您仍对这些产品感兴趣，请随时下新订单或直接联系我们。"
+
+msgid "Continue Shopping"
+msgstr "继续购物"
+
+msgid "Thank you for your understanding."
+msgstr "感谢您的理解。"
+
+msgid "This is an automated notification about your order cancellation."
+msgstr "这是关于您订单取消的自动通知。"
+
+#: includes/class-wc-b2b-checkout.php
+msgid "Verification Method"
+msgstr "验证方式"
+
+msgid "Email Verification"
+msgstr "邮箱验证"
+
+msgid "WhatsApp Verification"
+msgstr "WhatsApp验证"
+
+#: includes/class-wc-b2b-admin.php
+msgid "Verification Method:"
+msgstr "验证方式："
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Email"
+msgstr "邮箱"
+
+msgid "Customer chose this method for order verification and notifications."
+msgstr "客户选择此方式进行订单验证和通知。"
+
+msgid "This token is used for WhatsApp verification."
+msgstr "此令牌用于WhatsApp验证。"
+
+msgid "Verification WhatsApp message resent to customer."
+msgstr "验证WhatsApp消息已重新发送给客户。"
+
+msgid "Quote sent to customer via WhatsApp."
+msgstr "报价已通过WhatsApp发送给客户。"
+
+msgid "Quote sent to customer via email."
+msgstr "报价已通过邮箱发送给客户。"
+
+msgid "Verification WhatsApp message sent successfully!"
+msgstr "验证WhatsApp消息发送成功！"
+
+#: includes/class-wc-b2b-order-manager.php
+msgid "Payment Reminder 💰\n\nHello %s!\n\nYour order #%s is still awaiting payment.\n\n⚠️ Important: Your order will be cancelled in %d days if payment is not received.\n\nOrder Total: %s\n\nPay now: %s\n\nIf you have already paid or have questions, please contact us immediately."
+msgstr "付款提醒 💰\n\n您好 %s！\n\n您的订单 #%s 仍在等待付款。\n\n⚠️ 重要：如果未收到付款，您的订单将在 %d 天后取消。\n\n订单总计：%s\n\n立即付款：%s\n\n如果您已经付款或有疑问，请立即联系我们。"
+
+msgid "Order Cancelled ❌\n\nHello %s,\n\nWe regret to inform you that your order #%s has been cancelled due to non-payment within the specified time period.\n\nOrder Total: %s\n\nIf you are still interested in these products, please feel free to place a new order or contact us directly.\n\nThank you for your understanding."
+msgstr "订单已取消 ❌\n\n您好 %s，\n\n我们很遗憾地通知您，您的订单 #%s 因在指定时间内未付款而被取消。\n\n订单总计：%s\n\n如果您仍对这些产品感兴趣，请随时下新订单或直接联系我们。\n\n感谢您的理解。"
+
+#: includes/class-wc-b2b-order.php
+msgid "Order verified by customer via %s."
+msgstr "客户通过%s验证了订单。"
+
+#: includes/class-wc-b2b-admin.php
+msgid "Verification Status:"
+msgstr "验证状态："
+
+msgid "Not Verified"
+msgstr "未验证"
+
+msgid "Order was verified via %s"
+msgstr "订单通过%s验证"
+
+msgid "Verification sent via both email and WhatsApp."
+msgstr "验证已通过邮箱和WhatsApp发送。"
+
+msgid "Quote sent to customer via both email and WhatsApp."
+msgstr "报价已通过邮箱和WhatsApp发送给客户。"
+
+msgid "Verification sent via both email and WhatsApp!"
+msgstr "验证已通过邮箱和WhatsApp发送！"
+
+msgid "Verified via:"
+msgstr "验证方式："
+
+msgid "All future notifications will be sent via %s"
+msgstr "所有后续通知将通过%s发送"
+
+msgid "email"
+msgstr "邮箱"
+
+msgid "Verification method will determine notification channel for future communications."
+msgstr "验证方式将决定后续通信的通知渠道。"
+#: includes/class-wc-b2b-admin.php
+msgid "Data Management"
+msgstr "数据管理"
+
+msgid "Complete Uninstall"
+msgstr "完全卸载"
+
+msgid "Remove all plugin data when uninstalling"
+msgstr "卸载时删除所有插件数据"
+
+msgid "When enabled, uninstalling the plugin will remove all database tables, settings, and order metadata. This action cannot be undone."
+msgstr "启用后，卸载插件将删除所有数据库表、设置和订单元数据。此操作无法撤销。"
+
+msgid "Warning: This will permanently delete all B2B order data and verification tokens."
+msgstr "警告：这将永久删除所有B2B订单数据和验证令牌。"
+
+msgid "Token Cleanup"
+msgstr "令牌清理"
+
+msgid "Verification tokens are automatically cleaned up:"
+msgstr "验证令牌会自动清理："
+
+msgid "• Expired tokens: Cleaned daily"
+msgstr "• 过期令牌：每日清理"
+
+msgid "• Used tokens older than 30 days: Cleaned weekly"
+msgstr "• 30天以上的已使用令牌：每周清理"
+
+msgid "Clean Up Expired Tokens Now"
+msgstr "立即清理过期令牌"
+
+msgid "Permission denied."
+msgstr "权限不足。"
+
+msgid "Successfully cleaned up %d tokens (%d expired, %d old used tokens)."
+msgstr "成功清理了 %d 个令牌（%d 个过期，%d 个旧的已使用令牌）。"
+
+msgid "No tokens needed cleanup. Database is already clean."
+msgstr "没有需要清理的令牌。数据库已经很干净。"
+
+#: includes/class-wc-b2b-install.php
+msgid "WC B2B: Cleaned up %d expired verification tokens"
+msgstr "WC B2B：清理了 %d 个过期的验证令牌"
+
+msgid "WC B2B: Cleaned up %d old used verification tokens"
+msgstr "WC B2B：清理了 %d 个旧的已使用验证令牌"
+
+# New admin email template strings
+msgid "New B2B Order - Ready for Quote"
+msgstr "新的B2B订单 - 准备报价"
+
+msgid "Order #%s has been verified and is ready for your quote. All information needed for pricing is included below."
+msgstr "订单 #%s 已验证，准备报价。定价所需的所有信息都包含在下方。"
+
+msgid "Customer Contact Information"
+msgstr "客户联系信息"
+
+msgid "Not provided"
+msgstr "未提供"
+
+msgid "Order Details"
+msgstr "订单详情"
+
+msgid "Current Total:"
+msgstr "当前总计："
+
+msgid "Products Ordered"
+msgstr "订购产品"
+
+msgid "Qty"
+msgstr "数量"
+
+msgid "Unit Price"
+msgstr "单价"
+
+msgid "SKU:"
+msgstr "SKU："
+
+msgid "Billing Address"
+msgstr "账单地址"
+
+msgid "Shipping Address"
+msgstr "收货地址"
+
+msgid "Customer Message & Requirements"
+msgstr "客户留言和要求"
+
+msgid "Next Steps"
+msgstr "下一步操作"
+
+msgid "Review the order details above"
+msgstr "查看上述订单详情"
+
+msgid "Contact the customer using the provided email/phone"
+msgstr "使用提供的邮箱/电话联系客户"
+
+msgid "Discuss requirements and prepare your quote"
+msgstr "讨论需求并准备报价"
+
+msgid "Send quote via email or your preferred system"
+msgstr "通过邮件或您偏好的系统发送报价"
+
+msgid "Update order status in WordPress when quote is sent"
+msgstr "发送报价后在WordPress中更新订单状态"
+
+msgid "Quote for Order #%s"
+msgstr "订单 #%s 的报价"
+
+msgid "Reply to Customer"
+msgstr "回复客户"
+
+msgid "Manage in WordPress"
+msgstr "在WordPress中管理"
+
+msgid "This notification was sent from %s | Order Date: %s"
+msgstr "此通知来自 %s | 订单日期：%s"
