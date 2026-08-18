@@ -6,502 +6,587 @@ msgstr ""
 "POT-Creation-Date: 2026-08-18 15:16+0800\n"
 "PO-Revision-Date: 2026-08-18 15:16+0800\n"
 "Last-Translator: WooCommerce to B2B contributors\n"
-"Language-Team: Chinese (Simplified)\n"
-"Language: zh_CN\n"
+"Language-Team: Italian\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: wc-to-b2b language catalog builder\n"
 
 #: includes/class-wc-b2b-order-manager.php:516
 #, php-format
 msgid "%d days remaining"
-msgstr "剩余 %d 天"
+msgstr "%d giorni rimanenti"
 
-#: includes/class-wc-b2b-membership.php:283 includes/class-wc-b2b-membership.php:323
+#: includes/class-wc-b2b-membership.php:283
+#: includes/class-wc-b2b-membership.php:323
 #, php-format
 msgid "%s fixed price"
-msgstr "%s固定价格"
+msgstr "%s prezzo fisso"
 
 #: includes/class-wc-b2b-email.php:417
 msgid "(Custom B2B Price)"
-msgstr "（自定义B2B价格）"
+msgstr "(prezzo personalizzato B2B)"
 
 #: includes/class-wc-b2b-email.php:445
 msgid ""
-"Accepting the quote confirms your order. Payment is made offline only; no online payment will be "
-"requested."
-msgstr "接受报价确认您的订单。仅支持线下支付；不会要求在线付款。"
+"Accepting the quote confirms your order. Payment is made offline only; no "
+"online payment will be requested."
+msgstr ""
+"L'accettazione del preventivo conferma l'ordine. Il pagamento viene "
+"effettuato solo offline; non verrà richiesto alcun pagamento on-line."
 
 #: includes/class-wc-b2b-account.php:145 includes/class-wc-b2b-email.php:440
 msgid "Accept Quote"
-msgstr "接受报价"
+msgstr "Accetta preventivo"
 
 #: includes/class-wc-b2b-ajax.php:303
 msgid "Accept Quote & Pay Offline"
-msgstr "接受报价并离线支付"
+msgstr "Accetta preventivo e paga offline"
 
 #: includes/class-wc-b2b-ajax.php:126 includes/class-wc-b2b-order.php:329
 #: includes/class-wc-b2b-order.php:361
 msgid "Access denied."
-msgstr "访问被拒绝。"
+msgstr "Accesso negato."
 
 #: includes/class-wc-b2b-account.php:60 includes/class-wc-b2b-admin.php:677
 msgid "Action"
-msgstr "操作"
+msgstr "Azione"
 
 #: includes/class-wc-b2b-fulfillment.php:96
 msgid "Add Payment"
-msgstr "添加付款"
+msgstr "Aggiungi pagamento"
 
 #: includes/class-wc-b2b-fulfillment.php:121
 msgid "Add Shipment"
-msgstr "添加发货"
+msgstr "Aggiungi spedizione"
 
 #: includes/class-wc-b2b-membership.php:464
 msgid "Add to Inquiry"
-msgstr "加入询价单"
+msgstr "Aggiungi alla richiesta"
 
 #: includes/class-wc-b2b-membership.php:464
 msgid "Add to Quote"
-msgstr "加入报价请求"
+msgstr "Aggiungi al preventivo"
 
 #: includes/class-wc-b2b-order.php:174
-msgid "A formal quote cannot be sent until the guest verifies the inquiry email."
-msgstr "客人验证询价邮件后，才能发送正式报价。"
+msgid ""
+"A formal quote cannot be sent until the guest verifies the inquiry email."
+msgstr ""
+"Un preventivo formale non può essere inviato finché l'ospite non verifica "
+"l'e-mail di richiesta."
 
 #: includes/class-wc-b2b-fulfillment.php:223
 msgid "A formal quote must be sent before recording payments or shipments."
-msgstr "在记录付款或发货之前必须发送正式报价。"
+msgstr ""
+"È necessario inviare un preventivo formale prima di registrare pagamenti o "
+"spedizioni."
 
 #: includes/class-wc-b2b-admin.php:168
 #, php-format
 msgid "All future notifications will be sent via %s"
-msgstr "所有后续通知将通过%s发送"
+msgstr "Tutte le notifiche future verranno inviate tramite %s"
 
 #: includes/class-wc-b2b-fulfillment.php:205
 msgid "All goods have been shipped."
-msgstr "所有货物已发货。"
+msgstr "Tutte le merci sono state spedite."
 
 #: includes/class-wc-b2b-membership.php:180
 msgid "Allow guests to submit an inquiry after verifying their email"
-msgstr "允许访客验证邮箱后提交询价"
+msgstr ""
+"Consentire agli ospiti di inviare una richiesta dopo aver verificato la "
+"propria e-mail"
 
 #: includes/class-wc-b2b-registration.php:209
 msgid "Allow this customer to sign in"
-msgstr "允许此客户登录"
+msgstr "Consenti a questo cliente di accedere"
 
 #: includes/class-wc-b2b-membership.php:183
 msgid ""
-"All submissions wait for an administrator to adjust prices and shipping and send the formal quote "
-"manually."
-msgstr "所有提交都要等待管理员调整价格和运费，并人工发送正式报价。"
+"All submissions wait for an administrator to adjust prices and shipping and "
+"send the formal quote manually."
+msgstr ""
+"Tutti gli invii attendono che un amministratore modifichi i prezzi e la "
+"spedizione e invii manualmente il preventivo formale."
 
 #: includes/class-wc-b2b-membership.php:216
 msgid "Always retail price"
-msgstr "始终使用零售价"
+msgstr "Sempre prezzo al dettaglio"
 
-#: includes/class-wc-b2b-account.php:152 includes/class-wc-b2b-fulfillment.php:88
-#: includes/class-wc-b2b-fulfillment.php:102 includes/class-wc-b2b-notifications.php:85
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:102
+#: includes/class-wc-b2b-notifications.php:85
 msgid "Amount"
-msgstr "金额"
+msgstr "Importo"
 
 #: includes/class-wc-b2b-notifications.php:122
-msgid "An administrator will review prices and shipping before sending the formal quote."
-msgstr "管理员将在发送正式报价前审核价格和运费。"
+msgid ""
+"An administrator will review prices and shipping before sending the formal "
+"quote."
+msgstr ""
+"Un amministratore esaminerà i prezzi e la spedizione prima di inviare il "
+"preventivo formale."
 
 #: includes/class-wc-b2b-admin.php:227
 msgid "An error occurred. Please try again."
-msgstr "发生错误，请重试。"
+msgstr "Si è verificato un errore. Per favore riprova."
 
 #: includes/class-wc-b2b-admin.php:465 includes/class-wc-b2b-admin.php:517
 msgid "A new verification link could not be generated."
-msgstr "无法生成新的验证链接。"
+msgstr "Non è stato possibile generare un nuovo collegamento di verifica."
 
 #: includes/class-wc-b2b-fulfillment.php:205
 msgid "A partial shipment has been recorded."
-msgstr "已记录部分发货。"
+msgstr "È stata registrata una spedizione parziale."
 
 #: includes/class-wc-b2b-ajax.php:181 includes/class-wc-b2b-order.php:368
-msgid "A payment has already been recorded. Please contact us to cancel this order."
-msgstr "一笔付款已被记录。请联系我们取消此订单。"
+msgid ""
+"A payment has already been recorded. Please contact us to cancel this order."
+msgstr ""
+"Un pagamento è già stato registrato. Vi preghiamo di contattarci per "
+"annullare questo ordine."
 
 #: includes/class-wc-b2b-ajax.php:364
 msgid "Are you sure you want to accept this quote?"
-msgstr "您确定要接受此报价吗？"
+msgstr "Sei sicuro di voler accettare questo preventivo?"
 
 #: includes/class-wc-b2b-ajax.php:365
 msgid "Are you sure you want to cancel this order?"
-msgstr "您确定要取消此订单吗？"
+msgstr "Sei sicuro di voler annullare l'ordine?"
 
 #: includes/class-wc-b2b-notifications.php:101
 msgid "A shipment has been recorded for your B2B order."
-msgstr "您的 B2B 订单已记录发货。"
+msgstr "È stata registrata una spedizione per il tuo ordine B2B."
 
 #: includes/class-wc-b2b-checkout.php:285
 #, php-format
 msgid ""
-"A verified customer account is required to request a quote. <a href=\"%s\">Register or sign "
-"in</a>, then return to checkout."
-msgstr "申请报价需要已验证的客户账户。请先<a href=\"%s\">注册或登录</a>，然后返回结账页面。"
+"A verified customer account is required to request a quote. <a "
+"href=\"%s\">Register or sign in</a>, then return to checkout."
+msgstr ""
+"Per richiedere un preventivo è necessario un account cliente verificato. <a "
+"href=\"%s\">Registrati o accedi</a>, quindi torna alla cassa."
 
 #: includes/class-wc-b2b-registration.php:204
 msgid "B2B Email Verification"
-msgstr "B2B 邮箱验证"
+msgstr "B2B Verifica e-mail"
 
-#: includes/class-wc-b2b-membership.php:148 includes/class-wc-b2b-membership.php:149
+#: includes/class-wc-b2b-membership.php:148
+#: includes/class-wc-b2b-membership.php:149
 #: includes/class-wc-b2b-membership.php:172
 msgid "B2B Member Levels"
-msgstr "B2B 会员级别"
+msgstr "B2B Livelli membro"
 
 #: includes/class-wc-b2b-membership.php:255
 msgid "B2B Membership"
-msgstr "B2B 会员资格"
+msgstr "B2B"
 
 #: includes/class-wc-b2b-quote.php:191
 msgid "B2B Offline Quote"
-msgstr "B2B离线报价"
+msgstr "B2B Preventivo offline"
 
 #: includes/class-wc-b2b-admin.php:52
 msgid "B2B Order Actions"
-msgstr "B2B订单操作"
+msgstr "B2B Azioni sugli ordini"
 
 #: includes/class-wc-b2b-order-manager.php:486
 msgid "B2B Order Expiry & Payment"
-msgstr "B2B订单过期和付款"
+msgstr "B2B Scadenza e pagamento dell'ordine"
 
 #: includes/class-wc-b2b-admin.php:53
 msgid "B2B Order Information"
-msgstr "B2B订单信息"
+msgstr "B2B Informazioni sull'ordine"
 
 #: includes/class-wc-b2b-fulfillment.php:48
 msgid "B2B Payments & Shipments"
-msgstr "B2B 付款&发货"
+msgstr "B2B Pagamenti e spedizioni"
 
 #: includes/class-wc-b2b-admin.php:776
 msgid "B2B Price"
-msgstr "B2B价格"
+msgstr "B2B Prezzo"
 
 #: includes/class-wc-b2b-admin.php:666
 msgid "B2B Price Management"
-msgstr "B2B价格管理"
+msgstr "B2B Gestione dei prezzi"
 
 #: includes/class-wc-b2b-account.php:125
 msgid "B2B Quotation & Fulfillment"
-msgstr "B2B 报价与履行"
+msgstr "B2B Preventivo ed evasione"
 
 #: includes/class-wc-b2b-quote.php:78
 msgid "B2B Quote & Offline Payment Settings"
-msgstr "B2B报价&线下支付设置"
+msgstr "B2B Impostazioni preventivo e pagamento offline"
 
 #: includes/class-wc-b2b-account.php:29 includes/class-wc-b2b-account.php:33
 #: includes/class-wc-b2b-account.php:47
 msgid "B2B Quotes & Orders"
-msgstr "B2B 行情&订单"
+msgstr "B2B Preventivi e ordini"
 
 #: includes/class-wc-b2b-quote.php:51 includes/class-wc-b2b-quote.php:52
 msgid "B2B Quote Settings"
-msgstr "B2B报价设置"
+msgstr "B2B Impostazioni preventivo"
 
 #: includes/class-wc-b2b-admin.php:239 includes/class-wc-b2b-admin.php:240
 msgid "B2B Settings"
-msgstr "B2B设置"
+msgstr "B2B Impostazioni"
 
 #: includes/class-wc-b2b-fulfillment.php:85
 msgid "Balance:"
-msgstr "余额："
+msgstr "Saldo:"
 
 #: includes/class-wc-b2b-fulfillment.php:103
 msgid "Bank transfer"
-msgstr "银行转账"
+msgstr "Bonifico bancario"
 
 #: includes/class-wc-b2b-email.php:304
 msgid "Billing Address"
-msgstr "账单地址"
+msgstr "Indirizzo di fatturazione"
 
 #: includes/class-wc-b2b-whatsapp-button.php:218
 msgid "Button Style"
-msgstr "按钮样式"
+msgstr "Stile pulsante"
 
 #: includes/class-wc-b2b-whatsapp-button.php:201
 msgid "Button Text"
-msgstr "按钮文字"
+msgstr "Testo del pulsante"
 
 #: includes/class-wc-b2b-email.php:495
 msgid "Cancelled Order Details:"
-msgstr "已取消订单详情："
+msgstr "Dettagli ordine annullato:"
 
 #: includes/class-wc-b2b-account.php:146 includes/class-wc-b2b-ajax.php:309
 #: includes/class-wc-b2b-email.php:441
 msgid "Cancel Order"
-msgstr "取消订单"
+msgstr "Annulla ordine"
 
 #: includes/class-wc-b2b-order-manager.php:368
 msgid "Cancel Order Manually"
-msgstr "手动取消订单"
+msgstr "Annulla l'ordine manualmente"
 
-#: includes/class-wc-b2b-account.php:159 includes/class-wc-b2b-fulfillment.php:113
-#: includes/class-wc-b2b-fulfillment.php:127 includes/class-wc-b2b-notifications.php:104
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-fulfillment.php:127
+#: includes/class-wc-b2b-notifications.php:104
 msgid "Carrier"
-msgstr "载体"
+msgstr "Carrier"
 
 #: includes/class-wc-b2b-quote.php:92
-msgid "Change this rule under WooCommerce → B2B Member Levels → Customer Access Mode."
-msgstr "可在 WooCommerce → B2B Member Levels → Customer Access Mode 中修改此规则。"
+msgid ""
+"Change this rule under WooCommerce → B2B Member Levels → Customer Access "
+"Mode."
+msgstr ""
+"Modifica questa regola in WooCommerce → B2B Livelli membro → Modalità di "
+"accesso cliente."
 
 #: includes/class-wc-b2b-whatsapp-button.php:219
 msgid "Choose the WhatsApp button style"
-msgstr "选择WhatsApp按钮样式"
+msgstr "Scegli lo stile del pulsante WhatsApp"
 
 #: includes/class-wc-b2b-admin.php:377
 msgid "Clean Up Expired Tokens Now"
-msgstr "立即清理过期令牌"
+msgstr "Pulisci ora i token scaduti"
 
 #: includes/class-wc-b2b-registration.php:136
 msgid ""
-"Click the button below to confirm that this email address is valid. You can sign in and view your "
-"customer-level prices after verification."
-msgstr "单击下面的按钮确认该电子邮件地址有效。验证后您可以登录并查看您的客户级价格。"
+"Click the button below to confirm that this email address is valid. You can "
+"sign in and view your customer-level prices after verification."
+msgstr ""
+"Fare clic sul pulsante in basso per confermare che questo indirizzo e-mail è"
+" valido. Puoi accedere e visualizzare i prezzi a livello di cliente dopo la "
+"verifica."
 
 #: includes/class-wc-b2b-email.php:202
 msgid "Company:"
-msgstr "公司："
+msgstr "Azienda:"
 
 #: includes/class-wc-b2b-admin.php:352
 msgid "Complete Uninstall"
-msgstr "完全卸载"
+msgstr "Disinstallazione completa"
 
 #: includes/class-wc-b2b-whatsapp-button.php:180
 msgid "Configure WhatsApp quick buy button settings."
-msgstr "配置WhatsApp快速购买按钮设置。"
+msgstr "Configura le impostazioni del pulsante di acquisto rapido WhatsApp."
 
 #: includes/class-wc-b2b-email.php:342
 msgid "Contact the customer using the provided email/phone"
-msgstr "使用提供的邮箱/电话联系客户"
+msgstr "Contatta il cliente utilizzando l'e-mail/telefono fornito"
 
-#: includes/class-wc-b2b-account.php:159 includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-fulfillment.php:113
 #: includes/class-wc-b2b-notifications.php:110
 msgid "Contents"
-msgstr "目录"
+msgstr "Contenuti"
 
 #: includes/class-wc-b2b-email.php:504
 msgid "Continue Shopping"
-msgstr "继续购物"
+msgstr "Continua gli acquisti"
 
 #: includes/class-wc-b2b-admin.php:674
 msgid "Current Price"
-msgstr "当前价格"
+msgstr "Prezzo corrente"
 
 #: includes/class-wc-b2b-admin.php:718
 msgid "Current Shipping:"
-msgstr "当前运费："
+msgstr "Spedizione attuale:"
 
 #: includes/class-wc-b2b-admin.php:742 includes/class-wc-b2b-email.php:233
 msgid "Current Total:"
-msgstr "当前总计："
+msgstr "Totale corrente:"
 
 #: includes/class-wc-b2b-admin.php:791
 msgid "Custom:"
-msgstr "自定义："
+msgstr "Personalizzato:"
 
 #: includes/class-wc-b2b-ajax.php:246
 msgid "Customer:"
-msgstr "客户："
+msgstr "Cliente:"
 
 #: includes/class-wc-b2b-ajax.php:153 includes/class-wc-b2b-order.php:338
 msgid "Customer accepted the quote and will pay offline."
-msgstr "客户接受报价并进行线下支付。"
+msgstr "Il cliente ha accettato il preventivo e pagherà offline."
 
 #: includes/class-wc-b2b-whatsapp.php:239
 msgid "Customer accepted the quote via WhatsApp and will pay offline."
-msgstr "客户通过WhatsApp接受报价并进行线下支付。"
+msgstr ""
+"Il cliente ha accettato il preventivo tramite WhatsApp e pagherà offline."
 
 #: includes/class-wc-b2b-membership.php:177
 msgid "Customer Access Mode"
-msgstr "客户访问模式"
+msgstr "Modalità di accesso cliente"
 
 #: includes/class-wc-b2b-quote.php:86
 msgid "Customer Access Rules"
-msgstr "客户访问规则"
+msgstr "Regole di accesso del cliente"
 
 #: includes/class-wc-b2b-email.php:186
 msgid "Customer Contact Information"
-msgstr "客户联系信息"
+msgstr "Informazioni di contatto del cliente"
 
 #: includes/class-wc-b2b-email.php:327
 msgid "Customer Message & Requirements"
-msgstr "客户留言和要求"
+msgstr "Messaggio e requisiti del cliente"
 
 #: includes/class-wc-b2b-admin.php:180
 msgid "Customer Message:"
-msgstr "客户留言："
+msgstr "Messaggio del cliente:"
 
 #: includes/class-wc-b2b-quote.php:90
 msgid ""
-"Customers must register, verify their account email, and sign in before requesting a quote. Guest "
-"checkout is disabled."
-msgstr "客户必须注册、验证账户邮箱并登录后才能申请报价。访客结账已禁用。"
+"Customers must register, verify their account email, and sign in before "
+"requesting a quote. Guest checkout is disabled."
+msgstr ""
+"I clienti devono registrarsi, verificare l'e-mail del proprio account e "
+"accedere prima di richiedere un preventivo. Il pagamento come ospite è "
+"disabilitato."
 
 #: includes/class-wc-b2b-whatsapp-button.php:209
 msgid "Custom Message Template"
-msgstr "自定义消息模板"
+msgstr "Modello di messaggio personalizzato"
 
 #: includes/class-wc-b2b-whatsapp-button.php:210
 msgid ""
-"Custom message template. Use {product_name}, {product_price}, {product_url}, {site_name} as "
-"placeholders. Leave empty for default message."
-msgstr "自定义消息模板。使用{product_name}、{product_price}、{product_url}、{site_name}作为占位符。留空使用默认消息。"
+"Custom message template. Use {product_name}, {product_price}, {product_url},"
+" {site_name} as placeholders. Leave empty for default message."
+msgstr ""
+"Modello di messaggio personalizzato. Utilizza {product_name}, "
+"{product_price}, {product_url}, {site_name} come segnaposto. Lascia vuoto il"
+" messaggio predefinito."
 
 #: includes/class-wc-b2b-admin.php:628
 msgid "Custom Shipping"
-msgstr "自定义运费"
+msgstr "Spedizione personalizzata"
 
 #: includes/class-wc-b2b-whatsapp-button.php:224
 msgid "Custom Style"
-msgstr "自定义样式"
+msgstr "Stile personalizzato"
 
 #: includes/class-wc-b2b-admin.php:349
 msgid "Data Management"
-msgstr "数据管理"
+msgstr "Gestione dei dati"
 
 #: includes/class-wc-b2b-account.php:56 includes/class-wc-b2b-account.php:70
 #: includes/class-wc-b2b-account.php:152 includes/class-wc-b2b-account.php:159
-#: includes/class-wc-b2b-fulfillment.php:88 includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:113
 #: includes/class-wc-b2b-notifications.php:84
 msgid "Date"
-msgstr "日期"
+msgstr "Data"
 
 #: includes/class-wc-b2b-admin.php:283 includes/class-wc-b2b-admin.php:291
 #: includes/class-wc-b2b-quote.php:95
 msgid "days"
-msgstr "天"
+msgstr "giorni"
 
 #: includes/class-wc-b2b-membership.php:196
 msgid "Default Discount (%)"
-msgstr "默认折扣（%）"
+msgstr "Sconto predefinito (%)"
 
 #: includes/class-wc-b2b-email.php:343
 msgid "Discuss requirements and prepare your quote"
-msgstr "讨论需求并准备报价"
+msgstr "Discuti i requisiti e prepara il tuo preventivo"
 
 #: includes/class-wc-b2b-blocks.php:44 includes/class-wc-b2b-quote.php:197
 msgid ""
-"Displayed amounts are retail references. Submit the inquiry and verify your email; an "
-"administrator will then review prices and shipping."
-msgstr "当前金额仅为零售价参考。提交询价并验证邮箱后，管理员会审核价格和运费。"
+"Displayed amounts are retail references. Submit the inquiry and verify your "
+"email; an administrator will then review prices and shipping."
+msgstr ""
+"Gli importi visualizzati sono riferimenti al dettaglio. Invia la richiesta e"
+" verifica la tua email; un amministratore esaminerà quindi i prezzi e la "
+"spedizione."
 
 #: includes/class-wc-b2b-admin.php:166 includes/class-wc-b2b-email.php:210
 msgid "Email"
-msgstr "邮箱"
+msgstr "Email"
 
 #: includes/class-wc-b2b-admin.php:168
 msgid "email"
-msgstr "邮箱"
+msgstr "e-mail"
 
 #: includes/class-wc-b2b-blocks.php:40 includes/class-wc-b2b-quote.php:193
 msgid "Email-verified inquiry"
-msgstr "需邮箱验证的询价"
+msgstr "Richiesta verificata via e-mail"
 
 #: includes/class-wc-b2b-admin.php:143 includes/class-wc-b2b-ajax.php:250
 #: includes/class-wc-b2b-email.php:194
 msgid "Email:"
-msgstr "邮箱："
+msgstr "E-mail:"
 
 #: includes/class-wc-b2b-checkout.php:95
 msgid "Email is a required field."
-msgstr "邮箱是必填字段。"
+msgstr "L'e-mail è un campo obbligatorio."
 
 #: includes/class-wc-b2b-order.php:205
 msgid ""
-"Email verified. The inquiry was saved, but the reception email could not be sent; our "
-"administrator can resend it."
-msgstr "邮箱已验证。询盘已保存，但无法发送接待邮件；我们的管理员可以重新发送。"
+"Email verified. The inquiry was saved, but the reception email could not be "
+"sent; our administrator can resend it."
+msgstr ""
+"Email verificata. La richiesta è stata salvata, ma non è stato possibile "
+"inviare l'e-mail di ricezione; il nostro amministratore può inviarlo "
+"nuovamente."
 
 #: includes/class-wc-b2b-order.php:204
-msgid "Email verified. Your inquiry has now been delivered to our reception team."
-msgstr "邮箱已验证。您的询问现已发送给我们的接待团队。"
+msgid ""
+"Email verified. Your inquiry has now been delivered to our reception team."
+msgstr ""
+"Email verificata. La tua richiesta è stata ora consegnata al nostro team di "
+"accoglienza."
 
 #: includes/class-wc-b2b-registration.php:194
 msgid "Email verified successfully. You can now sign in."
-msgstr "邮箱验证成功。您现在可以登录。"
+msgstr "Email verificata correttamente. Ora puoi accedere."
 
 #: includes/class-wc-b2b-registration.php:176
-msgid "Email verified successfully. You can now sign in and view your retail price."
-msgstr "邮箱验证成功。现在可以登录并查看零售价。"
+msgid ""
+"Email verified successfully. You can now sign in and view your retail price."
+msgstr ""
+"Email verificata correttamente. Ora puoi accedere e visualizzare il prezzo "
+"al dettaglio."
 
 #: includes/class-wc-b2b-admin.php:297
 msgid "Enable WhatsApp"
-msgstr "启用WhatsApp"
+msgstr "Abilita WhatsApp"
 
-#: includes/class-wc-b2b-admin.php:323 includes/class-wc-b2b-whatsapp-button.php:185
+#: includes/class-wc-b2b-admin.php:323
+#: includes/class-wc-b2b-whatsapp-button.php:185
 msgid "Enable WhatsApp Button"
-msgstr "启用WhatsApp按钮"
+msgstr "Abilita pulsante WhatsApp"
 
 #: includes/class-wc-b2b-admin.php:301
 msgid "Enable WhatsApp integration"
-msgstr "启用WhatsApp集成"
+msgstr "Abilita l'integrazione WhatsApp"
 
 #: includes/class-wc-b2b-quote.php:99
 msgid ""
-"Enter bank name, beneficiary, account number, SWIFT, payment reference instructions, and contact "
-"details. This appears on quotes, customer order pages, and emails."
-msgstr "输入银行名称、收款人、账号、SWIFT、付款参考说明、联系方式。这出现在报价、客户订单页面和电子邮件上。"
+"Enter bank name, beneficiary, account number, SWIFT, payment reference "
+"instructions, and contact details. This appears on quotes, customer order "
+"pages, and emails."
+msgstr ""
+"Immettere il nome della banca, il beneficiario, il numero di conto, SWIFT, "
+"le istruzioni di riferimento del pagamento e i dettagli di contatto. Questo "
+"appare sui preventivi, sulle pagine degli ordini dei clienti e sulle e-mail."
 
 #: includes/class-wc-b2b-whatsapp-button.php:194
-msgid "Enter your WhatsApp business phone number (with country code, no + sign)"
-msgstr "输入您的WhatsApp商务电话号码（包含国家代码，不要+号）"
+msgid ""
+"Enter your WhatsApp business phone number (with country code, no + sign)"
+msgstr ""
+"Inserisci il numero di telefono della tua attività WhatsApp (con prefisso "
+"internazionale, no + segno)"
 
 #: includes/class-wc-b2b-admin.php:336
-msgid "Enter your WhatsApp business phone number (with country code, no + sign)."
-msgstr "输入您的WhatsApp商务电话号码（包含国家代码，不要+号）。"
+msgid ""
+"Enter your WhatsApp business phone number (with country code, no + sign)."
+msgstr ""
+"Inserisci il numero di telefono della tua attività WhatsApp (con prefisso "
+"internazionale, no + segno)."
 
 #: includes/class-wc-b2b-whatsapp-button.php:165
 msgid "Error generating WhatsApp message."
-msgstr "生成WhatsApp消息时出错。"
+msgstr "Errore durante la generazione del messaggio WhatsApp."
 
 #: includes/class-wc-b2b-quote.php:84
 msgid ""
-"Every submission remains ready for review until an administrator adjusts product prices and "
-"shipping, then sends the formal quote manually."
-msgstr "每次提交都会保持等待审核状态，直到管理员调整商品价格和运费并人工发送正式报价。"
+"Every submission remains ready for review until an administrator adjusts "
+"product prices and shipping, then sends the formal quote manually."
+msgstr ""
+"Ogni invio rimane pronto per la revisione finché un amministratore non "
+"modifica i prezzi dei prodotti e la spedizione, quindi invia manualmente il "
+"preventivo formale."
 
 #: includes/class-wc-b2b-membership.php:173
 msgid ""
-"Every verified account has one of three fixed levels: registered customers see retail prices, "
-"regular customers see wholesale prices, and VIP customers see VIP prices."
-msgstr "每个经过验证的帐户都有三个固定级别之一：注册客户看到零售价格，老客户看到批发价格，VIP 客户看到 VIP 价格。"
+"Every verified account has one of three fixed levels: registered customers "
+"see retail prices, regular customers see wholesale prices, and VIP customers"
+" see VIP prices."
+msgstr ""
+"Ogni account verificato ha uno dei tre livelli fissi: i clienti registrati "
+"vedono i prezzi al dettaglio, i clienti abituali vedono i prezzi "
+"all'ingrosso e i clienti VIP vedono i prezzi VIP."
 
 #: includes/class-wc-b2b-order-manager.php:472
 msgid "Failed to send payment reminder."
-msgstr "发送付款提醒失败。"
+msgstr "Impossibile inviare il promemoria di pagamento."
 
 #: includes/class-wc-b2b-order.php:161
-msgid "Guest inquiries can be delivered only after the customer clicks the email verification link."
-msgstr "客户点击邮件验证链接后才能发送访客询盘。"
+msgid ""
+"Guest inquiries can be delivered only after the customer clicks the email "
+"verification link."
+msgstr ""
+"Le richieste degli ospiti possono essere consegnate solo dopo che il cliente"
+" ha fatto clic sul collegamento di verifica dell'e-mail."
 
 #: includes/class-wc-b2b-email.php:178
 #, php-format
 msgid ""
-"Guest inquiry #%s has passed email verification. Review it and send a formal quote manually when "
-"pricing is ready."
-msgstr "访客询价#%s已通过邮件验证。进行审核并在定价准备就绪后手动发送正式报价。"
+"Guest inquiry #%s has passed email verification. Review it and send a formal"
+" quote manually when pricing is ready."
+msgstr ""
+"La richiesta dell'ospite #%s ha superato la verifica e-mail. Esaminalo e "
+"invia manualmente un preventivo formale quando i prezzi sono pronti."
 
 #: includes/class-wc-b2b-checkout.php:165
 msgid "Guest inquiry blocked because customer registration is required."
-msgstr "当前要求客户注册，访客询价已被阻止。"
+msgstr ""
+"Richiesta ospite bloccata perché è richiesta la registrazione del cliente."
 
 #: includes/class-wc-b2b-membership.php:186
 msgid "Guest Price Display"
-msgstr "访客价格显示"
+msgstr "Visualizzazione del prezzo degli ospiti"
 
 #: includes/class-wc-b2b-quote.php:88
 msgid ""
-"Guests may submit inquiries, but each inquiry is delivered only after the guest clicks its email "
-"verification link. Registered customers must verify their account email before signing in."
-msgstr "访客可以提交询价，但必须点击该询价的邮箱验证链接后才会投递。注册客户必须验证账户邮箱后才能登录。"
+"Guests may submit inquiries, but each inquiry is delivered only after the "
+"guest clicks its email verification link. Registered customers must verify "
+"their account email before signing in."
+msgstr ""
+"Gli ospiti possono inviare richieste, ma ciascuna richiesta viene consegnata"
+" solo dopo che l'ospite ha fatto clic sul collegamento di verifica e-mail. I"
+" clienti registrati devono verificare l'e-mail del proprio account prima di "
+"accedere."
 
-#: includes/class-wc-b2b-whatsapp-button.php:93 includes/class-wc-b2b-whatsapp-button.php:273
+#: includes/class-wc-b2b-whatsapp-button.php:93
+#: includes/class-wc-b2b-whatsapp-button.php:273
 #, php-format
 msgid ""
 "Hello! I'm interested in this product:\n"
@@ -512,17 +597,21 @@ msgid ""
 "\n"
 "Could you please provide more information?"
 msgstr ""
-"您好！我对这个产品感兴趣：\n"
+"Ciao! Sono interessato a questo prodotto:\n"
 "\n"
 "*%s*\n"
-"价格：%s\n"
-"链接：%s\n"
+"Prezzo: %s\n"
+"Collegamento: %s\n"
 "\n"
-"您能提供更多信息吗？"
+"Potresti per favore fornire maggiori informazioni?"
 
 #: includes/class-wc-b2b-whatsapp-button.php:214
-msgid "Hello! I'm interested in {product_name} from {site_name}. Could you provide more details?"
-msgstr "您好！我对来自{site_name}的{product_name}感兴趣。您能提供更多详情吗？"
+msgid ""
+"Hello! I'm interested in {product_name} from {site_name}. Could you provide "
+"more details?"
+msgstr ""
+"Ciao! Sono interessato a {product_name} da {site_name}. Potresti fornire "
+"maggiori dettagli?"
 
 #: includes/class-wc-b2b-whatsapp.php:59
 #, php-format
@@ -535,13 +624,13 @@ msgid ""
 "\n"
 "Or reply with: VERIFY %s"
 msgstr ""
-"您好 %s！\n"
+"Ciao %s!\n"
 "\n"
-"您的订单 #%s 需要验证。\n"
+"Il tuo ordine #%s necessita di verifica.\n"
 "\n"
-"点击此处验证：%s\n"
+"Clicca qui per verificare: %s\n"
 "\n"
-"或回复：VERIFY %s"
+"Oppure rispondi con: VERIFICA %s"
 
 #: includes/class-wc-b2b-whatsapp.php:91
 #, php-format
@@ -559,363 +648,391 @@ msgid ""
 "ACCEPT %d - to accept\n"
 "CANCEL %d - to cancel"
 msgstr ""
-"您好 %s！\n"
+"Ciao %s!\n"
 "\n"
-"您的订单 #%s 报价已准备就绪。\n"
+"Il tuo preventivo per l'ordine #%s è pronto.\n"
 "\n"
-"总计：%s\n"
+"Totale: %s\n"
 "\n"
-"接受：%s\n"
-"取消：%s\n"
+"Per accettare: %s\n"
+"Per annullare: %s\n"
 "\n"
-"或回复：\n"
-"ACCEPT %d - 接受\n"
-"CANCEL %d - 取消"
+"Oppure rispondi:\n"
+"ACCETTA %d - per accettare\n"
+"ANNULLA %d - per annullare"
 
 #: includes/class-wc-b2b-email.php:123 includes/class-wc-b2b-email.php:393
-#: includes/class-wc-b2b-email.php:490 includes/class-wc-b2b-notifications.php:60
-#: includes/class-wc-b2b-notifications.php:81 includes/class-wc-b2b-notifications.php:100
-#: includes/class-wc-b2b-order-manager.php:317 includes/class-wc-b2b-registration.php:135
+#: includes/class-wc-b2b-email.php:490
+#: includes/class-wc-b2b-notifications.php:60
+#: includes/class-wc-b2b-notifications.php:81
+#: includes/class-wc-b2b-notifications.php:100
+#: includes/class-wc-b2b-order-manager.php:317
+#: includes/class-wc-b2b-registration.php:135
 #, php-format
 msgid "Hello %s,"
-msgstr "您好 %s，"
+msgstr "Ciao %s,"
 
 #: includes/class-wc-b2b-admin.php:275
 msgid "hours"
-msgstr "小时"
+msgstr "ore"
 
 #: includes/class-wc-b2b-admin.php:276
 msgid "How long verification links remain valid."
-msgstr "验证链接保持有效的时间。"
+msgstr "Per quanto tempo rimangono validi i collegamenti di verifica."
 
 #: includes/class-wc-b2b-admin.php:292
 msgid "How often to send payment reminder emails to customers."
-msgstr "向客户发送付款提醒邮件的频率。"
+msgstr ""
+"Con quale frequenza inviare e-mail di promemoria del pagamento ai clienti."
 
 #: includes/class-wc-b2b-email.php:133
-msgid "If the button doesn't work, you can copy and paste this link into your browser:"
-msgstr "如果按钮不起作用，您可以复制并粘贴此链接到您的浏览器："
+msgid ""
+"If the button doesn't work, you can copy and paste this link into your "
+"browser:"
+msgstr ""
+"Se il pulsante non funziona, puoi copiare e incollare questo collegamento "
+"nel tuo browser:"
 
 #: includes/class-wc-b2b-registration.php:138
 msgid "If the button does not work, copy this link into your browser:"
-msgstr "如果按钮不起作用，请复制此链接到您的浏览器中："
+msgstr "Se il pulsante non funziona, copia questo link nel tuo browser:"
 
 #: includes/class-wc-b2b-email.php:501
 msgid ""
-"If you are still interested in these products, please feel free to place a new order or contact us"
-" directly."
-msgstr "如果您仍对这些产品感兴趣，请随时下新订单或直接联系我们。"
+"If you are still interested in these products, please feel free to place a "
+"new order or contact us directly."
+msgstr ""
+"Se sei ancora interessato a questi prodotti, non esitare a effettuare un "
+"nuovo ordine o contattarci direttamente."
 
 #: includes/class-wc-b2b-order-manager.php:339
-msgid "If you have already made the payment or have any questions, please contact us immediately."
-msgstr "如果您已经付款或有任何问题，请立即联系我们。"
+msgid ""
+"If you have already made the payment or have any questions, please contact "
+"us immediately."
+msgstr ""
+"Se hai già effettuato il pagamento o hai domande, ti preghiamo di "
+"contattarci immediatamente."
 
 #: includes/class-wc-b2b-order-manager.php:323
 msgid "Important:"
-msgstr "重要："
+msgstr "Importante:"
 
 #: includes/class-wc-b2b-notifications.php:120
 msgid "Inquiry:"
-msgstr "询价："
+msgstr "Richiesta:"
 
 #: includes/class-wc-b2b-checkout.php:172
 msgid "Inquiry created, awaiting customer email verification."
-msgstr "询价已创建，正在等待客户验证邮箱。"
+msgstr "Richiesta creata, in attesa di verifica dell'e-mail del cliente."
 
 #: includes/class-wc-b2b-email.php:138
 msgid "Inquiry Details:"
-msgstr "询价详情："
+msgstr "Dettagli della richiesta:"
 
 #: includes/class-wc-b2b-email.php:121
 msgid "Inquiry Email Verification Required"
-msgstr "询价邮件需验证"
+msgstr "Richiesta di verifica e-mail richiesta"
 
 #: includes/class-wc-b2b-order.php:290
 #, php-format
 msgid "Inquiry email verified by customer via %s."
-msgstr "客户通过 %s 验证的询价电子邮件。"
+msgstr "E-mail di richiesta verificata dal cliente tramite %s."
 
 #: includes/class-wc-b2b-account.php:101
 msgid "Inquiry Number"
-msgstr "询价编号"
+msgstr "Numero di richiesta"
 
 #: includes/class-wc-b2b-email.php:139
 msgid "Inquiry Number:"
-msgstr "询价编号："
+msgstr "Numero di richiesta:"
 
 #: includes/class-wc-b2b-quote.php:163
 msgid "Inquiry submitted"
-msgstr "询价提交"
+msgstr "Richiesta inviata"
 
 #: includes/class-wc-b2b-fulfillment.php:105
 msgid "Internal/customer note"
-msgstr "内部/客户备注"
+msgstr "Nota interna/cliente"
 
 #: includes/class-wc-b2b-ajax.php:65
 msgid "Invalid action."
-msgstr "无效操作。"
+msgstr "Azione non valida."
 
 #: includes/class-wc-b2b-admin.php:549 includes/class-wc-b2b-admin.php:609
-#: includes/class-wc-b2b-fulfillment.php:220 includes/class-wc-b2b-order-manager.php:440
+#: includes/class-wc-b2b-fulfillment.php:220
+#: includes/class-wc-b2b-order-manager.php:440
 msgid "Invalid B2B order."
-msgstr "无效的B2B订单。"
+msgstr "Ordine B2B non valido."
 
 #: includes/class-wc-b2b-ajax.php:39 includes/class-wc-b2b-ajax.php:82
 msgid "Invalid order ID."
-msgstr "无效的订单ID。"
+msgstr "ID ordine non valido."
 
-#: includes/class-wc-b2b-whatsapp.php:247 includes/class-wc-b2b-whatsapp.php:263
+#: includes/class-wc-b2b-whatsapp.php:247
+#: includes/class-wc-b2b-whatsapp.php:263
 msgid "Invalid order or phone number mismatch."
-msgstr "无效订单或电话号码不匹配。"
+msgstr ""
+"Mancata corrispondenza dell'ordine o del numero di telefono non valido."
 
 #: includes/class-wc-b2b-whatsapp.php:226
 msgid "Invalid or expired verification code."
-msgstr "无效或过期的验证码。"
+msgstr "Codice di verifica non valido o scaduto."
 
 #: includes/class-wc-b2b-order.php:240
 msgid "Invalid or expired verification token."
-msgstr "无效或过期的验证令牌。"
+msgstr "Token di verifica non valido o scaduto."
 
 #: includes/class-wc-b2b-whatsapp.php:176
 msgid "Invalid verification link."
-msgstr "无效的验证链接。"
+msgstr "Link di verifica non valido."
 
 #: includes/class-wc-b2b-order.php:226
 msgid "Invalid verification token format."
-msgstr "验证令牌格式无效。"
+msgstr "Formato token di verifica non valido."
 
 #: includes/class-wc-b2b-admin.php:672
 msgid "Item"
-msgstr "项目"
+msgstr "Articolo"
 
 #: includes/class-wc-b2b-admin.php:582
 #, php-format
 msgid "Item \"%s\" price updated to %s by admin."
-msgstr "管理员将项目\"%s\"的价格更新为%s。"
+msgstr "Prezzo articolo \"%s\" aggiornato a %s dall'amministratore."
 
 #: includes/class-wc-b2b-admin.php:588
 msgid "Item price updated successfully!"
-msgstr "项目价格更新成功！"
+msgstr "Prezzo dell'articolo aggiornato con successo!"
 
 #: includes/class-wc-b2b-order-manager.php:544
 msgid "Last reminder:"
-msgstr "最后提醒："
+msgstr "Ultimo promemoria:"
 
 #: includes/class-wc-b2b-membership.php:284
 msgid "Leave blank to use this level's default discount."
-msgstr "留空则使用该级别的默认折扣。"
+msgstr "Lascia vuoto per utilizzare lo sconto predefinito di questo livello."
 
 #: includes/class-wc-b2b-membership.php:194
 msgid "Level ID"
-msgstr "级别ID"
+msgstr "ID livello"
 
 #: includes/class-wc-b2b-membership.php:195
 msgid "Level Name"
-msgstr "级别名称"
+msgstr "Nome livello"
 
 #: includes/class-wc-b2b-email.php:358
 msgid "Manage in WordPress"
-msgstr "在WordPress中管理"
+msgstr "Gestisci in WordPress"
 
 #: includes/class-wc-b2b-order-manager.php:528
 msgid "Manually Paid"
-msgstr "手动付款"
+msgstr "Pagato manualmente"
 
 #: includes/class-wc-b2b-order-manager.php:385
 msgid "Manual offline payment"
-msgstr "手动离线支付"
+msgstr "Pagamento offline manuale"
 
 #: includes/class-wc-b2b-quote.php:83
 msgid "Manual review is always required."
-msgstr "所有报价都必须人工审核。"
+msgstr "La revisione manuale è sempre richiesta."
 
 #: includes/class-wc-b2b-order-manager.php:535
 msgid "Mark as Paid"
-msgstr "标记为已付款"
+msgstr "Contrassegna come pagato"
 
 #: includes/class-wc-b2b-order-manager.php:364
 msgid "Mark as Paid (Manual Payment)"
-msgstr "标记为已付款（手动付款）"
+msgstr "Contrassegna come pagato (pagamento manuale)"
 
 #: includes/class-wc-b2b-order-manager.php:529
 msgid "Marked as paid:"
-msgstr "标记为已付款："
+msgstr "Contrassegnato come pagato:"
 
 #: includes/class-wc-b2b-account.php:103 includes/class-wc-b2b-account.php:131
 #: includes/class-wc-b2b-membership.php:257
 msgid "Member Level"
-msgstr "会员等级"
+msgstr "Livello membro"
 
 #: includes/class-wc-b2b-email.php:399
 msgid "Member Level:"
-msgstr "会员级别："
+msgstr "Livello membro:"
 
 #: includes/class-wc-b2b-membership.php:164
 msgid "Member levels saved."
-msgstr "会员级别保存。"
+msgstr "Livelli dei membri salvati."
 
 #: includes/class-wc-b2b-checkout.php:66
 msgid "Message"
-msgstr "留言"
+msgstr "Messaggio"
 
-#: includes/class-wc-b2b-account.php:152 includes/class-wc-b2b-fulfillment.php:88
-#: includes/class-wc-b2b-fulfillment.php:103 includes/class-wc-b2b-notifications.php:86
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:103
+#: includes/class-wc-b2b-notifications.php:86
 msgid "Method"
-msgstr "方法"
+msgstr "Metodo"
 
 #: includes/class-wc-b2b-email.php:190
 msgid "Name:"
-msgstr "姓名："
+msgstr "Nome:"
 
 #: includes/class-wc-b2b-email.php:172
 msgid "New B2B Order - Ready for Quote"
-msgstr "新的B2B订单 - 准备报价"
+msgstr "Nuovo ordine B2B - Pronto per il preventivo"
 
 #: includes/class-wc-b2b-registration.php:211
 msgid ""
-"New customer accounts must verify their email. Accounts that existed before this feature are "
-"treated as verified."
-msgstr "新客户帐户必须验证其电子邮件。在此功能之前存在的帐户将被视为已验证。"
+"New customer accounts must verify their email. Accounts that existed before "
+"this feature are treated as verified."
+msgstr ""
+"Gli account dei nuovi clienti devono verificare la propria e-mail. Gli "
+"account esistenti prima di questa funzionalità vengono considerati "
+"verificati."
 
 #: includes/class-wc-b2b-admin.php:676
 msgid "New Price"
-msgstr "新价格"
+msgstr "Nuovo prezzo"
 
 #: includes/class-wc-b2b-admin.php:722
 msgid "New Shipping Cost:"
-msgstr "新运费："
+msgstr "Nuovo costo di spedizione:"
 
 #: includes/class-wc-b2b-email.php:338
 msgid "Next Steps"
-msgstr "下一步操作"
+msgstr "Passaggi successivi"
 
 #: includes/class-wc-b2b-fulfillment.php:94
 msgid "No payment has been recorded."
-msgstr "尚未记录付款情况。"
+msgstr "Nessun pagamento è stato registrato."
 
 #: includes/class-wc-b2b-account.php:155
 msgid "No payment has been recorded yet."
-msgstr "尚未记录付款。"
+msgstr "Nessun pagamento è stato ancora registrato."
 
 #: includes/class-wc-b2b-order-manager.php:546
 msgid "No reminders sent yet"
-msgstr "尚未发送提醒"
+msgstr "Nessun promemoria ancora inviato"
 
 #: includes/class-wc-b2b-fulfillment.php:119
 msgid "No shipment has been recorded."
-msgstr "暂无发货记录。"
+msgstr "Nessuna spedizione è stata registrata."
 
 #: includes/class-wc-b2b-account.php:162
 msgid "No shipment has been recorded yet."
-msgstr "尚未记录发货情况。"
+msgstr "Nessuna spedizione è stata ancora registrata."
 
-#: includes/class-wc-b2b-fulfillment.php:88 includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:113
 #: includes/class-wc-b2b-fulfillment.php:131
 msgid "Note"
-msgstr "注意事项"
+msgstr "Nota"
 
 #: includes/class-wc-b2b-admin.php:825
 msgid "No tokens needed cleanup. Database is already clean."
-msgstr "没有需要清理的令牌。数据库已经很干净。"
+msgstr "Non è necessaria la pulizia dei token. Il database è già pulito."
 
 #: includes/class-wc-b2b-email.php:203 includes/class-wc-b2b-email.php:307
 msgid "Not provided"
-msgstr "未提供"
+msgstr "Non fornito"
 
 #: includes/class-wc-b2b-fulfillment.php:201
 msgid "not provided"
-msgstr "未提供"
+msgstr "non fornito"
 
 #: includes/class-wc-b2b-admin.php:145 includes/class-wc-b2b-admin.php:156
 msgid "Not Verified"
-msgstr "未验证"
+msgstr "Non verificato"
 
 #: includes/class-wc-b2b-whatsapp-button.php:223
 msgid "Official WhatsApp Style"
-msgstr "官方WhatsApp样式"
+msgstr "Stile ufficiale WhatsApp"
 
 #: includes/class-wc-b2b-account.php:140 includes/class-wc-b2b-email.php:431
 #: includes/class-wc-b2b-quote.php:97 includes/class-wc-b2b-quote.php:173
 msgid "Offline Payment Information"
-msgstr "离线支付信息"
+msgstr "Informazioni sul pagamento offline"
 
 #: includes/class-wc-b2b-fulfillment.php:162
 #, php-format
 msgid "Offline payment recorded: %1$s (%2$s)."
-msgstr "离线支付记录：%1$s（%2$s）。"
+msgstr "Pagamento offline registrato: %1$s (%2$s)."
 
 #: includes/class-wc-b2b-blocks.php:40 includes/class-wc-b2b-quote.php:193
 msgid "Offline quotation"
-msgstr "离线报价"
+msgstr "Preventivo offline"
 
 #: includes/class-wc-b2b-notifications.php:55
 #, php-format
 msgid "Order #%1$s status updated: %2$s"
-msgstr "订单#%1$s状态更新：%2$s"
+msgstr "Stato dell'ordine n. %1$s aggiornato: %2$s"
 
 #: includes/class-wc-b2b-whatsapp.php:242
 #, php-format
 msgid "Order #%s confirmed. View offline payment information: %s"
-msgstr "订单#%s已确认。查看线下支付信息：%s"
+msgstr ""
+"Ordine n. %s confermato. Visualizza le informazioni sul pagamento offline: "
+"%s"
 
 #: includes/class-wc-b2b-ajax.php:229
 #, php-format
 msgid "Order #%s Details"
-msgstr "订单 #%s 详情"
+msgstr "Ordine #%s Dettagli"
 
 #: includes/class-wc-b2b-email.php:470
 #, php-format
 msgid "Order #%s has been cancelled"
-msgstr "订单 #%s 已被取消"
+msgstr "L'ordine n.%s è stato annullato"
 
 #: includes/class-wc-b2b-whatsapp.php:261
 #, php-format
 msgid "Order #%s has been cancelled."
-msgstr "订单 #%s 已被取消。"
+msgstr "L'ordine n. %s è stato annullato."
 
 #: includes/class-wc-b2b-email.php:72
 #, php-format
 msgid "Order #%s has been verified"
-msgstr "订单 #%s 已被验证"
+msgstr "L'ordine n.%s è stato verificato"
 
 #: includes/class-wc-b2b-email.php:179
 #, php-format
 msgid ""
-"Order #%s has been verified and is ready for your quote. All information needed for pricing is "
-"included below."
-msgstr "订单 #%s 已验证，准备报价。定价所需的所有信息都包含在下方。"
+"Order #%s has been verified and is ready for your quote. All information "
+"needed for pricing is included below."
+msgstr ""
+"L'ordine n.%s è stato verificato ed è pronto per il tuo preventivo. Tutte le"
+" informazioni necessarie per i prezzi sono incluse di seguito."
 
 #: includes/class-wc-b2b-notifications.php:120
 msgid "Order:"
-msgstr "订单："
+msgstr "Ordine:"
 
 #: includes/class-wc-b2b-order-manager.php:89
 msgid "Order automatically cancelled after 3 weeks without payment."
-msgstr "订单在3周未付款后自动取消。"
+msgstr "Ordine annullato automaticamente dopo 3 settimane senza pagamento."
 
 #: includes/class-wc-b2b-order-manager.php:79
 msgid "Order automatically cancelled due to expiry (3 weeks without payment)."
-msgstr "订单因过期自动取消（3周未付款）。"
+msgstr ""
+"Ordine annullato automaticamente per scadenza (3 settimane senza pagamento)."
 
 #: includes/class-wc-b2b-email.php:488
 msgid "Order Cancelled"
-msgstr "订单已取消"
+msgstr "Ordine annullato"
 
 #: includes/class-wc-b2b-ajax.php:186 includes/class-wc-b2b-order.php:372
 msgid "Order cancelled by customer."
-msgstr "订单已被客户取消。"
+msgstr "Ordine annullato dal cliente."
 
 #: includes/class-wc-b2b-whatsapp.php:260
 msgid "Order cancelled by customer via WhatsApp."
-msgstr "客户通过WhatsApp取消订单。"
+msgstr "Ordine annullato dal cliente tramite WhatsApp."
 
 #: includes/class-wc-b2b-order-manager.php:416
 msgid "Order cancelled manually by admin."
-msgstr "订单已被管理员手动取消。"
+msgstr "Ordine annullato manualmente dall'amministratore."
 
 #: includes/class-wc-b2b-ajax.php:190 includes/class-wc-b2b-order.php:375
 msgid "Order cancelled successfully."
-msgstr "订单取消成功。"
+msgstr "Ordine annullato correttamente."
 
 #: includes/class-wc-b2b-order-manager.php:291
 #, php-format
@@ -932,242 +1049,255 @@ msgid ""
 "\n"
 "Thank you for your understanding."
 msgstr ""
-"订单已取消 ❌\n"
+"Ordine annullato ❌\n"
 "\n"
-"您好 %s，\n"
+"Ciao %s,\n"
 "\n"
-"我们很遗憾地通知您，您的订单 #%s 因在指定时间内未付款而被取消。\n"
+"Siamo spiacenti di informarti che il tuo ordine #%s è stato annullato a causa del mancato pagamento entro il periodo di tempo specificato.\n"
 "\n"
-"订单总计：%s\n"
+"Totale ordine: %s\n"
 "\n"
-"如果您仍对这些产品感兴趣，请随时下新订单或直接联系我们。\n"
+"Se sei ancora interessato a questi prodotti, non esitare a effettuare un nuovo ordine o contattarci direttamente.\n"
 "\n"
-"感谢您的理解。"
+"Grazie per la comprensione."
 
 #: includes/class-wc-b2b-admin.php:556 includes/class-wc-b2b-admin.php:616
 msgid "Order cannot be modified in current status."
-msgstr "当前状态下订单无法修改。"
+msgstr "L'ordine non può essere modificato nello stato attuale."
 
 #: includes/class-wc-b2b-ajax.php:242 includes/class-wc-b2b-email.php:140
 #: includes/class-wc-b2b-email.php:229 includes/class-wc-b2b-email.php:497
 #: includes/class-wc-b2b-order-manager.php:331
 msgid "Order Date:"
-msgstr "订单日期："
+msgstr "Data dell'ordine:"
 
 #: includes/class-wc-b2b-email.php:221
 msgid "Order Details"
-msgstr "订单详情"
+msgstr "Dettagli dell'ordine"
 
 #: includes/class-wc-b2b-email.php:138
 msgid "Order Details:"
-msgstr "订单详情："
+msgstr "Dettagli dell'ordine:"
 
 #: includes/class-wc-b2b-order-manager.php:519
 msgid "Order expired"
-msgstr "订单已过期"
+msgstr "Ordine scaduto"
 
 #: includes/class-wc-b2b-admin.php:281
 msgid "Order Expiry"
-msgstr "订单过期"
+msgstr "Scadenza dell'ordine"
 
 #: includes/class-wc-b2b-order-manager.php:511
 msgid "Order Expiry:"
-msgstr "订单过期："
+msgstr "Scadenza dell'ordine:"
 
 #: includes/class-wc-b2b-ajax.php:239
 msgid "Order Information"
-msgstr "订单信息"
+msgstr "Informazioni sull'ordine"
 
 #: includes/class-wc-b2b-admin.php:563
 msgid "Order item not found."
-msgstr "未找到订单项目。"
+msgstr "Articolo dell'ordine non trovato."
 
 #: includes/class-wc-b2b-ajax.php:261
 msgid "Order Items"
-msgstr "订单项目"
+msgstr "Articoli dell'ordine"
 
 #: includes/class-wc-b2b-order-manager.php:406
 msgid "Order marked as paid manually (offline payment received)."
-msgstr "订单已手动标记为已付款（已收到线下付款）。"
+msgstr ""
+"Ordine contrassegnato come pagato manualmente (pagamento offline ricevuto)."
 
 #: includes/class-wc-b2b-order-manager.php:446
 msgid "Order marked as paid successfully!"
-msgstr "订单已成功标记为已付款！"
+msgstr "Ordine contrassegnato come pagato con successo!"
 
 #: includes/class-wc-b2b-admin.php:509 includes/class-wc-b2b-ajax.php:44
 #: includes/class-wc-b2b-ajax.php:89 includes/class-wc-b2b-order.php:324
 #: includes/class-wc-b2b-order.php:356
 msgid "Order not found."
-msgstr "未找到订单。"
+msgstr "Ordine non trovato."
 
 #: includes/class-wc-b2b-account.php:101
 msgid "Order Number"
-msgstr "订单号"
+msgstr "Numero ordine"
 
 #: includes/class-wc-b2b-email.php:139 includes/class-wc-b2b-email.php:225
-#: includes/class-wc-b2b-email.php:496 includes/class-wc-b2b-order-manager.php:330
+#: includes/class-wc-b2b-email.php:496
+#: includes/class-wc-b2b-order-manager.php:330
 msgid "Order Number:"
-msgstr "订单号："
+msgstr "Numero ordine:"
 
 #: includes/class-wc-b2b-checkout.php:191
 msgid "Order received and ready for administrator price and shipping review."
-msgstr "报价请求已收到，等待管理员审核价格和运费。"
+msgstr ""
+"Ordine ricevuto e pronto per la revisione del prezzo e della spedizione da "
+"parte dell'amministratore."
 
 #: includes/class-wc-b2b-account.php:133
 msgid "Order Status"
-msgstr "订单状态"
+msgstr "Stato dell'ordine"
 
 #: includes/class-wc-b2b-order.php:90 includes/class-wc-b2b-order.php:124
 msgctxt "Order status"
 msgid "Partially Shipped"
-msgstr "部分发货"
+msgstr "Parzialmente spedito"
 
 #: includes/class-wc-b2b-order.php:44 includes/class-wc-b2b-order.php:119
 msgctxt "Order status"
 msgid "Pending Verification"
-msgstr "待验证"
+msgstr "In attesa di verifica"
 
 #: includes/class-wc-b2b-order.php:72 includes/class-wc-b2b-order.php:120
 msgctxt "Order status"
 msgid "Pending Verification (Legacy)"
-msgstr "待验证（旧版）"
+msgstr "In attesa di verifica (Legacy)"
 
 #: includes/class-wc-b2b-order.php:81 includes/class-wc-b2b-order.php:123
 msgctxt "Order status"
 msgid "Quote Accepted / Awaiting Payment"
-msgstr "报价已接受/等待付款"
+msgstr "Preventivo accettato / In attesa di pagamento"
 
 #: includes/class-wc-b2b-order.php:62 includes/class-wc-b2b-order.php:122
 msgctxt "Order status"
 msgid "Quote Sent"
-msgstr "报价已发送"
+msgstr "Preventivo inviato"
 
 #: includes/class-wc-b2b-order.php:99 includes/class-wc-b2b-order.php:125
 msgctxt "Order status"
 msgid "Shipped"
-msgstr "已发货"
+msgstr "Spedito"
 
 #: includes/class-wc-b2b-order.php:53 includes/class-wc-b2b-order.php:121
 msgctxt "Order status"
 msgid "Verified"
-msgstr "已验证"
+msgstr "Verificato"
 
 #: includes/class-wc-b2b-admin.php:75 includes/class-wc-b2b-admin.php:82
 #: includes/class-wc-b2b-admin.php:86
 msgid "Order Status:"
-msgstr "订单状态："
+msgstr "Stato dell'ordine:"
 
-#: includes/class-wc-b2b-email.php:404 includes/class-wc-b2b-order-manager.php:329
+#: includes/class-wc-b2b-email.php:404
+#: includes/class-wc-b2b-order-manager.php:329
 msgid "Order Summary:"
-msgstr "订单摘要："
+msgstr "Riepilogo dell'ordine:"
 
 #: includes/class-wc-b2b-admin.php:284
-msgid "Orders will be automatically cancelled after this period without payment."
-msgstr "订单在此期间内未付款将自动取消。"
+msgid ""
+"Orders will be automatically cancelled after this period without payment."
+msgstr ""
+"Trascorso questo periodo gli ordini verranno automaticamente annullati senza"
+" pagamento."
 
 #: includes/class-wc-b2b-admin.php:741
 msgid "Order Total"
-msgstr "订单总计"
+msgstr "Totale ordine"
 
 #: includes/class-wc-b2b-email.php:121
 msgid "Order Verification Required"
-msgstr "需要订单验证"
+msgstr "Verifica dell'ordine richiesta"
 
 #: includes/class-wc-b2b-order.php:291
 #, php-format
 msgid "Order verified by customer via %s."
-msgstr "客户通过%s验证了订单。"
+msgstr "Ordine verificato dal cliente tramite %s."
 
 #: includes/class-wc-b2b-admin.php:226 includes/class-wc-b2b-order.php:207
 msgid "Order verified successfully!"
-msgstr "订单验证成功！"
+msgstr "Ordine verificato con successo!"
 
 #: includes/class-wc-b2b-whatsapp.php:224
 msgid "Order verified successfully! You will receive updates via email."
-msgstr "订单验证成功！您将通过邮件收到更新。"
+msgstr "Ordine verificato con successo! Riceverai aggiornamenti via email."
 
-#: includes/class-wc-b2b-admin.php:404 includes/class-wc-b2b-whatsapp-button.php:83
+#: includes/class-wc-b2b-admin.php:404
+#: includes/class-wc-b2b-whatsapp-button.php:83
 #: includes/class-wc-b2b-whatsapp-button.php:205
 msgid "Order via WhatsApp"
-msgstr "通过WhatsApp下单"
+msgstr "Ordina tramite WhatsApp"
 
 #: includes/class-wc-b2b-admin.php:673
 msgid "Original Price"
-msgstr "原价"
+msgstr "Prezzo originale"
 
 #: includes/class-wc-b2b-account.php:135
 msgid "Outstanding Balance"
-msgstr "未结余额"
+msgstr "Saldo eccezionale"
 
 #: includes/class-wc-b2b-notifications.php:88
 msgid "Outstanding balance:"
-msgstr "未结余额："
+msgstr "Saldo residuo:"
 
 #: includes/class-wc-b2b-order-manager.php:526
 msgid "Paid"
-msgstr "已付款"
+msgstr "A pagamento"
 
 #: includes/class-wc-b2b-account.php:59 includes/class-wc-b2b-account.php:73
 msgid "Paid / Balance"
-msgstr "付费/余额"
+msgstr "Pagato/Saldo"
 
 #: includes/class-wc-b2b-fulfillment.php:144
 msgid "Payment amount must be greater than zero."
-msgstr "付款金额必须大于零。"
+msgstr "L'importo del pagamento deve essere maggiore di zero."
 
 #: includes/class-wc-b2b-fulfillment.php:74
-msgid "Payment and shipment records become available after the formal quote is sent."
-msgstr "正式报价发送后即可查看付款和发货记录。"
+msgid ""
+"Payment and shipment records become available after the formal quote is "
+"sent."
+msgstr ""
+"I record di pagamento e spedizione diventano disponibili dopo l'invio del "
+"preventivo formale."
 
 #: includes/class-wc-b2b-fulfillment.php:101
 msgid "Payment date"
-msgstr "付款日期"
+msgstr "Data di pagamento"
 
 #: includes/class-wc-b2b-account.php:150
 msgid "Payment History"
-msgstr "支付历史"
+msgstr "Cronologia dei pagamenti"
 
 #: includes/class-wc-b2b-notifications.php:80
 #, php-format
 msgid "Payment recorded for order #%s"
-msgstr "订单付款记录#%s"
+msgstr "Pagamento registrato per l'ordine #%s"
 
 #: includes/class-wc-b2b-fulfillment.php:180
 msgid "Payment recorded successfully."
-msgstr "付款记录成功。"
+msgstr "Pagamento registrato correttamente."
 
 #: includes/class-wc-b2b-fulfillment.php:84
 msgid "Payment Records"
-msgstr "付款记录"
+msgstr "Registrazioni di pagamento"
 
 #: includes/class-wc-b2b-order-manager.php:315
 msgid "Payment Reminder"
-msgstr "付款提醒"
+msgstr "Promemoria di pagamento"
 
 #: includes/class-wc-b2b-order-manager.php:175
 #, php-format
 msgid "Payment Reminder for Order #%s"
-msgstr "订单 #%s 的付款提醒"
+msgstr "Promemoria di pagamento per l'ordine n. %s"
 
 #: includes/class-wc-b2b-admin.php:289
 msgid "Payment Reminder Interval"
-msgstr "付款提醒间隔"
+msgstr "Intervallo di sollecito pagamento"
 
 #: includes/class-wc-b2b-order-manager.php:542
 msgid "Payment Reminders:"
-msgstr "付款提醒："
+msgstr "Promemoria di pagamento:"
 
 #: includes/class-wc-b2b-order-manager.php:465
 msgid "Payment reminder sent manually by admin."
-msgstr "付款提醒已由管理员手动发送。"
+msgstr "Promemoria di pagamento inviato manualmente dall'amministratore."
 
 #: includes/class-wc-b2b-order-manager.php:468
 msgid "Payment reminder sent successfully!"
-msgstr "付款提醒发送成功！"
+msgstr "Promemoria di pagamento inviato con successo!"
 
 #: includes/class-wc-b2b-order-manager.php:137
 msgid "Payment reminder sent to customer."
-msgstr "付款提醒已发送给客户。"
+msgstr "Promemoria di pagamento inviato al cliente."
 
 #: includes/class-wc-b2b-order-manager.php:209
 #, php-format
@@ -1186,778 +1316,876 @@ msgid ""
 "\n"
 "If you have already paid or have questions, please contact us immediately."
 msgstr ""
-"付款提醒💰\n"
+"Promemoria di pagamento 💰\n"
 "\n"
-"您好%s！\n"
+"Ciao %s!\n"
 "\n"
-"您的订单#%s仍在等待离线付款。\n"
+"Il tuo ordine #%s è ancora in attesa di pagamento offline.\n"
 "\n"
-"⚠️重要提示：如果未收到付款，您的订单将在 %d 天内取消。\n"
+"⚠️ Importante: il tuo ordine verrà annullato entro %d giorni se il pagamento non viene ricevuto.\n"
 "\n"
-"订单总计：%s\n"
+"Totale ordine: %s\n"
 "\n"
-"查看报价和付款信息：%s\n"
+"Visualizza preventivo e informazioni di pagamento: %s\n"
 "\n"
-"如果您已经付款或有疑问，请立即联系我们。"
+"Se hai già pagato o hai domande, contattaci immediatamente."
 
 #: includes/class-wc-b2b-order-manager.php:524
 msgid "Payment Status:"
-msgstr "付款状态："
+msgstr "Stato del pagamento:"
 
 #: includes/class-wc-b2b-account.php:130
 msgid "Pending"
-msgstr "待定"
+msgstr "In attesa"
 
 #: includes/class-wc-b2b-account.php:104
 msgid "Pending formal quotation"
-msgstr "等待正式报价"
+msgstr "Preventivo formale in attesa"
 
 #: includes/class-wc-b2b-admin.php:75
 msgid "Pending Verification"
-msgstr "待验证"
+msgstr "In attesa di verifica"
 
 #: includes/class-wc-b2b-admin.php:503 includes/class-wc-b2b-admin.php:538
 #: includes/class-wc-b2b-admin.php:600 includes/class-wc-b2b-admin.php:805
-#: includes/class-wc-b2b-fulfillment.php:214 includes/class-wc-b2b-order-manager.php:433
+#: includes/class-wc-b2b-fulfillment.php:214
+#: includes/class-wc-b2b-order-manager.php:433
 #: includes/class-wc-b2b-order-manager.php:456
 msgid "Permission denied."
-msgstr "权限不足。"
+msgstr "Autorizzazione negata."
 
 #: includes/class-wc-b2b-checkout.php:46
 msgid "Phone"
-msgstr "电话"
+msgstr "Telefono"
 
 #: includes/class-wc-b2b-ajax.php:254 includes/class-wc-b2b-email.php:198
 msgid "Phone:"
-msgstr "电话："
+msgstr "Telefono:"
 
 #: includes/class-wc-b2b-checkout.php:90
 msgid "Phone is a required field."
-msgstr "电话是必填字段。"
+msgstr "Il campo telefonico è obbligatorio."
 
 #: includes/class-wc-b2b-checkout.php:47
 msgctxt "placeholder"
 msgid "Phone"
-msgstr "电话"
+msgstr "Telefono"
 
 #: includes/class-wc-b2b-checkout.php:67
 msgctxt "placeholder"
 msgid "Please leave your message or special requirements here..."
-msgstr "请在此留下您的留言或特殊要求..."
+msgstr "Lascia il tuo messaggio o requisiti speciali qui..."
 
 #: includes/class-wc-b2b-quote.php:165
 msgid ""
-"Please check your inbox and click the verification link. Your inquiry will be delivered to our "
-"reception team only after verification."
-msgstr "请查看您的收件箱并点击验证链接。您的询问将在核实后发送给我们的接待团队。"
+"Please check your inbox and click the verification link. Your inquiry will "
+"be delivered to our reception team only after verification."
+msgstr ""
+"Controlla la tua casella di posta e fai clic sul collegamento di verifica. "
+"La tua richiesta verrà consegnata al nostro team di accoglienza solo dopo la"
+" verifica."
 
 #: includes/class-wc-b2b-checkout.php:97
 msgid "Please enter a valid email address."
-msgstr "请输入有效的邮箱地址。"
+msgstr "Inserisci un indirizzo email valido."
 
 #: includes/class-wc-b2b-email.php:433
 #, php-format
 msgid "Please include quote number %s with your transfer."
-msgstr "请在转账时附上报价编号 %s。"
+msgstr "Includere il numero del preventivo %s nel trasferimento."
 
 #: includes/class-wc-b2b-checkout.php:82
-msgid "Please register, verify your email, and sign in before requesting a quote."
-msgstr "请先注册、验证邮箱并登录，然后再申请报价。"
+msgid ""
+"Please register, verify your email, and sign in before requesting a quote."
+msgstr ""
+"Registrati, verifica la tua email e accedi prima di richiedere un "
+"preventivo."
 
 #: includes/class-wc-b2b-email.php:437
 msgid "Please review the quote and choose one of the following options:"
-msgstr "请审核报价并选择以下选项之一："
+msgstr "Controlla il preventivo e scegli una delle seguenti opzioni:"
 
 #: includes/class-wc-b2b-checkout.php:85
 msgid "Please verify your account email before submitting a quotation order."
-msgstr "请先验证账户邮箱，然后再提交报价请求。"
+msgstr ""
+"Verifica l'e-mail del tuo account prima di inviare un ordine di preventivo."
 
 #: includes/class-wc-b2b-registration.php:99
-msgid "Please verify your email address using the link we sent before signing in."
-msgstr "请先点击我们发送的邮件验证链接，然后再登录。"
+msgid ""
+"Please verify your email address using the link we sent before signing in."
+msgstr ""
+"Verifica il tuo indirizzo e-mail utilizzando il collegamento che abbiamo "
+"inviato prima di accedere."
 
 #: includes/class-wc-b2b-email.php:50
 #, php-format
 msgid "Please verify your inquiry #%s"
-msgstr "请验证您的询问#%s"
+msgstr "Verifica la tua richiesta #%s"
 
 #: includes/class-wc-b2b-email.php:51
 #, php-format
 msgid "Please verify your order #%s"
-msgstr "请验证您的订单 #%s"
+msgstr "Verifica il tuo ordine #%s"
 
 #: includes/class-wc-b2b-ajax.php:267
 msgid "Price"
-msgstr "价格"
+msgstr "Prezzo"
 
 #: includes/class-wc-b2b-membership.php:491
 msgid "Price provided after quotation"
-msgstr "正式报价后提供价格"
+msgstr "Prezzo fornito dopo il preventivo"
 
 #: includes/class-wc-b2b-notifications.php:123
-msgid "Prices will be provided in the formal quote after the inquiry is reviewed."
-msgstr "询价审核完成后，价格将在正式报价中提供。"
+msgid ""
+"Prices will be provided in the formal quote after the inquiry is reviewed."
+msgstr ""
+"I prezzi verranno forniti nel preventivo formale dopo l'esame della "
+"richiesta."
 
 #: includes/class-wc-b2b-account.php:104
 msgid "Pricing"
-msgstr "价格状态"
+msgstr "Prezzi"
 
 #: includes/class-wc-b2b-ajax.php:286
 msgid "Pricing will be shown after our team sends the formal quote."
-msgstr "定价将在我们团队发送正式报价后显示。"
+msgstr ""
+"I prezzi verranno visualizzati dopo che il nostro team avrà inviato il "
+"preventivo formale."
 
 #: includes/class-wc-b2b-account.php:126
 msgid "Print Quote"
-msgstr "打印报价"
+msgstr "Stampa preventivo"
 
 #: includes/class-wc-b2b-admin.php:228 includes/class-wc-b2b-ajax.php:366
 msgid "Processing..."
-msgstr "处理中..."
+msgstr "Elaborazione..."
 
 #: includes/class-wc-b2b-ajax.php:265 includes/class-wc-b2b-email.php:247
 msgid "Product"
-msgstr "产品"
+msgstr "Prodotto"
 
 #: includes/class-wc-b2b-whatsapp-button.php:251
 msgid "Product not found."
-msgstr "未找到产品。"
+msgstr "Prodotto non trovato."
 
 #: includes/class-wc-b2b-email.php:242
 msgid "Products Ordered"
-msgstr "订购产品"
+msgstr "Prodotti ordinati"
 
 #: includes/class-wc-b2b-email.php:248
 msgid "Qty"
-msgstr "数量"
+msgstr "Qtà"
 
 #: includes/class-wc-b2b-admin.php:675 includes/class-wc-b2b-ajax.php:266
 msgid "Quantity"
-msgstr "数量"
+msgstr "Quantità"
 
 #: includes/class-wc-b2b-email.php:413
 msgid "Quantity:"
-msgstr "数量："
+msgstr "Quantità:"
 
 #: includes/class-wc-b2b-checkout.php:181
-msgid "Quotation order blocked because the customer account email is unverified."
-msgstr "客户账户邮箱尚未验证，报价请求已被阻止。"
+msgid ""
+"Quotation order blocked because the customer account email is unverified."
+msgstr ""
+"Ordine di preventivo bloccato perché l'e-mail dell'account cliente non è "
+"verificata."
 
 #: includes/class-wc-b2b-quote.php:163
 msgid "Quotation submitted"
-msgstr "报价提交"
+msgstr "Preventivo inviato"
 
 #: includes/class-wc-b2b-account.php:55 includes/class-wc-b2b-account.php:69
 msgid "Quote"
-msgstr "报价"
+msgstr "Preventivo"
 
 #: includes/class-wc-b2b-notifications.php:127
 msgid "Quote:"
-msgstr "报价："
+msgstr "Preventivo:"
 
 #: includes/class-wc-b2b-ajax.php:157
-msgid "Quote accepted. Please pay offline using the payment information on the quote."
-msgstr "接受报价。请使用报价单上的付款信息离线付款。"
+msgid ""
+"Quote accepted. Please pay offline using the payment information on the "
+"quote."
+msgstr ""
+"Preventivo accettato. Si prega di pagare offline utilizzando le informazioni"
+" di pagamento sul preventivo."
 
 #: includes/class-wc-b2b-order.php:341
-msgid "Quote accepted. Please use the offline payment information on the quote."
-msgstr "接受报价。请使用报价单上的离线支付信息。"
+msgid ""
+"Quote accepted. Please use the offline payment information on the quote."
+msgstr ""
+"Preventivo accettato. Si prega di utilizzare le informazioni di pagamento "
+"offline nel preventivo."
 
 #: includes/class-wc-b2b-email.php:351
 #, php-format
 msgid "Quote for Order #%s"
-msgstr "订单 #%s 的报价"
+msgstr "Preventivo per ordine n. %s"
 
 #: includes/class-wc-b2b-account.php:130
 msgid "Quote Number"
-msgstr "报价单号"
+msgstr "Numero preventivo"
 
 #: includes/class-wc-b2b-email.php:398
 msgid "Quote Number:"
-msgstr "报价编号："
+msgstr "Numero preventivo:"
 
 #: includes/class-wc-b2b-quote.php:82
 msgid "Quote Preparation"
-msgstr "报价准备方式"
+msgstr "Preparazione del preventivo"
 
 #: includes/class-wc-b2b-account.php:99
 msgid "Quote Request Under Review"
-msgstr "报价请求审核中"
+msgstr "Richiesta di preventivo in corso di revisione"
 
 #: includes/class-wc-b2b-admin.php:86
 msgid "Quote Sent - Awaiting Customer Response"
-msgstr "报价已发送 - 等待客户回复"
+msgstr "Preventivo inviato - In attesa di risposta del cliente"
 
 #: includes/class-wc-b2b-admin.php:491
 msgid "Quote sent to customer via email."
-msgstr "报价已通过邮箱发送给客户。"
+msgstr "Preventivo inviato al cliente tramite e-mail."
 
 #: includes/class-wc-b2b-admin.php:489
 msgid "Quote sent to customer via email and WhatsApp."
-msgstr "通过电子邮件和WhatsApp发送给客户的报价。"
+msgstr "Preventivo inviato al cliente tramite e-mail e WhatsApp."
 
 #: includes/class-wc-b2b-quote.php:71
 msgid "Quote settings saved."
-msgstr "保存报价设置。"
+msgstr "Impostazioni preventivo salvate."
 
 #: includes/class-wc-b2b-quote.php:94
 msgid "Quote Validity"
-msgstr "报价有效性"
+msgstr "Validità del preventivo"
 
 #: includes/class-wc-b2b-account.php:132
 msgid "Quote Valid Until"
-msgstr "报价有效期至"
+msgstr "Preventivo valido fino al"
 
 #: includes/class-wc-b2b-admin.php:265
 msgid "Reception Email"
-msgstr "接待邮箱"
+msgstr "Email di ricezione"
 
 #: includes/class-wc-b2b-fulfillment.php:85
 msgid "Recorded:"
-msgstr "记录："
+msgstr "Registrato:"
 
 #: includes/class-wc-b2b-account.php:134
 msgid "Recorded Payment"
-msgstr "付款记录"
+msgstr "Pagamento registrato"
 
 #: includes/class-wc-b2b-order-manager.php:387
 msgid "Recorded using the legacy “Mark as paid” order action."
-msgstr "使用传统的“标记为已付款”订单操作进行记录。"
+msgstr ""
+"Registrato utilizzando l'azione dell'ordine legacy \"Contrassegna come "
+"pagato\"."
 
 #: includes/class-wc-b2b-fulfillment.php:106
 msgid "Record Payment"
-msgstr "记录付款"
+msgstr "Registra pagamento"
 
 #: includes/class-wc-b2b-fulfillment.php:133
 msgid "Record Shipment"
-msgstr "记录发货"
+msgstr "Spedizione record"
 
-#: includes/class-wc-b2b-account.php:152 includes/class-wc-b2b-fulfillment.php:88
-#: includes/class-wc-b2b-fulfillment.php:104 includes/class-wc-b2b-notifications.php:87
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:104
+#: includes/class-wc-b2b-notifications.php:87
 msgid "Reference"
-msgstr "参考"
+msgstr "Riferimento"
 
 #: includes/class-wc-b2b-account.php:105
 msgid "Reference Total"
-msgstr "参考总额"
+msgstr "Totale di riferimento"
 
 #: includes/class-wc-b2b-notifications.php:122
 msgid "Reference total:"
-msgstr "参考总额："
+msgstr "Totale riferimento:"
 
 #: includes/class-wc-b2b-account.php:103 includes/class-wc-b2b-install.php:93
-#: includes/class-wc-b2b-install.php:133 includes/class-wc-b2b-membership.php:75
+#: includes/class-wc-b2b-install.php:133
+#: includes/class-wc-b2b-membership.php:75
 msgid "Registered Customer"
-msgstr "注册客户"
+msgstr "Cliente registrato"
 
 #: includes/class-wc-b2b-membership.php:206
 msgid ""
-"Registered customers use each product or variation's WooCommerce retail price. Regular and VIP "
-"fixed prices can be entered separately on every product or variation; when blank, the level "
-"discount above is used."
-msgstr "注册客户使用每个商品或变体自身的 WooCommerce 零售价。每个商品或变体都可以分别填写普通客户固定价和 VIP 固定价；留空时使用上方等级折扣。"
+"Registered customers use each product or variation's WooCommerce retail "
+"price. Regular and VIP fixed prices can be entered separately on every "
+"product or variation; when blank, the level discount above is used."
+msgstr ""
+"I clienti registrati utilizzano il prezzo al dettaglio WooCommerce di "
+"ciascun prodotto o variazione. I prezzi normali e fissi VIP possono essere "
+"inseriti separatamente su ogni prodotto o variante; quando vuoto, viene "
+"utilizzato il livello di sconto sopra indicato."
 
 #: includes/class-wc-b2b-checkout.php:264
 msgid "Register or Sign In to Request Quote"
-msgstr "注册或登录后申请报价"
+msgstr "Registrati o accedi per richiedere un preventivo"
 
 #: includes/class-wc-b2b-membership.php:487
 msgid "Register or sign in to view prices"
-msgstr "注册或登录后查看价格"
+msgstr "Registrati o accedi per visualizzare i prezzi"
 
 #: includes/class-wc-b2b-registration.php:178
-msgid "Registration received. Check your inbox and verify your email before signing in."
-msgstr "注册申请已收到。请查看收件箱并验证邮箱后再登录。"
+msgid ""
+"Registration received. Check your inbox and verify your email before signing"
+" in."
+msgstr ""
+"Registrazione ricevuta. Controlla la tua casella di posta e verifica la tua "
+"email prima di accedere."
 
 #: includes/class-wc-b2b-install.php:94 includes/class-wc-b2b-install.php:134
 #: includes/class-wc-b2b-membership.php:80
 msgid "Regular Customer"
-msgstr "普通客户"
+msgstr "Cliente abituale"
 
 #: includes/class-wc-b2b-admin.php:356
 msgid "Remove all plugin data when uninstalling"
-msgstr "卸载时删除所有插件数据"
+msgstr "Rimuovere tutti i dati del plug-in durante la disinstallazione"
 
-#: includes/class-wc-b2b-admin.php:327 includes/class-wc-b2b-whatsapp-button.php:186
+#: includes/class-wc-b2b-admin.php:327
+#: includes/class-wc-b2b-whatsapp-button.php:186
 msgid "Replace add to cart buttons with WhatsApp buttons"
-msgstr "用WhatsApp按钮替换添加到购物车按钮"
+msgstr "Sostituisci i pulsanti Aggiungi al carrello con i pulsanti WhatsApp"
 
 #: includes/class-wc-b2b-email.php:353
 msgid "Reply to Customer"
-msgstr "回复客户"
+msgstr "Rispondi al cliente"
 
 #: includes/class-wc-b2b-membership.php:181
-msgid "Require customers to register, verify their email, and sign in before checkout"
-msgstr "要求客户注册、验证邮箱并登录后才能结账"
+msgid ""
+"Require customers to register, verify their email, and sign in before "
+"checkout"
+msgstr ""
+"Richiedi ai clienti di registrarsi, verificare la propria e-mail e accedere "
+"prima del pagamento"
 
 #: includes/class-wc-b2b-admin.php:78
 msgid "Resend Verification Email"
-msgstr "重新发送验证邮件"
+msgstr "Invia nuovamente l'e-mail di verifica"
 
 #: includes/class-wc-b2b-admin.php:445
 msgid "Resend verification email"
-msgstr "重新发送验证邮件"
+msgstr "Invia nuovamente l'e-mail di verifica"
 
 #: includes/class-wc-b2b-account.php:131 includes/class-wc-b2b-email.php:399
 msgid "Retail / unassigned"
-msgstr "零售/未分配"
+msgstr "Vendita al dettaglio/non assegnato"
 
 #: includes/class-wc-b2b-account.php:105
 msgid "Retail Reference Total"
-msgstr "零售价参考总额"
+msgstr "Totale riferimento vendita al dettaglio"
 
 #: includes/class-wc-b2b-email.php:141
 msgid "Retail Reference Total:"
-msgstr "零售价参考总额："
+msgstr "Riferimento vendita al dettaglio Totale:"
 
 #: includes/class-wc-b2b-email.php:341
 msgid "Review the order details above"
-msgstr "查看上述订单详情"
+msgstr "Controlla i dettagli dell'ordine sopra"
 
 #: includes/class-wc-b2b-membership.php:204
 msgid "Save Member Levels"
-msgstr "保存会员等级"
+msgstr "Salva livelli membro"
 
 #: includes/class-wc-b2b-quote.php:102
 msgid "Save Quote Settings"
-msgstr "保存报价设置"
+msgstr "Salva impostazioni preventivo"
 
 #: includes/class-wc-b2b-ajax.php:50 includes/class-wc-b2b-ajax.php:58
 #: includes/class-wc-b2b-ajax.php:97 includes/class-wc-b2b-ajax.php:114
 msgid "Security check failed."
-msgstr "安全检查失败。"
+msgstr "Controllo di sicurezza non riuscito."
 
 #: includes/class-wc-b2b-registration.php:210
 msgid "Send a new verification email when this profile is saved"
-msgstr "保存此配置文件时发送新的验证电子邮件"
+msgstr "Invia una nuova email di verifica quando questo profilo viene salvato"
 
 #: includes/class-wc-b2b-admin.php:448
 msgid "Send inquiry to reception email"
-msgstr "将询价发送到接待邮箱"
+msgstr "Invia richiesta all'e-mail di ricezione"
 
 #: includes/class-wc-b2b-order-manager.php:551
 msgid "Send Payment Reminder"
-msgstr "发送付款提醒"
+msgstr "Invia promemoria di pagamento"
 
 #: includes/class-wc-b2b-admin.php:450
 msgid "Send quote to customer"
-msgstr "向客户发送报价"
+msgstr "Invia preventivo al cliente"
 
 #: includes/class-wc-b2b-email.php:344
 msgid "Send quote via email or your preferred system"
-msgstr "通过邮件或您偏好的系统发送报价"
+msgstr "Invia preventivo via email o tramite il tuo sistema preferito"
 
 #: includes/class-wc-b2b-admin.php:429
 msgid "Settings saved successfully!"
-msgstr "设置保存成功！"
+msgstr "Impostazioni salvate con successo!"
 
 #: includes/class-wc-b2b-account.php:157
 msgid "Shipment History"
-msgstr "发货历史"
+msgstr "Cronologia spedizioni"
 
 #: includes/class-wc-b2b-fulfillment.php:209
 msgid "Shipment recorded successfully."
-msgstr "发货记录成功。"
+msgstr "Spedizione registrata con successo."
 
 #: includes/class-wc-b2b-fulfillment.php:201
 #, php-format
 msgid "Shipment recorded with %1$s. Tracking: %2$s"
-msgstr "发货记录为%1$s。追踪：%2$s"
+msgstr "Spedizione registrata con %1$s. Monitoraggio: %2$s"
 
 #: includes/class-wc-b2b-fulfillment.php:110
 msgid "Shipment Records"
-msgstr "发货记录"
+msgstr "Record di spedizione"
 
 #: includes/class-wc-b2b-notifications.php:99
 #, php-format
 msgid "Shipment update for order #%s"
-msgstr "订单#%s的发货更新"
+msgstr "Aggiornamento della spedizione per l'ordine n. %s"
 
 #: includes/class-wc-b2b-fulfillment.php:130
 msgid "Shipped contents/quantity"
-msgstr "发货内容/数量"
+msgstr "Contenuto/quantità spediti"
 
 #: includes/class-wc-b2b-email.php:288 includes/class-wc-b2b-email.php:424
 msgid "Shipping:"
-msgstr "运费："
+msgstr "Spedizione:"
 
 #: includes/class-wc-b2b-email.php:314
 msgid "Shipping Address"
-msgstr "收货地址"
+msgstr "Indirizzo di spedizione"
 
 #: includes/class-wc-b2b-admin.php:715
 msgid "Shipping Cost"
-msgstr "运费"
+msgstr "Costi di spedizione"
 
 #: includes/class-wc-b2b-admin.php:645
 msgid "Shipping cost updated successfully!"
-msgstr "运费更新成功！"
+msgstr "Costo di spedizione aggiornato con successo!"
 
 #: includes/class-wc-b2b-admin.php:640
 #, php-format
 msgid "Shipping cost updated to %s by admin."
-msgstr "管理员将运费更新为%s。"
+msgstr "Costo di spedizione aggiornato a %s dall'amministratore."
 
-#: includes/class-wc-b2b-fulfillment.php:126 includes/class-wc-b2b-notifications.php:103
+#: includes/class-wc-b2b-fulfillment.php:126
+#: includes/class-wc-b2b-notifications.php:103
 msgid "Shipping date"
-msgstr "发货日期"
+msgstr "Data di spedizione"
 
 #: includes/class-wc-b2b-membership.php:188
 msgid "Show WooCommerce retail prices to visitors who are not signed in"
-msgstr "向未登录访客显示 WooCommerce 零售价"
+msgstr ""
+"Mostra i prezzi al dettaglio WooCommerce ai visitatori che non hanno "
+"effettuato l'accesso"
 
 #: includes/class-wc-b2b-email.php:263
 msgid "SKU:"
-msgstr "SKU："
+msgstr "SKU:"
 
 #: includes/class-wc-b2b-account.php:57 includes/class-wc-b2b-account.php:71
 #: includes/class-wc-b2b-account.php:102
 msgid "Status"
-msgstr "状态"
+msgstr "Stato"
 
 #: includes/class-wc-b2b-ajax.php:232
 msgid "Status:"
-msgstr "状态："
+msgstr "Stato:"
 
 #: includes/class-wc-b2b-blocks.php:43 includes/class-wc-b2b-quote.php:196
 msgid ""
-"Submit an inquiry without displayed prices. We will receive it only after you verify your email; "
-"an administrator will then review prices and shipping."
-msgstr "提交不显示价格的询价。只有验证邮箱后我们才会收到，随后由管理员审核价格和运费。"
+"Submit an inquiry without displayed prices. We will receive it only after "
+"you verify your email; an administrator will then review prices and "
+"shipping."
+msgstr ""
+"Invia una richiesta senza prezzi visualizzati. Lo riceveremo solo dopo aver "
+"verificato la tua email; un amministratore esaminerà quindi i prezzi e la "
+"spedizione."
 
 #: includes/class-wc-b2b-blocks.php:45 includes/class-wc-b2b-quote.php:198
 msgid ""
-"Submit a quote request for administrator review. Prices and shipping may be adjusted before the "
-"formal quote and offline payment instructions are sent manually."
-msgstr "提交报价请求供管理员审核。管理员可调整价格和运费，然后人工发送正式报价及线下付款信息。"
+"Submit a quote request for administrator review. Prices and shipping may be "
+"adjusted before the formal quote and offline payment instructions are sent "
+"manually."
+msgstr ""
+"Invia una richiesta di preventivo per la revisione dell'amministratore. I "
+"prezzi e la spedizione possono essere modificati prima che il preventivo "
+"formale e le istruzioni per il pagamento offline vengano inviati "
+"manualmente."
 
 #: includes/class-wc-b2b-blocks.php:46 includes/class-wc-b2b-checkout.php:260
 msgid "Submit B2B Quote Order"
-msgstr "提交 B2B 报价订单"
+msgstr "Invia B2B Preventivo ordine"
 
 #: includes/class-wc-b2b-blocks.php:46 includes/class-wc-b2b-checkout.php:263
 msgid "Submit Inquiry & Verify Email"
-msgstr "提交询价并验证邮箱"
+msgstr "Invia richiesta e verifica e-mail"
 
 #: includes/class-wc-b2b-quote.php:192
 msgid ""
-"Submits a quote request without collecting an online payment; an administrator prepares and sends "
-"the formal quote manually."
-msgstr "提交报价请求且不收取在线付款；正式报价由管理员人工准备并发送。"
+"Submits a quote request without collecting an online payment; an "
+"administrator prepares and sends the formal quote manually."
+msgstr ""
+"Invia una richiesta di preventivo senza riscuotere un pagamento online; un "
+"amministratore prepara e invia manualmente il preventivo formale."
 
 #: includes/class-wc-b2b-email.php:283 includes/class-wc-b2b-email.php:423
 msgid "Subtotal:"
-msgstr "小计："
+msgstr "Totale parziale:"
 
 #: includes/class-wc-b2b-admin.php:817
 #, php-format
 msgid "Successfully cleaned up %d tokens (%d expired, %d old used tokens)."
-msgstr "成功清理了 %d 个令牌（%d 个过期，%d 个旧的已使用令牌）。"
+msgstr "Token %d ripuliti con successo (%d scaduto, %d vecchi token usati)."
 
 #: includes/class-wc-b2b-whatsapp-button.php:202
 msgid "Text displayed on the WhatsApp button"
-msgstr "WhatsApp按钮上显示的文字"
+msgstr "Testo visualizzato sul pulsante WhatsApp"
 
 #: includes/class-wc-b2b-admin.php:344
 msgid "Text displayed on the WhatsApp button."
-msgstr "WhatsApp按钮上显示的文字。"
+msgstr "Testo visualizzato sul pulsante WhatsApp."
 
 #: includes/class-wc-b2b-email.php:126
 #, php-format
 msgid ""
-"Thank you for inquiry #%s. It has not yet been sent to our reception team. Click below to verify "
-"your email and deliver the inquiry:"
-msgstr "感谢您的询问#%s。它尚未发送给我们的接待团队。单击下面验证您的电子邮件并发送询问："
+"Thank you for inquiry #%s. It has not yet been sent to our reception team. "
+"Click below to verify your email and deliver the inquiry:"
+msgstr ""
+"Grazie per la richiesta #%s. Non è stato ancora inviato al nostro team di "
+"accoglienza. Fai clic di seguito per verificare la tua email e inviare la "
+"richiesta:"
 
 #: includes/class-wc-b2b-order-manager.php:341
 msgid "Thank you for your business!"
-msgstr "感谢您的惠顾！"
+msgstr "Grazie per il tuo business!"
 
 #: includes/class-wc-b2b-email.php:127
 #, php-format
 msgid ""
-"Thank you for your order #%s. To proceed with your order, please verify your email address by "
-"clicking the button below:"
-msgstr "感谢您的订单 #%s。要继续处理您的订单，请点击下面的按钮验证您的邮箱地址："
+"Thank you for your order #%s. To proceed with your order, please verify your"
+" email address by clicking the button below:"
+msgstr ""
+"Grazie per il tuo ordine #%s. Per procedere con l'ordine, verifica il tuo "
+"indirizzo email facendo clic sul pulsante qui sotto:"
 
 #: includes/class-wc-b2b-email.php:507
 msgid "Thank you for your understanding."
-msgstr "感谢您的理解。"
+msgstr "Grazie per la comprensione."
 
 #: includes/class-wc-b2b-registration.php:180
 msgid ""
-"That verification link was invalid or expired. If it was an expired valid link, a new email has "
-"been sent; otherwise contact us for help."
-msgstr "该验证链接无效或已过期。如果是过期的有效链接，则会发送新电子邮件；否则请联系我们寻求帮助。"
+"That verification link was invalid or expired. If it was an expired valid "
+"link, a new email has been sent; otherwise contact us for help."
+msgstr ""
+"Il link di verifica non è valido o è scaduto. Se era un collegamento valido "
+"scaduto, è stata inviata una nuova email; altrimenti contattaci per aiuto."
 
 #: includes/class-wc-b2b-email.php:87
 msgid ""
-"The reception notification email could not be sent. Check the site mail configuration and resend "
-"the notification."
-msgstr "收货通知邮件无法发送。检查站点邮件配置并重新发送通知。"
+"The reception notification email could not be sent. Check the site mail "
+"configuration and resend the notification."
+msgstr ""
+"Impossibile inviare l'e-mail di notifica di ricezione. Controlla la "
+"configurazione della posta del sito e invia nuovamente la notifica."
 
 #: includes/class-wc-b2b-order-manager.php:319
 #, php-format
-msgid "This is a friendly reminder that your order #%s is still awaiting payment."
-msgstr "这是一个友好的提醒，您的订单 #%s 仍在等待付款。"
+msgid ""
+"This is a friendly reminder that your order #%s is still awaiting payment."
+msgstr ""
+"Questo è un promemoria amichevole che il tuo ordine #%s è ancora in attesa "
+"di pagamento."
 
 #: includes/class-wc-b2b-email.php:510
 msgid "This is an automated notification about your order cancellation."
-msgstr "这是关于您订单取消的自动通知。"
+msgstr "Questa è una notifica automatizzata sull'annullamento dell'ordine."
 
 #: includes/class-wc-b2b-order-manager.php:344
 #, php-format
 msgid "This is an automated reminder. Order expires on: %s"
-msgstr "这是自动提醒。订单过期时间：%s"
+msgstr "Questo è un promemoria automatico. L'ordine scade il: %s"
 
 #: includes/class-wc-b2b-admin.php:65 includes/class-wc-b2b-fulfillment.php:70
 #: includes/class-wc-b2b-order-manager.php:496
 msgid "This is not a B2B order."
-msgstr "这不是B2B订单。"
+msgstr "Questo non è un ordine B2B."
 
 #: includes/class-wc-b2b-registration.php:139
 #, php-format
-msgid "This link expires in %d hours. A newer verification email invalidates earlier links."
-msgstr "此链接在%d小时内过期。较新的验证电子邮件会使较早的链接失效。"
+msgid ""
+"This link expires in %d hours. A newer verification email invalidates "
+"earlier links."
+msgstr ""
+"Questo collegamento scade tra %d ore. Una email di verifica più recente "
+"invalida i collegamenti precedenti."
 
 #: includes/class-wc-b2b-email.php:365
 #, php-format
 msgid "This notification was sent from %s | Order Date: %s"
-msgstr "此通知来自 %s | 订单日期：%s"
+msgstr "Questa notifica è stata inviata da %s | Data dell'ordine: %s"
 
 #: includes/class-wc-b2b-ajax.php:175
 msgid "This order cannot be cancelled at this time."
-msgstr "此订单目前无法取消。"
+msgstr "Questo ordine non può essere annullato in questo momento."
 
 #: includes/class-wc-b2b-order.php:365
 msgid "This order cannot be cancelled in its current status."
-msgstr "该订单当前状态下无法取消。"
+msgstr "Questo ordine non può essere annullato nel suo stato attuale."
 
 #: includes/class-wc-b2b-ajax.php:142
 msgid "This order cannot be confirmed at this time."
-msgstr "此订单目前无法确认。"
+msgstr "Questo ordine non può essere confermato in questo momento."
 
 #: includes/class-wc-b2b-order.php:333
 msgid "This quote cannot be accepted in its current status."
-msgstr "该报价目前无法接受。"
+msgstr "Questo preventivo non può essere accettato nel suo stato attuale."
 
 #: includes/class-wc-b2b-ajax.php:149 includes/class-wc-b2b-order.php:336
 msgid "This quote has expired. Please contact us for a new quote."
-msgstr "此报价已过期。请联系我们获取新报价。"
+msgstr ""
+"Questo preventivo è scaduto. Vi preghiamo di contattarci per un nuovo "
+"preventivo."
 
 #: includes/class-wc-b2b-fulfillment.php:132
 msgid "This shipment completes the order"
-msgstr "本次发货完成订单"
+msgstr "Questa spedizione completa l'ordine"
 
 #: includes/class-wc-b2b-email.php:149
 #, php-format
 msgid "This verification link will expire in %d hours."
-msgstr "该验证链接将在%d小时后过期。"
+msgstr "Questo collegamento di verifica scadrà tra %d ore."
 
 #: includes/class-wc-b2b-admin.php:367
 msgid "Token Cleanup"
-msgstr "令牌清理"
+msgstr "Token Cleanup"
 
 #: includes/class-wc-b2b-account.php:58 includes/class-wc-b2b-account.php:72
 #: includes/class-wc-b2b-email.php:250
 msgid "Total"
-msgstr "总计"
+msgstr "Totale"
 
 #: includes/class-wc-b2b-ajax.php:281 includes/class-wc-b2b-email.php:141
 #: includes/class-wc-b2b-email.php:293 includes/class-wc-b2b-email.php:415
-#: includes/class-wc-b2b-email.php:425 includes/class-wc-b2b-notifications.php:128
+#: includes/class-wc-b2b-email.php:425
+#: includes/class-wc-b2b-notifications.php:128
 msgid "Total:"
-msgstr "总计："
+msgstr "Totale:"
 
-#: includes/class-wc-b2b-email.php:498 includes/class-wc-b2b-order-manager.php:332
+#: includes/class-wc-b2b-email.php:498
+#: includes/class-wc-b2b-order-manager.php:332
 msgid "Total Amount:"
-msgstr "总金额："
+msgstr "Importo totale:"
 
-#: includes/class-wc-b2b-account.php:159 includes/class-wc-b2b-notifications.php:109
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-notifications.php:109
 msgid "Tracking"
-msgstr "追踪"
+msgstr "Monitoraggio"
 
 #: includes/class-wc-b2b-fulfillment.php:113
 msgid "Tracking Number"
-msgstr "追踪号码"
+msgstr "Numero di tracciamento"
 
 #: includes/class-wc-b2b-fulfillment.php:128
 msgid "Tracking number"
-msgstr "追踪号"
+msgstr "Numero di tracciamento"
 
 #: includes/class-wc-b2b-fulfillment.php:129
 msgid "Tracking URL"
-msgstr "跟踪URL"
+msgstr "URL di monitoraggio"
 
-#: includes/class-wc-b2b-account.php:160 includes/class-wc-b2b-notifications.php:107
+#: includes/class-wc-b2b-account.php:160
+#: includes/class-wc-b2b-notifications.php:107
 msgid "Track shipment"
-msgstr "跟踪发货"
+msgstr "Traccia la spedizione"
 
 #: includes/class-wc-b2b-email.php:249
 msgid "Unit Price"
-msgstr "单价"
+msgstr "Prezzo unitario"
 
 #: includes/class-wc-b2b-email.php:414
 msgid "Unit Price:"
-msgstr "单价："
+msgstr "Prezzo unitario:"
 
 #: includes/class-wc-b2b-order-manager.php:531
 msgid "Unpaid"
-msgstr "未付款"
+msgstr "Non pagato"
 
 #: includes/class-wc-b2b-admin.php:706
 msgid "Update"
-msgstr "更新"
+msgstr "Aggiornamento"
 
 #: includes/class-wc-b2b-email.php:345
 msgid "Update order status in WordPress when quote is sent"
-msgstr "发送报价后在WordPress中更新订单状态"
+msgstr ""
+"Aggiorna lo stato dell'ordine in WordPress quando viene inviato il "
+"preventivo"
 
 #: includes/class-wc-b2b-admin.php:733
 msgid "Update Shipping"
-msgstr "更新运费"
+msgstr "Aggiornamento spedizione"
 
 #: includes/class-wc-b2b-email.php:400
 msgid "Valid Until:"
-msgstr "有效期至："
+msgstr "Valido fino al:"
 
 #: includes/class-wc-b2b-admin.php:465
 msgid "Verification email resent to customer."
-msgstr "验证邮件已重新发送给客户。"
+msgstr "E-mail di verifica inviata nuovamente al cliente."
 
 #: includes/class-wc-b2b-admin.php:225 includes/class-wc-b2b-admin.php:519
 msgid "Verification email sent successfully!"
-msgstr "验证邮件发送成功！"
+msgstr "Email di verifica inviata con successo!"
 
 #: includes/class-wc-b2b-admin.php:273
 msgid "Verification Expiry"
-msgstr "验证过期时间"
+msgstr "Scadenza della verifica"
 
 #: includes/class-wc-b2b-admin.php:172
-msgid "Verification method will determine notification channel for future communications."
-msgstr "验证方式将决定后续通信的通知渠道。"
+msgid ""
+"Verification method will determine notification channel for future "
+"communications."
+msgstr ""
+"Il metodo di verifica determinerà il canale di notifica per le comunicazioni"
+" future."
 
 #: includes/class-wc-b2b-admin.php:524
 msgid "Verification sent via both email and WhatsApp!"
-msgstr "验证已通过邮箱和WhatsApp发送！"
+msgstr "Verifica inviata tramite e-mail e WhatsApp!"
 
 #: includes/class-wc-b2b-admin.php:470
 msgid "Verification sent via both email and WhatsApp."
-msgstr "验证已通过邮箱和WhatsApp发送。"
+msgstr "Verifica inviata tramite e-mail e WhatsApp."
 
 #: includes/class-wc-b2b-admin.php:140
 msgid "Verification Status:"
-msgstr "验证状态："
+msgstr "Stato di verifica:"
 
 #: includes/class-wc-b2b-admin.php:370
 msgid "Verification tokens are automatically cleaned up:"
-msgstr "验证令牌会自动清理："
+msgstr "I token di verifica vengono automaticamente ripuliti:"
 
 #: includes/class-wc-b2b-admin.php:145 includes/class-wc-b2b-admin.php:156
 msgid "Verified"
-msgstr "已验证"
+msgstr "Verificato"
 
 #: includes/class-wc-b2b-admin.php:82
 msgid "Verified - Ready for Quote"
-msgstr "已验证 - 准备报价"
+msgstr "Verificato - Pronto per il preventivo"
 
 #: includes/class-wc-b2b-registration.php:207
 msgid "Verified Email"
-msgstr "邮箱已验证"
+msgstr "Email verificata"
 
 #: includes/class-wc-b2b-admin.php:268
-msgid "Verified guest inquiries and B2B order notifications are sent to this address."
-msgstr "已验证的客人查询和B2B订单通知发送到此地址。"
+msgid ""
+"Verified guest inquiries and B2B order notifications are sent to this "
+"address."
+msgstr ""
+"Le richieste degli ospiti verificati e le notifiche degli ordini B2B vengono"
+" inviate a questo indirizzo."
 
 #: includes/class-wc-b2b-email.php:172
 msgid "Verified Guest Inquiry - Ready for Review"
-msgstr "已验证客人查询-准备审核"
+msgstr "Richiesta ospite verificata - Pronta per la revisione"
 
 #: includes/class-wc-b2b-email.php:84
 msgid ""
-"Verified guest inquiry delivered to the configured reception email. A formal quote must be sent "
-"manually."
-msgstr "已验证的客人查询已发送至配置的接收电子邮件。正式报价必须手动发送。"
+"Verified guest inquiry delivered to the configured reception email. A formal"
+" quote must be sent manually."
+msgstr ""
+"Richiesta dell'ospite verificata consegnata all'e-mail di reception "
+"configurata. Un preventivo formale deve essere inviato manualmente."
 
 #: includes/class-wc-b2b-account.php:99
 msgid "Verified Inquiry"
-msgstr "已验证询价"
+msgstr "Richiesta verificata"
 
 #: includes/class-wc-b2b-email.php:71
 #, php-format
 msgid "Verified inquiry #%s is ready for review"
-msgstr "已验证询价 #%s 已准备好审核"
+msgstr "La richiesta verificata #%s è pronta per la revisione"
 
 #: includes/class-wc-b2b-admin.php:166 includes/class-wc-b2b-email.php:207
 msgid "Verified via:"
-msgstr "验证方式："
+msgstr "Verificato tramite:"
 
 #: includes/class-wc-b2b-registration.php:137
 msgid "Verify Email"
-msgstr "验证邮箱"
+msgstr "Verifica e-mail"
 
 #: includes/class-wc-b2b-email.php:130
 msgid "Verify Email & Send Inquiry"
-msgstr "验证邮箱&发送询盘"
+msgstr "Verifica e-mail e invia richiesta"
 
 #: includes/class-wc-b2b-email.php:130
 msgid "Verify Order"
-msgstr "验证订单"
+msgstr "Verifica ordine"
 
 #: includes/class-wc-b2b-registration.php:134
 msgid "Verify your email address"
-msgstr "验证您的邮箱地址"
+msgstr "Verifica il tuo indirizzo email"
 
 #: includes/class-wc-b2b-account.php:74
 msgid "View"
-msgstr "查看"
+msgstr "View"
 
 #: includes/class-wc-b2b-notifications.php:134
 msgid "View Order"
-msgstr "查看订单"
+msgstr "Visualizza ordine"
 
 #: includes/class-wc-b2b-email.php:444
 msgid "View printable quote, payment and shipment history"
-msgstr "查看可打印报价、付款和发货历史"
+msgstr "Visualizza preventivo stampabile, cronologia pagamenti e spedizioni"
 
 #: includes/class-wc-b2b-order-manager.php:336
 msgid "View Quote & Payment Information"
-msgstr "查看报价&付款信息"
+msgstr "Visualizza informazioni su preventivi e pagamenti"
 
 #: includes/class-wc-b2b-install.php:95 includes/class-wc-b2b-install.php:135
 #: includes/class-wc-b2b-membership.php:85
 msgid "VIP Customer"
-msgstr "VIP 客户"
+msgstr "VIP Cliente"
 
 #: includes/class-wc-b2b-admin.php:361
-msgid "Warning: This will permanently delete all B2B order data and verification tokens."
-msgstr "警告：这将永久删除所有B2B订单数据和验证令牌。"
+msgid ""
+"Warning: This will permanently delete all B2B order data and verification "
+"tokens."
+msgstr ""
+"Avvertenza: questa operazione eliminerà definitivamente tutti i dati "
+"dell'ordine B2B e i token di verifica."
 
 #: includes/class-wc-b2b-notifications.php:82
 msgid "We have recorded the following offline payment:"
-msgstr "我们记录了以下离线支付："
+msgstr "Abbiamo registrato il seguente pagamento offline:"
 
 #: includes/class-wc-b2b-email.php:492
 #, php-format
 msgid ""
-"We regret to inform you that your order #%s has been cancelled due to non-payment within the "
-"specified time period."
-msgstr "我们很遗憾地通知您，您的订单 #%s 因在指定时间内未付款而被取消。"
+"We regret to inform you that your order #%s has been cancelled due to non-"
+"payment within the specified time period."
+msgstr ""
+"Siamo spiacenti di informarti che il tuo ordine #%s è stato annullato a "
+"causa del mancato pagamento entro il periodo di tempo specificato."
 
 #: includes/class-wc-b2b-admin.php:154
 msgid "WhatsApp:"
-msgstr "WhatsApp："
+msgstr "WhatsApp:"
 
 #: includes/class-wc-b2b-admin.php:318
 msgid "WhatsApp API authentication key."
-msgstr "WhatsApp API认证密钥。"
+msgstr "WhatsApp API Chiave di autenticazione."
 
 #: includes/class-wc-b2b-admin.php:310
 msgid "WhatsApp API endpoint URL."
-msgstr "WhatsApp API端点URL。"
+msgstr "WhatsApp API URL dell'endpoint."
 
 #: includes/class-wc-b2b-admin.php:315
 msgid "WhatsApp API Key"
-msgstr "WhatsApp API密钥"
+msgstr "WhatsApp API Chiave"
 
 #: includes/class-wc-b2b-admin.php:307
 msgid "WhatsApp API URL"
@@ -1965,126 +2193,166 @@ msgstr "WhatsApp API URL"
 
 #: includes/class-wc-b2b-admin.php:341
 msgid "WhatsApp Button Text"
-msgstr "WhatsApp 按钮文字"
+msgstr "WhatsApp Testo pulsante"
 
-#: includes/class-wc-b2b-admin.php:333 includes/class-wc-b2b-whatsapp-button.php:193
+#: includes/class-wc-b2b-admin.php:333
+#: includes/class-wc-b2b-whatsapp-button.php:193
 msgid "WhatsApp Phone Number"
-msgstr "WhatsApp电话号码"
+msgstr "WhatsApp Numero di telefono"
 
 #: includes/class-wc-b2b-whatsapp-button.php:256
 msgid "WhatsApp phone number not configured."
-msgstr "WhatsApp电话号码未配置。"
+msgstr "WhatsApp numero di telefono non configurato."
 
 #: includes/class-wc-b2b-whatsapp-button.php:178
 msgid "WhatsApp Quick Buy Settings"
-msgstr "WhatsApp快速购买设置"
+msgstr "WhatsApp Impostazioni acquisto rapido"
 
 #: includes/class-wc-b2b-membership.php:189
 msgid ""
-"When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all "
-"amounts. If guest inquiries are allowed, every guest must verify the submitted email before the "
-"inquiry is delivered."
-msgstr "关闭后，商品目录、购物车、结账页、验证邮件和正式报价前的询价页都会隐藏金额。如果允许访客询价，每位访客都必须验证所填邮箱后，询价才会投递。"
+"When disabled, catalog, cart, checkout, verification emails, and pre-quote "
+"inquiry pages hide all amounts. If guest inquiries are allowed, every guest "
+"must verify the submitted email before the inquiry is delivered."
+msgstr ""
+"Quando disabilitati, il catalogo, il carrello, il checkout, le e-mail di "
+"verifica e le pagine di richiesta pre-preventivo nascondono tutti gli "
+"importi. Se le richieste degli ospiti sono consentite, ogni ospite deve "
+"verificare l'e-mail inviata prima che la richiesta venga consegnata."
 
 #: includes/class-wc-b2b-admin.php:359
 msgid ""
-"When enabled, uninstalling the plugin will remove all database tables, settings, and order "
-"metadata. This action cannot be undone."
-msgstr "启用后，卸载插件将删除所有数据库表、设置和订单元数据。此操作无法撤销。"
+"When enabled, uninstalling the plugin will remove all database tables, "
+"settings, and order metadata. This action cannot be undone."
+msgstr ""
+"Se abilitato, la disinstallazione del plug-in rimuoverà tutte le tabelle del"
+" database, le impostazioni e i metadati degli ordini. Questa azione non può "
+"essere annullata."
 
 #: wc-to-b2b.php:195
 #, php-format
 msgid ""
-"WooCommerce to B2B requires WooCommerce to be installed and active. You can download %s here."
-msgstr "WooCommerce to B2B 需要安装并激活 WooCommerce。您可以在 %s 下载。"
+"WooCommerce to B2B requires WooCommerce to be installed and active. You can "
+"download %s here."
+msgstr ""
+"da WooCommerce a B2B richiede che WooCommerce sia installato e attivo. Puoi "
+"scaricare %s qui."
 
 #: includes/class-wc-b2b-admin.php:258
 msgid "WooCommerce to B2B Settings"
-msgstr "WooCommerce to B2B 设置"
+msgstr "da WooCommerce a B2B Impostazioni"
 
 #: includes/class-wc-b2b-admin.php:667
 msgid "You can modify item prices and shipping costs for this B2B order."
-msgstr "您可以修改此B2B订单的项目价格和运费。"
+msgstr ""
+"È possibile modificare i prezzi degli articoli e i costi di spedizione per "
+"questo ordine B2B."
 
 #: includes/class-wc-b2b-admin.php:83
-msgid "You can now modify the order pricing and shipping, then send the quote to customer."
-msgstr "您现在可以修改订单价格和运费，然后向客户发送报价。"
+msgid ""
+"You can now modify the order pricing and shipping, then send the quote to "
+"customer."
+msgstr ""
+"Ora puoi modificare il prezzo dell'ordine e la spedizione, quindi inviare il"
+" preventivo al cliente."
 
 #: includes/class-wc-b2b-account.php:49
 msgid "You do not have any B2B quotes or orders yet."
-msgstr "您还没有任何B2B报价或订单。"
+msgstr "Non hai ancora nessun preventivo o ordine B2B."
 
 #: includes/class-wc-b2b-membership.php:158
 msgid "You do not have permission to manage B2B member levels."
-msgstr "您无权管理B2B会员级别。"
+msgstr "Non disponi dell'autorizzazione per gestire i livelli membro B2B."
 
 #: includes/class-wc-b2b-quote.php:61
 msgid "You do not have permission to manage B2B quote settings."
-msgstr "您无权管理 B2B 报价设置。"
+msgstr ""
+"Non disponi dell'autorizzazione per gestire le impostazioni del preventivo "
+"B2B."
 
 #: includes/class-wc-b2b-notifications.php:64
 #, php-format
 msgid "Your B2B order #%1$s has changed from “%2$s” to “%3$s”."
-msgstr "您的B2B订单#%1$s已由“%2$s”更改为“%3$s”。"
+msgstr "Il tuo ordine B2B #%1$s è cambiato da \"%2$s\" a \"%3$s\"."
 
 #: includes/class-wc-b2b-email.php:102
 #, php-format
 msgid "Your B2B quote %s is ready"
-msgstr "您的B2B报价%s已准备好"
+msgstr "Il tuo preventivo B2B %s è pronto"
 
 #: includes/class-wc-b2b-quote.php:167
 msgid ""
-"Your formal quote has been generated and emailed to you. Please review it and use the offline "
-"payment information shown below."
-msgstr "您的正式报价已生成并通过电子邮件发送给您。请查看并使用如下所示的离线支付信息。"
+"Your formal quote has been generated and emailed to you. Please review it "
+"and use the offline payment information shown below."
+msgstr ""
+"Il tuo preventivo formale è stato generato e ti è stato inviato via email. "
+"Si prega di esaminarlo e utilizzare le informazioni di pagamento offline "
+"mostrate di seguito."
 
 #: includes/class-wc-b2b-account.php:109
 msgid ""
-"Your inquiry has been received. Prices, offline payment information, and payment records will "
-"appear here after the formal quote is sent."
-msgstr "您的询盘已收到。正式报价发送后，价格、线下支付信息、支付记录都会出现在这里。"
+"Your inquiry has been received. Prices, offline payment information, and "
+"payment records will appear here after the formal quote is sent."
+msgstr ""
+"La tua richiesta è stata ricevuta. I prezzi, le informazioni sui pagamenti "
+"offline e i record dei pagamenti verranno visualizzati qui dopo l'invio del "
+"preventivo formale."
 
 #: includes/class-wc-b2b-ajax.php:292
 msgid "Your Message"
-msgstr "您的留言"
+msgstr "Il tuo messaggio"
 
 #: includes/class-wc-b2b-email.php:145
 msgid "Your Message:"
-msgstr "您的留言："
+msgstr "Il tuo messaggio:"
 
 #: includes/class-wc-b2b-order-manager.php:324
 #, php-format
-msgid "Your order will be automatically cancelled in %d days (on %s) if payment is not received."
-msgstr "如果未收到付款，您的订单将在 %d 天后（%s）自动取消。"
+msgid ""
+"Your order will be automatically cancelled in %d days (on %s) if payment is "
+"not received."
+msgstr ""
+"Il tuo ordine verrà automaticamente annullato entro %d giorni (su %s) se il "
+"pagamento non viene ricevuto."
 
 #: includes/class-wc-b2b-email.php:395
 #, php-format
-msgid "Your quote for order #%s is ready for review. Please find the details below:"
-msgstr "您的订单 #%s 报价已准备就绪。请查看以下详情："
+msgid ""
+"Your quote for order #%s is ready for review. Please find the details below:"
+msgstr ""
+"Il tuo preventivo per l'ordine n. %s è pronto per la revisione. Di seguito "
+"sono riportati i dettagli:"
 
 #: includes/class-wc-b2b-email.php:391
 msgid "Your Quote is Ready"
-msgstr "您的报价已准备就绪"
+msgstr "Il tuo preventivo è pronto"
 
 #: includes/class-wc-b2b-account.php:108
 msgid ""
-"Your request has been received. The amount above is a reference only; an administrator will review"
-" prices and shipping before sending the formal quote."
-msgstr "您的请求已收到。以上金额仅供参考；管理员审核价格和运费后才会发送正式报价。"
+"Your request has been received. The amount above is a reference only; an "
+"administrator will review prices and shipping before sending the formal "
+"quote."
+msgstr ""
+"La tua richiesta è stata ricevuta. L'importo sopra è solo di riferimento; un"
+" amministratore esaminerà i prezzi e la spedizione prima di inviare il "
+"preventivo formale."
 
 #: includes/class-wc-b2b-quote.php:169
-msgid "Your request was received. We will email the formal quote after it has been reviewed."
-msgstr "您的请求已收到。审核后我们将通过电子邮件发送正式报价。"
+msgid ""
+"Your request was received. We will email the formal quote after it has been "
+"reviewed."
+msgstr ""
+"La tua richiesta è stata ricevuta. Ti invieremo via email il preventivo "
+"formale dopo che sarà stato esaminato."
 
 #: includes/class-wc-b2b-registration.php:130
 #, php-format
 msgid "[%s] Verify your customer account"
-msgstr "[%s] 验证您的客户账户"
+msgstr "[%s] Verifica il tuo account cliente"
 
 #: includes/class-wc-b2b-admin.php:373
 msgid "• Expired tokens: Cleaned daily"
-msgstr "• 过期令牌：每日清理"
+msgstr "• Token scaduti: puliti quotidianamente"
 
 #: includes/class-wc-b2b-admin.php:374
 msgid "• Used tokens older than 30 days: Cleaned weekly"
-msgstr "• 30天以上的已使用令牌：每周清理"
+msgstr "• Token utilizzati più vecchi di 30 giorni: pulizia settimanale"

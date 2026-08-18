@@ -1,0 +1,2353 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce to B2B 2.1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/hwc0212/wc-to-b2b/issues\n"
+"POT-Creation-Date: 2026-08-18 15:16+0800\n"
+"PO-Revision-Date: 2026-08-18 15:16+0800\n"
+"Last-Translator: WooCommerce to B2B contributors\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: wc-to-b2b language catalog builder\n"
+
+#: includes/class-wc-b2b-order-manager.php:516
+#, php-format
+msgid "%d days remaining"
+msgstr "%d осталось дней"
+
+#: includes/class-wc-b2b-membership.php:283
+#: includes/class-wc-b2b-membership.php:323
+#, php-format
+msgid "%s fixed price"
+msgstr "%s фиксированная цена"
+
+#: includes/class-wc-b2b-email.php:417
+msgid "(Custom B2B Price)"
+msgstr "(индивидуальная цена B2B)"
+
+#: includes/class-wc-b2b-email.php:445
+msgid ""
+"Accepting the quote confirms your order. Payment is made offline only; no "
+"online payment will be requested."
+msgstr ""
+"Принятие предложения подтверждает ваш заказ. Оплата производится только "
+"оффлайн; онлайн-платеж не потребуется."
+
+#: includes/class-wc-b2b-account.php:145 includes/class-wc-b2b-email.php:440
+msgid "Accept Quote"
+msgstr "Принять предложение"
+
+#: includes/class-wc-b2b-ajax.php:303
+msgid "Accept Quote & Pay Offline"
+msgstr "Принять предложение и оплатить в автономном режиме"
+
+#: includes/class-wc-b2b-ajax.php:126 includes/class-wc-b2b-order.php:329
+#: includes/class-wc-b2b-order.php:361
+msgid "Access denied."
+msgstr "Доступ запрещен."
+
+#: includes/class-wc-b2b-account.php:60 includes/class-wc-b2b-admin.php:677
+msgid "Action"
+msgstr "Действие"
+
+#: includes/class-wc-b2b-fulfillment.php:96
+msgid "Add Payment"
+msgstr "Добавить платеж"
+
+#: includes/class-wc-b2b-fulfillment.php:121
+msgid "Add Shipment"
+msgstr "Добавить поставку"
+
+#: includes/class-wc-b2b-membership.php:464
+msgid "Add to Inquiry"
+msgstr "Добавить в запрос"
+
+#: includes/class-wc-b2b-membership.php:464
+msgid "Add to Quote"
+msgstr "Добавить к запросу предложения"
+
+#: includes/class-wc-b2b-order.php:174
+msgid ""
+"A formal quote cannot be sent until the guest verifies the inquiry email."
+msgstr ""
+"Официальное предложение не может быть отправлено, пока гость не подтвердит "
+"электронное письмо с запросом."
+
+#: includes/class-wc-b2b-fulfillment.php:223
+msgid "A formal quote must be sent before recording payments or shipments."
+msgstr ""
+"Официальное предложение должно быть отправлено до регистрации платежей или "
+"поставок."
+
+#: includes/class-wc-b2b-admin.php:168
+#, php-format
+msgid "All future notifications will be sent via %s"
+msgstr "Все будущие уведомления будут отправляться через %s"
+
+#: includes/class-wc-b2b-fulfillment.php:205
+msgid "All goods have been shipped."
+msgstr "Все товары были отправлены."
+
+#: includes/class-wc-b2b-membership.php:180
+msgid "Allow guests to submit an inquiry after verifying their email"
+msgstr ""
+"Разрешить гостям отправлять запросы после подтверждения электронной почты"
+
+#: includes/class-wc-b2b-registration.php:209
+msgid "Allow this customer to sign in"
+msgstr "Разрешить этому клиенту войти в систему"
+
+#: includes/class-wc-b2b-membership.php:183
+msgid ""
+"All submissions wait for an administrator to adjust prices and shipping and "
+"send the formal quote manually."
+msgstr ""
+"Все отправленные материалы ждут, пока администратор скорректирует цены и "
+"доставку и отправит официальное предложение вручную."
+
+#: includes/class-wc-b2b-membership.php:216
+msgid "Always retail price"
+msgstr "Всегда розничная цена"
+
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:102
+#: includes/class-wc-b2b-notifications.php:85
+msgid "Amount"
+msgstr "Сумма"
+
+#: includes/class-wc-b2b-notifications.php:122
+msgid ""
+"An administrator will review prices and shipping before sending the formal "
+"quote."
+msgstr ""
+"Перед отправкой официального ценового предложения администратор проверит "
+"цены и условия доставки."
+
+#: includes/class-wc-b2b-admin.php:227
+msgid "An error occurred. Please try again."
+msgstr "Произошла ошибка. Пожалуйста, попробуйте еще раз."
+
+#: includes/class-wc-b2b-admin.php:465 includes/class-wc-b2b-admin.php:517
+msgid "A new verification link could not be generated."
+msgstr "Не удалось создать новую ссылку для проверки."
+
+#: includes/class-wc-b2b-fulfillment.php:205
+msgid "A partial shipment has been recorded."
+msgstr "Зарегистрирована частичная отгрузка."
+
+#: includes/class-wc-b2b-ajax.php:181 includes/class-wc-b2b-order.php:368
+msgid ""
+"A payment has already been recorded. Please contact us to cancel this order."
+msgstr ""
+"Платеж уже зарегистрирован. Пожалуйста, свяжитесь с нами, чтобы отменить "
+"этот заказ."
+
+#: includes/class-wc-b2b-ajax.php:364
+msgid "Are you sure you want to accept this quote?"
+msgstr "Вы уверены, что хотите принять это предложение?"
+
+#: includes/class-wc-b2b-ajax.php:365
+msgid "Are you sure you want to cancel this order?"
+msgstr "Вы уверены, что хотите отменить этот заказ?"
+
+#: includes/class-wc-b2b-notifications.php:101
+msgid "A shipment has been recorded for your B2B order."
+msgstr "Для вашего заказа B2B зарегистрирована отгрузка."
+
+#: includes/class-wc-b2b-checkout.php:285
+#, php-format
+msgid ""
+"A verified customer account is required to request a quote. <a "
+"href=\"%s\">Register or sign in</a>, then return to checkout."
+msgstr ""
+"Для запроса ценового предложения требуется подтвержденная учетная запись "
+"клиента. <a href=\"%s\">Зарегистрируйтесь или войдите в систему</a>, затем "
+"вернитесь к оформлению заказа."
+
+#: includes/class-wc-b2b-registration.php:204
+msgid "B2B Email Verification"
+msgstr "B2B Проверка электронной почты"
+
+#: includes/class-wc-b2b-membership.php:148
+#: includes/class-wc-b2b-membership.php:149
+#: includes/class-wc-b2b-membership.php:172
+msgid "B2B Member Levels"
+msgstr "B2B Уровни участников"
+
+#: includes/class-wc-b2b-membership.php:255
+msgid "B2B Membership"
+msgstr "B2B Членство"
+
+#: includes/class-wc-b2b-quote.php:191
+msgid "B2B Offline Quote"
+msgstr "Офлайн-предложение B2B"
+
+#: includes/class-wc-b2b-admin.php:52
+msgid "B2B Order Actions"
+msgstr "B2B Действия по заказу"
+
+#: includes/class-wc-b2b-order-manager.php:486
+msgid "B2B Order Expiry & Payment"
+msgstr "B2B Срок действия заказа и оплата"
+
+#: includes/class-wc-b2b-admin.php:53
+msgid "B2B Order Information"
+msgstr "B2B Информация о заказе"
+
+#: includes/class-wc-b2b-fulfillment.php:48
+msgid "B2B Payments & Shipments"
+msgstr "B2B Платежи и поставки"
+
+#: includes/class-wc-b2b-admin.php:776
+msgid "B2B Price"
+msgstr "B2B Цена"
+
+#: includes/class-wc-b2b-admin.php:666
+msgid "B2B Price Management"
+msgstr "B2B Управление ценами"
+
+#: includes/class-wc-b2b-account.php:125
+msgid "B2B Quotation & Fulfillment"
+msgstr "Предложение B2B и выполнение заказа"
+
+#: includes/class-wc-b2b-quote.php:78
+msgid "B2B Quote & Offline Payment Settings"
+msgstr "Настройки предложений B2B и офлайн-платежей"
+
+#: includes/class-wc-b2b-account.php:29 includes/class-wc-b2b-account.php:33
+#: includes/class-wc-b2b-account.php:47
+msgid "B2B Quotes & Orders"
+msgstr "Предложения и заказы B2B"
+
+#: includes/class-wc-b2b-quote.php:51 includes/class-wc-b2b-quote.php:52
+msgid "B2B Quote Settings"
+msgstr "Настройки предложений B2B"
+
+#: includes/class-wc-b2b-admin.php:239 includes/class-wc-b2b-admin.php:240
+msgid "B2B Settings"
+msgstr "B2B Настройки"
+
+#: includes/class-wc-b2b-fulfillment.php:85
+msgid "Balance:"
+msgstr "Баланс:"
+
+#: includes/class-wc-b2b-fulfillment.php:103
+msgid "Bank transfer"
+msgstr "Банковский перевод"
+
+#: includes/class-wc-b2b-email.php:304
+msgid "Billing Address"
+msgstr "Платежный адрес"
+
+#: includes/class-wc-b2b-whatsapp-button.php:218
+msgid "Button Style"
+msgstr "Стиль кнопки"
+
+#: includes/class-wc-b2b-whatsapp-button.php:201
+msgid "Button Text"
+msgstr "Текст кнопки"
+
+#: includes/class-wc-b2b-email.php:495
+msgid "Cancelled Order Details:"
+msgstr "Сведения об отмененном заказе:"
+
+#: includes/class-wc-b2b-account.php:146 includes/class-wc-b2b-ajax.php:309
+#: includes/class-wc-b2b-email.php:441
+msgid "Cancel Order"
+msgstr "Отменить заказ"
+
+#: includes/class-wc-b2b-order-manager.php:368
+msgid "Cancel Order Manually"
+msgstr "Отменить заказ вручную"
+
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-fulfillment.php:127
+#: includes/class-wc-b2b-notifications.php:104
+msgid "Carrier"
+msgstr "Перевозчик"
+
+#: includes/class-wc-b2b-quote.php:92
+msgid ""
+"Change this rule under WooCommerce → B2B Member Levels → Customer Access "
+"Mode."
+msgstr ""
+"Измените это правило в разделе WooCommerce → B2B Уровни участников → Режим "
+"доступа клиентов."
+
+#: includes/class-wc-b2b-whatsapp-button.php:219
+msgid "Choose the WhatsApp button style"
+msgstr "Выберите стиль кнопки WhatsApp"
+
+#: includes/class-wc-b2b-admin.php:377
+msgid "Clean Up Expired Tokens Now"
+msgstr "Очистите просроченные токены прямо сейчас"
+
+#: includes/class-wc-b2b-registration.php:136
+msgid ""
+"Click the button below to confirm that this email address is valid. You can "
+"sign in and view your customer-level prices after verification."
+msgstr ""
+"Нажмите кнопку ниже, чтобы подтвердить, что этот адрес электронной почты "
+"действителен. Вы можете войти в систему и просмотреть цены на уровне клиента"
+" после проверки."
+
+#: includes/class-wc-b2b-email.php:202
+msgid "Company:"
+msgstr "Компания:"
+
+#: includes/class-wc-b2b-admin.php:352
+msgid "Complete Uninstall"
+msgstr "Полное удаление"
+
+#: includes/class-wc-b2b-whatsapp-button.php:180
+msgid "Configure WhatsApp quick buy button settings."
+msgstr "Настройте параметры кнопки быстрой покупки WhatsApp."
+
+#: includes/class-wc-b2b-email.php:342
+msgid "Contact the customer using the provided email/phone"
+msgstr ""
+"Свяжитесь с клиентом, используя предоставленный адрес электронной "
+"почты/телефон."
+
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-notifications.php:110
+msgid "Contents"
+msgstr "Содержание"
+
+#: includes/class-wc-b2b-email.php:504
+msgid "Continue Shopping"
+msgstr "Продолжить покупки"
+
+#: includes/class-wc-b2b-admin.php:674
+msgid "Current Price"
+msgstr "Текущая цена"
+
+#: includes/class-wc-b2b-admin.php:718
+msgid "Current Shipping:"
+msgstr "Текущая доставка:"
+
+#: includes/class-wc-b2b-admin.php:742 includes/class-wc-b2b-email.php:233
+msgid "Current Total:"
+msgstr "Текущий итог:"
+
+#: includes/class-wc-b2b-admin.php:791
+msgid "Custom:"
+msgstr "Пользовательский:"
+
+#: includes/class-wc-b2b-ajax.php:246
+msgid "Customer:"
+msgstr "Клиент:"
+
+#: includes/class-wc-b2b-ajax.php:153 includes/class-wc-b2b-order.php:338
+msgid "Customer accepted the quote and will pay offline."
+msgstr "Клиент принял предложение и оплатит его в автономном режиме."
+
+#: includes/class-wc-b2b-whatsapp.php:239
+msgid "Customer accepted the quote via WhatsApp and will pay offline."
+msgstr ""
+"Клиент принял предложение через WhatsApp и оплатит в автономном режиме."
+
+#: includes/class-wc-b2b-membership.php:177
+msgid "Customer Access Mode"
+msgstr "Режим доступа клиента"
+
+#: includes/class-wc-b2b-quote.php:86
+msgid "Customer Access Rules"
+msgstr "Правила доступа клиентов"
+
+#: includes/class-wc-b2b-email.php:186
+msgid "Customer Contact Information"
+msgstr "Контактная информация клиента"
+
+#: includes/class-wc-b2b-email.php:327
+msgid "Customer Message & Requirements"
+msgstr "Сообщения и требования клиентов"
+
+#: includes/class-wc-b2b-admin.php:180
+msgid "Customer Message:"
+msgstr "Сообщение клиента:"
+
+#: includes/class-wc-b2b-quote.php:90
+msgid ""
+"Customers must register, verify their account email, and sign in before "
+"requesting a quote. Guest checkout is disabled."
+msgstr ""
+"Клиенты должны зарегистрироваться, подтвердить адрес электронной почты своей"
+" учетной записи и войти в систему, прежде чем запрашивать предложение. "
+"Гостевой кассовый сбор отключен."
+
+#: includes/class-wc-b2b-whatsapp-button.php:209
+msgid "Custom Message Template"
+msgstr "Шаблон пользовательского сообщения"
+
+#: includes/class-wc-b2b-whatsapp-button.php:210
+msgid ""
+"Custom message template. Use {product_name}, {product_price}, {product_url},"
+" {site_name} as placeholders. Leave empty for default message."
+msgstr ""
+"Пользовательский шаблон сообщения. Используйте {product_name}, "
+"{product_price}, {product_url}, {site_name} в качестве заполнителей. "
+"Оставьте пустым для сообщения по умолчанию."
+
+#: includes/class-wc-b2b-admin.php:628
+msgid "Custom Shipping"
+msgstr "Индивидуальная доставка"
+
+#: includes/class-wc-b2b-whatsapp-button.php:224
+msgid "Custom Style"
+msgstr "Пользовательский стиль"
+
+#: includes/class-wc-b2b-admin.php:349
+msgid "Data Management"
+msgstr "Управление данными"
+
+#: includes/class-wc-b2b-account.php:56 includes/class-wc-b2b-account.php:70
+#: includes/class-wc-b2b-account.php:152 includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-notifications.php:84
+msgid "Date"
+msgstr "Дата"
+
+#: includes/class-wc-b2b-admin.php:283 includes/class-wc-b2b-admin.php:291
+#: includes/class-wc-b2b-quote.php:95
+msgid "days"
+msgstr "дней"
+
+#: includes/class-wc-b2b-membership.php:196
+msgid "Default Discount (%)"
+msgstr "Скидка по умолчанию (%)"
+
+#: includes/class-wc-b2b-email.php:343
+msgid "Discuss requirements and prepare your quote"
+msgstr "Обсудите требования и подготовьте свое предложение"
+
+#: includes/class-wc-b2b-blocks.php:44 includes/class-wc-b2b-quote.php:197
+msgid ""
+"Displayed amounts are retail references. Submit the inquiry and verify your "
+"email; an administrator will then review prices and shipping."
+msgstr ""
+"Отображаемые суммы являются справочными данными для розничной торговли. "
+"Отправьте запрос и подтвердите свою электронную почту; Затем администратор "
+"проверит цены и доставку."
+
+#: includes/class-wc-b2b-admin.php:166 includes/class-wc-b2b-email.php:210
+msgid "Email"
+msgstr "Электронная почта"
+
+#: includes/class-wc-b2b-admin.php:168
+msgid "email"
+msgstr "электронная почта"
+
+#: includes/class-wc-b2b-blocks.php:40 includes/class-wc-b2b-quote.php:193
+msgid "Email-verified inquiry"
+msgstr "Запрос, подтвержденный по электронной почте"
+
+#: includes/class-wc-b2b-admin.php:143 includes/class-wc-b2b-ajax.php:250
+#: includes/class-wc-b2b-email.php:194
+msgid "Email:"
+msgstr "Электронная почта:"
+
+#: includes/class-wc-b2b-checkout.php:95
+msgid "Email is a required field."
+msgstr "Адрес электронной почты является обязательным полем."
+
+#: includes/class-wc-b2b-order.php:205
+msgid ""
+"Email verified. The inquiry was saved, but the reception email could not be "
+"sent; our administrator can resend it."
+msgstr ""
+"Адрес электронной почты подтвержден. Запрос был сохранен, но письмо о приеме"
+" не удалось отправить; наш администратор может отправить его повторно."
+
+#: includes/class-wc-b2b-order.php:204
+msgid ""
+"Email verified. Your inquiry has now been delivered to our reception team."
+msgstr ""
+"Адрес электронной почты подтвержден. Ваш запрос передан в нашу приемную."
+
+#: includes/class-wc-b2b-registration.php:194
+msgid "Email verified successfully. You can now sign in."
+msgstr ""
+"Адрес электронной почты успешно подтвержден. Теперь вы можете войти в "
+"систему."
+
+#: includes/class-wc-b2b-registration.php:176
+msgid ""
+"Email verified successfully. You can now sign in and view your retail price."
+msgstr ""
+"Адрес электронной почты успешно подтвержден. Теперь вы можете войти в "
+"систему и просмотреть розничную цену."
+
+#: includes/class-wc-b2b-admin.php:297
+msgid "Enable WhatsApp"
+msgstr "Включить WhatsApp"
+
+#: includes/class-wc-b2b-admin.php:323
+#: includes/class-wc-b2b-whatsapp-button.php:185
+msgid "Enable WhatsApp Button"
+msgstr "Включить WhatsApp"
+
+#: includes/class-wc-b2b-admin.php:301
+msgid "Enable WhatsApp integration"
+msgstr "Включить интеграцию WhatsApp"
+
+#: includes/class-wc-b2b-quote.php:99
+msgid ""
+"Enter bank name, beneficiary, account number, SWIFT, payment reference "
+"instructions, and contact details. This appears on quotes, customer order "
+"pages, and emails."
+msgstr ""
+"Введите название банка, получателя, номер счета, SWIFT, инструкции по "
+"платежу и контактные данные. Это отображается в предложениях, страницах "
+"заказов клиентов и в электронных письмах."
+
+#: includes/class-wc-b2b-whatsapp-button.php:194
+msgid ""
+"Enter your WhatsApp business phone number (with country code, no + sign)"
+msgstr ""
+"Введите номер своего рабочего телефона WhatsApp (с кодом страны, без знака "
+"+)"
+
+#: includes/class-wc-b2b-admin.php:336
+msgid ""
+"Enter your WhatsApp business phone number (with country code, no + sign)."
+msgstr ""
+"Введите свой рабочий номер телефона WhatsApp (с кодом страны, без знака +)."
+
+#: includes/class-wc-b2b-whatsapp-button.php:165
+msgid "Error generating WhatsApp message."
+msgstr "Ошибка при создании сообщения WhatsApp."
+
+#: includes/class-wc-b2b-quote.php:84
+msgid ""
+"Every submission remains ready for review until an administrator adjusts "
+"product prices and shipping, then sends the formal quote manually."
+msgstr ""
+"Каждая отправка остается готовой к рассмотрению до тех пор, пока "
+"администратор не скорректирует цены на продукты и условия доставки, а затем "
+"не отправит официальное ценовое предложение вручную."
+
+#: includes/class-wc-b2b-membership.php:173
+msgid ""
+"Every verified account has one of three fixed levels: registered customers "
+"see retail prices, regular customers see wholesale prices, and VIP customers"
+" see VIP prices."
+msgstr ""
+"Каждая проверенная учетная запись имеет один из трех фиксированных уровней: "
+"зарегистрированные клиенты видят розничные цены, постоянные клиенты видят "
+"оптовые цены, а клиенты VIP видят цены VIP."
+
+#: includes/class-wc-b2b-order-manager.php:472
+msgid "Failed to send payment reminder."
+msgstr "Не удалось отправить напоминание о платеже."
+
+#: includes/class-wc-b2b-order.php:161
+msgid ""
+"Guest inquiries can be delivered only after the customer clicks the email "
+"verification link."
+msgstr ""
+"Запросы гостей могут быть доставлены только после того, как клиент щелкнет "
+"ссылку для подтверждения электронной почты."
+
+#: includes/class-wc-b2b-email.php:178
+#, php-format
+msgid ""
+"Guest inquiry #%s has passed email verification. Review it and send a formal"
+" quote manually when pricing is ready."
+msgstr ""
+"Гостевой запрос № %s прошел проверку по электронной почте. Просмотрите его и"
+" отправьте официальное ценовое предложение вручную, когда цены будут готовы."
+
+#: includes/class-wc-b2b-checkout.php:165
+msgid "Guest inquiry blocked because customer registration is required."
+msgstr "Запрос гостя заблокирован, поскольку требуется регистрация клиента."
+
+#: includes/class-wc-b2b-membership.php:186
+msgid "Guest Price Display"
+msgstr "Отображение цен для гостей"
+
+#: includes/class-wc-b2b-quote.php:88
+msgid ""
+"Guests may submit inquiries, but each inquiry is delivered only after the "
+"guest clicks its email verification link. Registered customers must verify "
+"their account email before signing in."
+msgstr ""
+"Гости могут отправлять запросы, но каждый запрос доставляется только после "
+"того, как гость щелкнет ссылку для подтверждения электронной почты. "
+"Зарегистрированные клиенты должны подтвердить адрес электронной почты своей "
+"учетной записи перед входом в систему."
+
+#: includes/class-wc-b2b-whatsapp-button.php:93
+#: includes/class-wc-b2b-whatsapp-button.php:273
+#, php-format
+msgid ""
+"Hello! I'm interested in this product:\n"
+"\n"
+"*%s*\n"
+"Price: %s\n"
+"Link: %s\n"
+"\n"
+"Could you please provide more information?"
+msgstr ""
+"Здравствуйте! Меня интересует этот товар:\n"
+"\n"
+"*%s*\n"
+"Цена: %s\n"
+"Ссылка: %s\n"
+"\n"
+"Не могли бы вы предоставить дополнительную информацию?"
+
+#: includes/class-wc-b2b-whatsapp-button.php:214
+msgid ""
+"Hello! I'm interested in {product_name} from {site_name}. Could you provide "
+"more details?"
+msgstr ""
+"Здравствуйте! Меня интересует {product_name} с сайта {site_name}. Не могли "
+"бы вы предоставить более подробную информацию?"
+
+#: includes/class-wc-b2b-whatsapp.php:59
+#, php-format
+msgid ""
+"Hello %s!\n"
+"\n"
+"Your order #%s needs verification.\n"
+"\n"
+"Click here to verify: %s\n"
+"\n"
+"Or reply with: VERIFY %s"
+msgstr ""
+"Здравствуйте, %s!\n"
+"\n"
+"Ваш заказ #%s требует проверки.\n"
+"\n"
+"Нажмите здесь, чтобы проверить: %s\n"
+"\n"
+"Или ответьте: VERIFY %s."
+
+#: includes/class-wc-b2b-whatsapp.php:91
+#, php-format
+msgid ""
+"Hello %s!\n"
+"\n"
+"Your quote for order #%s is ready.\n"
+"\n"
+"Total: %s\n"
+"\n"
+"To accept: %s\n"
+"To cancel: %s\n"
+"\n"
+"Or reply:\n"
+"ACCEPT %d - to accept\n"
+"CANCEL %d - to cancel"
+msgstr ""
+"Здравствуйте, %s!\n"
+"\n"
+"Ваше предложение по заказу № %s готово.\n"
+"\n"
+"Итого: %s\n"
+"\n"
+"Принять: %s\n"
+"Для отмены: %s\n"
+"\n"
+"Или ответьте:\n"
+"ACCEPT %d — принять\n"
+"CANCEL %d – отменить"
+
+#: includes/class-wc-b2b-email.php:123 includes/class-wc-b2b-email.php:393
+#: includes/class-wc-b2b-email.php:490
+#: includes/class-wc-b2b-notifications.php:60
+#: includes/class-wc-b2b-notifications.php:81
+#: includes/class-wc-b2b-notifications.php:100
+#: includes/class-wc-b2b-order-manager.php:317
+#: includes/class-wc-b2b-registration.php:135
+#, php-format
+msgid "Hello %s,"
+msgstr "Здравствуйте, %s!"
+
+#: includes/class-wc-b2b-admin.php:275
+msgid "hours"
+msgstr "часов"
+
+#: includes/class-wc-b2b-admin.php:276
+msgid "How long verification links remain valid."
+msgstr "Как долго ссылки проверки остаются действительными."
+
+#: includes/class-wc-b2b-admin.php:292
+msgid "How often to send payment reminder emails to customers."
+msgstr ""
+"Как часто отправлять клиентам электронные письма с напоминанием об оплате."
+
+#: includes/class-wc-b2b-email.php:133
+msgid ""
+"If the button doesn't work, you can copy and paste this link into your "
+"browser:"
+msgstr ""
+"Если кнопка не работает, вы можете скопировать и вставить эту ссылку в свой "
+"браузер:"
+
+#: includes/class-wc-b2b-registration.php:138
+msgid "If the button does not work, copy this link into your browser:"
+msgstr "Если кнопка не работает, скопируйте эту ссылку в свой браузер:"
+
+#: includes/class-wc-b2b-email.php:501
+msgid ""
+"If you are still interested in these products, please feel free to place a "
+"new order or contact us directly."
+msgstr ""
+"Если вы все еще заинтересованы в этих продуктах, пожалуйста, разместите "
+"новый заказ или свяжитесь с нами напрямую."
+
+#: includes/class-wc-b2b-order-manager.php:339
+msgid ""
+"If you have already made the payment or have any questions, please contact "
+"us immediately."
+msgstr ""
+"Если вы уже произвели оплату или у вас есть какие-либо вопросы, немедленно "
+"свяжитесь с нами."
+
+#: includes/class-wc-b2b-order-manager.php:323
+msgid "Important:"
+msgstr "Важно:"
+
+#: includes/class-wc-b2b-notifications.php:120
+msgid "Inquiry:"
+msgstr "Запрос:"
+
+#: includes/class-wc-b2b-checkout.php:172
+msgid "Inquiry created, awaiting customer email verification."
+msgstr "Создан запрос, ожидается подтверждение электронной почты клиента."
+
+#: includes/class-wc-b2b-email.php:138
+msgid "Inquiry Details:"
+msgstr "Детали запроса:"
+
+#: includes/class-wc-b2b-email.php:121
+msgid "Inquiry Email Verification Required"
+msgstr "Требуется подтверждение электронной почты для запроса"
+
+#: includes/class-wc-b2b-order.php:290
+#, php-format
+msgid "Inquiry email verified by customer via %s."
+msgstr "Электронная почта для запроса подтверждена клиентом через %s."
+
+#: includes/class-wc-b2b-account.php:101
+msgid "Inquiry Number"
+msgstr "Номер запроса"
+
+#: includes/class-wc-b2b-email.php:139
+msgid "Inquiry Number:"
+msgstr "Номер запроса:"
+
+#: includes/class-wc-b2b-quote.php:163
+msgid "Inquiry submitted"
+msgstr "Запрос отправлен"
+
+#: includes/class-wc-b2b-fulfillment.php:105
+msgid "Internal/customer note"
+msgstr "Внутреннее/примечание для клиента"
+
+#: includes/class-wc-b2b-ajax.php:65
+msgid "Invalid action."
+msgstr "Недопустимое действие."
+
+#: includes/class-wc-b2b-admin.php:549 includes/class-wc-b2b-admin.php:609
+#: includes/class-wc-b2b-fulfillment.php:220
+#: includes/class-wc-b2b-order-manager.php:440
+msgid "Invalid B2B order."
+msgstr "Неверный заказ B2B."
+
+#: includes/class-wc-b2b-ajax.php:39 includes/class-wc-b2b-ajax.php:82
+msgid "Invalid order ID."
+msgstr "Неверный идентификатор заказа."
+
+#: includes/class-wc-b2b-whatsapp.php:247
+#: includes/class-wc-b2b-whatsapp.php:263
+msgid "Invalid order or phone number mismatch."
+msgstr "Неверный заказ или несоответствие номера телефона."
+
+#: includes/class-wc-b2b-whatsapp.php:226
+msgid "Invalid or expired verification code."
+msgstr "Неверный или просроченный код подтверждения."
+
+#: includes/class-wc-b2b-order.php:240
+msgid "Invalid or expired verification token."
+msgstr "Неверный токен проверки или токен с истекшим сроком действия."
+
+#: includes/class-wc-b2b-whatsapp.php:176
+msgid "Invalid verification link."
+msgstr "Неверная ссылка для проверки."
+
+#: includes/class-wc-b2b-order.php:226
+msgid "Invalid verification token format."
+msgstr "Неверный формат токена проверки."
+
+#: includes/class-wc-b2b-admin.php:672
+msgid "Item"
+msgstr "Элемент"
+
+#: includes/class-wc-b2b-admin.php:582
+#, php-format
+msgid "Item \"%s\" price updated to %s by admin."
+msgstr "Цена товара «%s» обновлена ​​администратором до %s."
+
+#: includes/class-wc-b2b-admin.php:588
+msgid "Item price updated successfully!"
+msgstr "Цена товара успешно обновлена!"
+
+#: includes/class-wc-b2b-order-manager.php:544
+msgid "Last reminder:"
+msgstr "Последнее напоминание:"
+
+#: includes/class-wc-b2b-membership.php:284
+msgid "Leave blank to use this level's default discount."
+msgstr ""
+"Оставьте поле пустым, чтобы использовать скидку по умолчанию для этого "
+"уровня."
+
+#: includes/class-wc-b2b-membership.php:194
+msgid "Level ID"
+msgstr "Идентификатор уровня"
+
+#: includes/class-wc-b2b-membership.php:195
+msgid "Level Name"
+msgstr "Имя уровня"
+
+#: includes/class-wc-b2b-email.php:358
+msgid "Manage in WordPress"
+msgstr "Управление в WordPress"
+
+#: includes/class-wc-b2b-order-manager.php:528
+msgid "Manually Paid"
+msgstr "С оплатой вручную"
+
+#: includes/class-wc-b2b-order-manager.php:385
+msgid "Manual offline payment"
+msgstr "Ручная автономная оплата"
+
+#: includes/class-wc-b2b-quote.php:83
+msgid "Manual review is always required."
+msgstr "Всегда требуется проверка вручную."
+
+#: includes/class-wc-b2b-order-manager.php:535
+msgid "Mark as Paid"
+msgstr "Отметить как оплаченное"
+
+#: includes/class-wc-b2b-order-manager.php:364
+msgid "Mark as Paid (Manual Payment)"
+msgstr "Отметить как оплаченное (оплата вручную)"
+
+#: includes/class-wc-b2b-order-manager.php:529
+msgid "Marked as paid:"
+msgstr "Помечено как оплаченное:"
+
+#: includes/class-wc-b2b-account.php:103 includes/class-wc-b2b-account.php:131
+#: includes/class-wc-b2b-membership.php:257
+msgid "Member Level"
+msgstr "Уровень участника"
+
+#: includes/class-wc-b2b-email.php:399
+msgid "Member Level:"
+msgstr "Уровень участника:"
+
+#: includes/class-wc-b2b-membership.php:164
+msgid "Member levels saved."
+msgstr "Уровни участников сохранены."
+
+#: includes/class-wc-b2b-checkout.php:66
+msgid "Message"
+msgstr "Сообщение"
+
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:103
+#: includes/class-wc-b2b-notifications.php:86
+msgid "Method"
+msgstr "Метод"
+
+#: includes/class-wc-b2b-email.php:190
+msgid "Name:"
+msgstr "Имя:"
+
+#: includes/class-wc-b2b-email.php:172
+msgid "New B2B Order - Ready for Quote"
+msgstr "Новый заказ B2B — готов к предложению"
+
+#: includes/class-wc-b2b-registration.php:211
+msgid ""
+"New customer accounts must verify their email. Accounts that existed before "
+"this feature are treated as verified."
+msgstr ""
+"Новые учетные записи клиентов должны подтвердить свою электронную почту. "
+"Учетные записи, существовавшие до появления этой функции, считаются "
+"подтвержденными."
+
+#: includes/class-wc-b2b-admin.php:676
+msgid "New Price"
+msgstr "Новая цена"
+
+#: includes/class-wc-b2b-admin.php:722
+msgid "New Shipping Cost:"
+msgstr "Новая стоимость доставки:"
+
+#: includes/class-wc-b2b-email.php:338
+msgid "Next Steps"
+msgstr "Следующие шаги"
+
+#: includes/class-wc-b2b-fulfillment.php:94
+msgid "No payment has been recorded."
+msgstr "Платежи не зарегистрированы."
+
+#: includes/class-wc-b2b-account.php:155
+msgid "No payment has been recorded yet."
+msgstr "Платеж еще не зарегистрирован."
+
+#: includes/class-wc-b2b-order-manager.php:546
+msgid "No reminders sent yet"
+msgstr "Напоминания пока не отправлены"
+
+#: includes/class-wc-b2b-fulfillment.php:119
+msgid "No shipment has been recorded."
+msgstr "Отгрузка не зарегистрирована."
+
+#: includes/class-wc-b2b-account.php:162
+msgid "No shipment has been recorded yet."
+msgstr "Отгрузки еще не зарегистрированы."
+
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:113
+#: includes/class-wc-b2b-fulfillment.php:131
+msgid "Note"
+msgstr "Примечание"
+
+#: includes/class-wc-b2b-admin.php:825
+msgid "No tokens needed cleanup. Database is already clean."
+msgstr "Очистка токенов не требуется. База данных уже чистая."
+
+#: includes/class-wc-b2b-email.php:203 includes/class-wc-b2b-email.php:307
+msgid "Not provided"
+msgstr "Не предусмотрено"
+
+#: includes/class-wc-b2b-fulfillment.php:201
+msgid "not provided"
+msgstr "не предоставлен."
+
+#: includes/class-wc-b2b-admin.php:145 includes/class-wc-b2b-admin.php:156
+msgid "Not Verified"
+msgstr "Не проверено"
+
+#: includes/class-wc-b2b-whatsapp-button.php:223
+msgid "Official WhatsApp Style"
+msgstr "Официальный стиль WhatsApp"
+
+#: includes/class-wc-b2b-account.php:140 includes/class-wc-b2b-email.php:431
+#: includes/class-wc-b2b-quote.php:97 includes/class-wc-b2b-quote.php:173
+msgid "Offline Payment Information"
+msgstr "Информация об офлайн-платеже"
+
+#: includes/class-wc-b2b-fulfillment.php:162
+#, php-format
+msgid "Offline payment recorded: %1$s (%2$s)."
+msgstr "Записан автономный платеж: %1$s (%2$s)."
+
+#: includes/class-wc-b2b-blocks.php:40 includes/class-wc-b2b-quote.php:193
+msgid "Offline quotation"
+msgstr "Оффлайн-предложение"
+
+#: includes/class-wc-b2b-notifications.php:55
+#, php-format
+msgid "Order #%1$s status updated: %2$s"
+msgstr "Обновлен статус заказа № %1$s: %2$s"
+
+#: includes/class-wc-b2b-whatsapp.php:242
+#, php-format
+msgid "Order #%s confirmed. View offline payment information: %s"
+msgstr "Заказ № %s подтвержден. Просмотр информации об офлайн-платеже: %s"
+
+#: includes/class-wc-b2b-ajax.php:229
+#, php-format
+msgid "Order #%s Details"
+msgstr "Заказ № %s Подробности"
+
+#: includes/class-wc-b2b-email.php:470
+#, php-format
+msgid "Order #%s has been cancelled"
+msgstr "Заказ № %s отменен"
+
+#: includes/class-wc-b2b-whatsapp.php:261
+#, php-format
+msgid "Order #%s has been cancelled."
+msgstr "Заказ № %s был отменен."
+
+#: includes/class-wc-b2b-email.php:72
+#, php-format
+msgid "Order #%s has been verified"
+msgstr "Заказ № %s подтвержден"
+
+#: includes/class-wc-b2b-email.php:179
+#, php-format
+msgid ""
+"Order #%s has been verified and is ready for your quote. All information "
+"needed for pricing is included below."
+msgstr ""
+"Заказ № %s проверен и готов для вашего предложения. Вся информация, "
+"необходимая для определения цены, указана ниже."
+
+#: includes/class-wc-b2b-notifications.php:120
+msgid "Order:"
+msgstr "Заказ:"
+
+#: includes/class-wc-b2b-order-manager.php:89
+msgid "Order automatically cancelled after 3 weeks without payment."
+msgstr "Заказ автоматически отменяется через 3 недели без оплаты."
+
+#: includes/class-wc-b2b-order-manager.php:79
+msgid "Order automatically cancelled due to expiry (3 weeks without payment)."
+msgstr ""
+"Заказ автоматически отменен из-за истечения срока действия (3 недели без "
+"оплаты)."
+
+#: includes/class-wc-b2b-email.php:488
+msgid "Order Cancelled"
+msgstr "Заказ отменен"
+
+#: includes/class-wc-b2b-ajax.php:186 includes/class-wc-b2b-order.php:372
+msgid "Order cancelled by customer."
+msgstr "Заказ отменен клиентом."
+
+#: includes/class-wc-b2b-whatsapp.php:260
+msgid "Order cancelled by customer via WhatsApp."
+msgstr "Заказ отменен клиентом через WhatsApp."
+
+#: includes/class-wc-b2b-order-manager.php:416
+msgid "Order cancelled manually by admin."
+msgstr "Заказ отменен администратором вручную."
+
+#: includes/class-wc-b2b-ajax.php:190 includes/class-wc-b2b-order.php:375
+msgid "Order cancelled successfully."
+msgstr "Заказ успешно отменен."
+
+#: includes/class-wc-b2b-order-manager.php:291
+#, php-format
+msgid ""
+"Order Cancelled ❌\n"
+"\n"
+"Hello %s,\n"
+"\n"
+"We regret to inform you that your order #%s has been cancelled due to non-payment within the specified time period.\n"
+"\n"
+"Order Total: %s\n"
+"\n"
+"If you are still interested in these products, please feel free to place a new order or contact us directly.\n"
+"\n"
+"Thank you for your understanding."
+msgstr ""
+"Заказ отменен ❌\n"
+"\n"
+"Привет %s!\n"
+"\n"
+"С сожалением сообщаем Вам, что Ваш заказ #%s был отменен из-за неоплаты в течение указанного периода времени.\n"
+"\n"
+"Общая сумма заказа: %s\n"
+"\n"
+"Если вы все еще заинтересованы в этих продуктах, пожалуйста, разместите новый заказ или свяжитесь с нами напрямую.\n"
+"\n"
+"Благодарим вас за понимание."
+
+#: includes/class-wc-b2b-admin.php:556 includes/class-wc-b2b-admin.php:616
+msgid "Order cannot be modified in current status."
+msgstr "В текущем статусе заказ невозможно изменить."
+
+#: includes/class-wc-b2b-ajax.php:242 includes/class-wc-b2b-email.php:140
+#: includes/class-wc-b2b-email.php:229 includes/class-wc-b2b-email.php:497
+#: includes/class-wc-b2b-order-manager.php:331
+msgid "Order Date:"
+msgstr "Дата заказа:"
+
+#: includes/class-wc-b2b-email.php:221
+msgid "Order Details"
+msgstr "Детали заказа"
+
+#: includes/class-wc-b2b-email.php:138
+msgid "Order Details:"
+msgstr "Детали заказа:"
+
+#: includes/class-wc-b2b-order-manager.php:519
+msgid "Order expired"
+msgstr "Срок действия заказа истек"
+
+#: includes/class-wc-b2b-admin.php:281
+msgid "Order Expiry"
+msgstr "Срок действия заказа"
+
+#: includes/class-wc-b2b-order-manager.php:511
+msgid "Order Expiry:"
+msgstr "Срок действия заказа:"
+
+#: includes/class-wc-b2b-ajax.php:239
+msgid "Order Information"
+msgstr "Информация о заказе"
+
+#: includes/class-wc-b2b-admin.php:563
+msgid "Order item not found."
+msgstr "Товар заказа не найден."
+
+#: includes/class-wc-b2b-ajax.php:261
+msgid "Order Items"
+msgstr "Позиции заказа"
+
+#: includes/class-wc-b2b-order-manager.php:406
+msgid "Order marked as paid manually (offline payment received)."
+msgstr "Заказ помечен как оплаченный вручную (получен автономный платеж)."
+
+#: includes/class-wc-b2b-order-manager.php:446
+msgid "Order marked as paid successfully!"
+msgstr "Заказ помечен как успешно оплаченный!"
+
+#: includes/class-wc-b2b-admin.php:509 includes/class-wc-b2b-ajax.php:44
+#: includes/class-wc-b2b-ajax.php:89 includes/class-wc-b2b-order.php:324
+#: includes/class-wc-b2b-order.php:356
+msgid "Order not found."
+msgstr "Заказ не найден."
+
+#: includes/class-wc-b2b-account.php:101
+msgid "Order Number"
+msgstr "Номер заказа"
+
+#: includes/class-wc-b2b-email.php:139 includes/class-wc-b2b-email.php:225
+#: includes/class-wc-b2b-email.php:496
+#: includes/class-wc-b2b-order-manager.php:330
+msgid "Order Number:"
+msgstr "Номер заказа:"
+
+#: includes/class-wc-b2b-checkout.php:191
+msgid "Order received and ready for administrator price and shipping review."
+msgstr "Заказ получен и готов к рассмотрению администратором цены и доставки."
+
+#: includes/class-wc-b2b-account.php:133
+msgid "Order Status"
+msgstr "Статус заказа"
+
+#: includes/class-wc-b2b-order.php:90 includes/class-wc-b2b-order.php:124
+msgctxt "Order status"
+msgid "Partially Shipped"
+msgstr "Частичная поставка"
+
+#: includes/class-wc-b2b-order.php:44 includes/class-wc-b2b-order.php:119
+msgctxt "Order status"
+msgid "Pending Verification"
+msgstr "Ожидает проверки"
+
+#: includes/class-wc-b2b-order.php:72 includes/class-wc-b2b-order.php:120
+msgctxt "Order status"
+msgid "Pending Verification (Legacy)"
+msgstr "Ожидает проверки (устаревшая версия)"
+
+#: includes/class-wc-b2b-order.php:81 includes/class-wc-b2b-order.php:123
+msgctxt "Order status"
+msgid "Quote Accepted / Awaiting Payment"
+msgstr "Предложение принято / ожидает оплаты"
+
+#: includes/class-wc-b2b-order.php:62 includes/class-wc-b2b-order.php:122
+msgctxt "Order status"
+msgid "Quote Sent"
+msgstr "Предложение отправлено"
+
+#: includes/class-wc-b2b-order.php:99 includes/class-wc-b2b-order.php:125
+msgctxt "Order status"
+msgid "Shipped"
+msgstr "Отправлено"
+
+#: includes/class-wc-b2b-order.php:53 includes/class-wc-b2b-order.php:121
+msgctxt "Order status"
+msgid "Verified"
+msgstr "Проверено"
+
+#: includes/class-wc-b2b-admin.php:75 includes/class-wc-b2b-admin.php:82
+#: includes/class-wc-b2b-admin.php:86
+msgid "Order Status:"
+msgstr "Статус заказа:"
+
+#: includes/class-wc-b2b-email.php:404
+#: includes/class-wc-b2b-order-manager.php:329
+msgid "Order Summary:"
+msgstr "Сводка заказа:"
+
+#: includes/class-wc-b2b-admin.php:284
+msgid ""
+"Orders will be automatically cancelled after this period without payment."
+msgstr ""
+"По истечении этого периода заказы будут автоматически отменены без оплаты."
+
+#: includes/class-wc-b2b-admin.php:741
+msgid "Order Total"
+msgstr "Сумма заказа"
+
+#: includes/class-wc-b2b-email.php:121
+msgid "Order Verification Required"
+msgstr "Требуется подтверждение заказа"
+
+#: includes/class-wc-b2b-order.php:291
+#, php-format
+msgid "Order verified by customer via %s."
+msgstr "Заказ подтвержден клиентом через %s."
+
+#: includes/class-wc-b2b-admin.php:226 includes/class-wc-b2b-order.php:207
+msgid "Order verified successfully!"
+msgstr "Заказ успешно подтвержден!"
+
+#: includes/class-wc-b2b-whatsapp.php:224
+msgid "Order verified successfully! You will receive updates via email."
+msgstr ""
+"Заказ успешно подтвержден! Вы будете получать обновления по электронной "
+"почте."
+
+#: includes/class-wc-b2b-admin.php:404
+#: includes/class-wc-b2b-whatsapp-button.php:83
+#: includes/class-wc-b2b-whatsapp-button.php:205
+msgid "Order via WhatsApp"
+msgstr "Заказ через WhatsApp"
+
+#: includes/class-wc-b2b-admin.php:673
+msgid "Original Price"
+msgstr "Первоначальная цена"
+
+#: includes/class-wc-b2b-account.php:135
+msgid "Outstanding Balance"
+msgstr "Выдающийся баланс"
+
+#: includes/class-wc-b2b-notifications.php:88
+msgid "Outstanding balance:"
+msgstr "Невыплаченный остаток:"
+
+#: includes/class-wc-b2b-order-manager.php:526
+msgid "Paid"
+msgstr "Платный"
+
+#: includes/class-wc-b2b-account.php:59 includes/class-wc-b2b-account.php:73
+msgid "Paid / Balance"
+msgstr "Платно/Баланс"
+
+#: includes/class-wc-b2b-fulfillment.php:144
+msgid "Payment amount must be greater than zero."
+msgstr "Сумма платежа должна быть больше нуля."
+
+#: includes/class-wc-b2b-fulfillment.php:74
+msgid ""
+"Payment and shipment records become available after the formal quote is "
+"sent."
+msgstr ""
+"Записи об оплате и отгрузке становятся доступными после отправки "
+"официального ценового предложения."
+
+#: includes/class-wc-b2b-fulfillment.php:101
+msgid "Payment date"
+msgstr "Дата платежа"
+
+#: includes/class-wc-b2b-account.php:150
+msgid "Payment History"
+msgstr "История платежей"
+
+#: includes/class-wc-b2b-notifications.php:80
+#, php-format
+msgid "Payment recorded for order #%s"
+msgstr "Платеж зарегистрирован для заказа #%s"
+
+#: includes/class-wc-b2b-fulfillment.php:180
+msgid "Payment recorded successfully."
+msgstr "Платеж зарегистрирован успешно."
+
+#: includes/class-wc-b2b-fulfillment.php:84
+msgid "Payment Records"
+msgstr "Записи о платежах"
+
+#: includes/class-wc-b2b-order-manager.php:315
+msgid "Payment Reminder"
+msgstr "Напоминание о платеже"
+
+#: includes/class-wc-b2b-order-manager.php:175
+#, php-format
+msgid "Payment Reminder for Order #%s"
+msgstr "Напоминание о платеже для заказа № %s"
+
+#: includes/class-wc-b2b-admin.php:289
+msgid "Payment Reminder Interval"
+msgstr "Интервал напоминания о платеже"
+
+#: includes/class-wc-b2b-order-manager.php:542
+msgid "Payment Reminders:"
+msgstr "Напоминания о платежах:"
+
+#: includes/class-wc-b2b-order-manager.php:465
+msgid "Payment reminder sent manually by admin."
+msgstr "Напоминание о платеже, отправленное администратором вручную."
+
+#: includes/class-wc-b2b-order-manager.php:468
+msgid "Payment reminder sent successfully!"
+msgstr "Напоминание о платеже успешно отправлено!"
+
+#: includes/class-wc-b2b-order-manager.php:137
+msgid "Payment reminder sent to customer."
+msgstr "Напоминание о платеже отправлено клиенту."
+
+#: includes/class-wc-b2b-order-manager.php:209
+#, php-format
+msgid ""
+"Payment Reminder 💰\n"
+"\n"
+"Hello %s!\n"
+"\n"
+"Your order #%s is still awaiting offline payment.\n"
+"\n"
+"⚠️ Important: Your order will be cancelled in %d days if payment is not received.\n"
+"\n"
+"Order Total: %s\n"
+"\n"
+"View quote and payment information: %s\n"
+"\n"
+"If you have already paid or have questions, please contact us immediately."
+msgstr ""
+"Напоминание о платеже 💰\n"
+"\n"
+"Привет %s!\n"
+"\n"
+"Ваш заказ #%s все еще ожидает оплаты в автономном режиме.\n"
+"\n"
+"⚠️Важно: ваш заказ будет отменен через %d дней, если оплата не будет получена.\n"
+"\n"
+"Общая сумма заказа: %s\n"
+"\n"
+"Посмотреть расценки и информацию об оплате: %s.\n"
+"\n"
+"Если вы уже заплатили или у вас есть вопросы, немедленно свяжитесь с нами."
+
+#: includes/class-wc-b2b-order-manager.php:524
+msgid "Payment Status:"
+msgstr "Статус платежа:"
+
+#: includes/class-wc-b2b-account.php:130
+msgid "Pending"
+msgstr "Ожидается"
+
+#: includes/class-wc-b2b-account.php:104
+msgid "Pending formal quotation"
+msgstr "Ожидается официальное предложение"
+
+#: includes/class-wc-b2b-admin.php:75
+msgid "Pending Verification"
+msgstr "Ожидает проверки"
+
+#: includes/class-wc-b2b-admin.php:503 includes/class-wc-b2b-admin.php:538
+#: includes/class-wc-b2b-admin.php:600 includes/class-wc-b2b-admin.php:805
+#: includes/class-wc-b2b-fulfillment.php:214
+#: includes/class-wc-b2b-order-manager.php:433
+#: includes/class-wc-b2b-order-manager.php:456
+msgid "Permission denied."
+msgstr "Разрешение отклонено."
+
+#: includes/class-wc-b2b-checkout.php:46
+msgid "Phone"
+msgstr "Телефон"
+
+#: includes/class-wc-b2b-ajax.php:254 includes/class-wc-b2b-email.php:198
+msgid "Phone:"
+msgstr "Телефон:"
+
+#: includes/class-wc-b2b-checkout.php:90
+msgid "Phone is a required field."
+msgstr "Телефон является обязательным полем."
+
+#: includes/class-wc-b2b-checkout.php:47
+msgctxt "placeholder"
+msgid "Phone"
+msgstr "Телефон"
+
+#: includes/class-wc-b2b-checkout.php:67
+msgctxt "placeholder"
+msgid "Please leave your message or special requirements here..."
+msgstr "Пожалуйста, оставьте здесь свое сообщение или особые требования..."
+
+#: includes/class-wc-b2b-quote.php:165
+msgid ""
+"Please check your inbox and click the verification link. Your inquiry will "
+"be delivered to our reception team only after verification."
+msgstr ""
+"Проверьте свой почтовый ящик и нажмите ссылку для подтверждения. Ваш запрос "
+"будет доставлен в нашу приемную только после проверки."
+
+#: includes/class-wc-b2b-checkout.php:97
+msgid "Please enter a valid email address."
+msgstr "Пожалуйста, введите действительный адрес электронной почты."
+
+#: includes/class-wc-b2b-email.php:433
+#, php-format
+msgid "Please include quote number %s with your transfer."
+msgstr "При переводе укажите номер предложения %s."
+
+#: includes/class-wc-b2b-checkout.php:82
+msgid ""
+"Please register, verify your email, and sign in before requesting a quote."
+msgstr ""
+"Пожалуйста, зарегистрируйтесь, подтвердите свой адрес электронной почты и "
+"войдите в систему, прежде чем запрашивать ценовое предложение."
+
+#: includes/class-wc-b2b-email.php:437
+msgid "Please review the quote and choose one of the following options:"
+msgstr "Просмотрите предложение и выберите один из следующих вариантов:"
+
+#: includes/class-wc-b2b-checkout.php:85
+msgid "Please verify your account email before submitting a quotation order."
+msgstr ""
+"Пожалуйста, подтвердите адрес электронной почты своей учетной записи перед "
+"отправкой заказа на предложение."
+
+#: includes/class-wc-b2b-registration.php:99
+msgid ""
+"Please verify your email address using the link we sent before signing in."
+msgstr ""
+"Перед входом в систему подтвердите свой адрес электронной почты, используя "
+"ссылку, которую мы отправили."
+
+#: includes/class-wc-b2b-email.php:50
+#, php-format
+msgid "Please verify your inquiry #%s"
+msgstr "Пожалуйста, подтвердите свой запрос #%s"
+
+#: includes/class-wc-b2b-email.php:51
+#, php-format
+msgid "Please verify your order #%s"
+msgstr "Пожалуйста, подтвердите свой заказ #%s"
+
+#: includes/class-wc-b2b-ajax.php:267
+msgid "Price"
+msgstr "Цена"
+
+#: includes/class-wc-b2b-membership.php:491
+msgid "Price provided after quotation"
+msgstr "Цена указана после предложения"
+
+#: includes/class-wc-b2b-notifications.php:123
+msgid ""
+"Prices will be provided in the formal quote after the inquiry is reviewed."
+msgstr ""
+"Цены будут указаны в официальном предложении после рассмотрения запроса."
+
+#: includes/class-wc-b2b-account.php:104
+msgid "Pricing"
+msgstr "Цены"
+
+#: includes/class-wc-b2b-ajax.php:286
+msgid "Pricing will be shown after our team sends the formal quote."
+msgstr ""
+"Цены будут показаны после того, как наша команда отправит официальное "
+"ценовое предложение."
+
+#: includes/class-wc-b2b-account.php:126
+msgid "Print Quote"
+msgstr "Распечатать предложение"
+
+#: includes/class-wc-b2b-admin.php:228 includes/class-wc-b2b-ajax.php:366
+msgid "Processing..."
+msgstr "Обработка..."
+
+#: includes/class-wc-b2b-ajax.php:265 includes/class-wc-b2b-email.php:247
+msgid "Product"
+msgstr "Продукт"
+
+#: includes/class-wc-b2b-whatsapp-button.php:251
+msgid "Product not found."
+msgstr "Продукт не найден."
+
+#: includes/class-wc-b2b-email.php:242
+msgid "Products Ordered"
+msgstr "Заказанные продукты"
+
+#: includes/class-wc-b2b-email.php:248
+msgid "Qty"
+msgstr "Кол-во"
+
+#: includes/class-wc-b2b-admin.php:675 includes/class-wc-b2b-ajax.php:266
+msgid "Quantity"
+msgstr "Количество"
+
+#: includes/class-wc-b2b-email.php:413
+msgid "Quantity:"
+msgstr "Количество:"
+
+#: includes/class-wc-b2b-checkout.php:181
+msgid ""
+"Quotation order blocked because the customer account email is unverified."
+msgstr ""
+"Заказ предложения заблокирован, поскольку адрес электронной почты учетной "
+"записи клиента не подтвержден."
+
+#: includes/class-wc-b2b-quote.php:163
+msgid "Quotation submitted"
+msgstr "Предложение отправлено"
+
+#: includes/class-wc-b2b-account.php:55 includes/class-wc-b2b-account.php:69
+msgid "Quote"
+msgstr "Предложение"
+
+#: includes/class-wc-b2b-notifications.php:127
+msgid "Quote:"
+msgstr "Предложение:"
+
+#: includes/class-wc-b2b-ajax.php:157
+msgid ""
+"Quote accepted. Please pay offline using the payment information on the "
+"quote."
+msgstr ""
+"Предложение принято. Пожалуйста, оплатите оффлайн, используя платежную "
+"информацию в предложении."
+
+#: includes/class-wc-b2b-order.php:341
+msgid ""
+"Quote accepted. Please use the offline payment information on the quote."
+msgstr ""
+"Предложение принято. Пожалуйста, используйте информацию об автономном "
+"платеже в предложении."
+
+#: includes/class-wc-b2b-email.php:351
+#, php-format
+msgid "Quote for Order #%s"
+msgstr "Предложение для заказа №%s"
+
+#: includes/class-wc-b2b-account.php:130
+msgid "Quote Number"
+msgstr "Номер предложения"
+
+#: includes/class-wc-b2b-email.php:398
+msgid "Quote Number:"
+msgstr "Номер предложения:"
+
+#: includes/class-wc-b2b-quote.php:82
+msgid "Quote Preparation"
+msgstr "Подготовка предложения"
+
+#: includes/class-wc-b2b-account.php:99
+msgid "Quote Request Under Review"
+msgstr "Запрос предложения на рассмотрении"
+
+#: includes/class-wc-b2b-admin.php:86
+msgid "Quote Sent - Awaiting Customer Response"
+msgstr "Предложение отправлено — ожидается ответ клиента"
+
+#: includes/class-wc-b2b-admin.php:491
+msgid "Quote sent to customer via email."
+msgstr "Предложение отправлено клиенту по электронной почте."
+
+#: includes/class-wc-b2b-admin.php:489
+msgid "Quote sent to customer via email and WhatsApp."
+msgstr "Предложение отправлено клиенту по электронной почте и WhatsApp."
+
+#: includes/class-wc-b2b-quote.php:71
+msgid "Quote settings saved."
+msgstr "Настройки предложений сохранены."
+
+#: includes/class-wc-b2b-quote.php:94
+msgid "Quote Validity"
+msgstr "Срок действия предложения"
+
+#: includes/class-wc-b2b-account.php:132
+msgid "Quote Valid Until"
+msgstr "Предложение действительно до"
+
+#: includes/class-wc-b2b-admin.php:265
+msgid "Reception Email"
+msgstr "Приемная электронная почта"
+
+#: includes/class-wc-b2b-fulfillment.php:85
+msgid "Recorded:"
+msgstr "Записано:"
+
+#: includes/class-wc-b2b-account.php:134
+msgid "Recorded Payment"
+msgstr "Зарегистрированный платеж"
+
+#: includes/class-wc-b2b-order-manager.php:387
+msgid "Recorded using the legacy “Mark as paid” order action."
+msgstr ""
+"Записано с использованием устаревшего действия заказа «Отметить как "
+"оплаченное»."
+
+#: includes/class-wc-b2b-fulfillment.php:106
+msgid "Record Payment"
+msgstr "Запись платежа"
+
+#: includes/class-wc-b2b-fulfillment.php:133
+msgid "Record Shipment"
+msgstr "Запись Отгрузка"
+
+#: includes/class-wc-b2b-account.php:152
+#: includes/class-wc-b2b-fulfillment.php:88
+#: includes/class-wc-b2b-fulfillment.php:104
+#: includes/class-wc-b2b-notifications.php:87
+msgid "Reference"
+msgstr "Ссылка"
+
+#: includes/class-wc-b2b-account.php:105
+msgid "Reference Total"
+msgstr "Ссылка Всего"
+
+#: includes/class-wc-b2b-notifications.php:122
+msgid "Reference total:"
+msgstr "Всего ссылок:"
+
+#: includes/class-wc-b2b-account.php:103 includes/class-wc-b2b-install.php:93
+#: includes/class-wc-b2b-install.php:133
+#: includes/class-wc-b2b-membership.php:75
+msgid "Registered Customer"
+msgstr "Зарегистрированный клиент"
+
+#: includes/class-wc-b2b-membership.php:206
+msgid ""
+"Registered customers use each product or variation's WooCommerce retail "
+"price. Regular and VIP fixed prices can be entered separately on every "
+"product or variation; when blank, the level discount above is used."
+msgstr ""
+"Зарегистрированные клиенты используют розничную цену каждого продукта или "
+"его варианта WooCommerce. Обычные цены и фиксированные цены VIP можно "
+"вводить отдельно для каждого продукта или его модификации; Если поле пусто, "
+"используется указанная выше скидка уровня."
+
+#: includes/class-wc-b2b-checkout.php:264
+msgid "Register or Sign In to Request Quote"
+msgstr "Зарегистрируйтесь или войдите в систему, чтобы запросить цену."
+
+#: includes/class-wc-b2b-membership.php:487
+msgid "Register or sign in to view prices"
+msgstr "Зарегистрируйтесь или войдите, чтобы просмотреть цены"
+
+#: includes/class-wc-b2b-registration.php:178
+msgid ""
+"Registration received. Check your inbox and verify your email before signing"
+" in."
+msgstr ""
+"Регистрация получена. Прежде чем войти в систему, проверьте свой почтовый "
+"ящик и подтвердите адрес электронной почты."
+
+#: includes/class-wc-b2b-install.php:94 includes/class-wc-b2b-install.php:134
+#: includes/class-wc-b2b-membership.php:80
+msgid "Regular Customer"
+msgstr "Постоянный клиент"
+
+#: includes/class-wc-b2b-admin.php:356
+msgid "Remove all plugin data when uninstalling"
+msgstr "Удалить все данные плагина при удалении"
+
+#: includes/class-wc-b2b-admin.php:327
+#: includes/class-wc-b2b-whatsapp-button.php:186
+msgid "Replace add to cart buttons with WhatsApp buttons"
+msgstr "Заменить кнопки «Добавить в корзину» на кнопки WhatsApp"
+
+#: includes/class-wc-b2b-email.php:353
+msgid "Reply to Customer"
+msgstr "Ответ клиенту"
+
+#: includes/class-wc-b2b-membership.php:181
+msgid ""
+"Require customers to register, verify their email, and sign in before "
+"checkout"
+msgstr ""
+"Требовать от клиентов регистрации, подтверждения электронной почты и входа в"
+" систему перед оформлением заказа"
+
+#: includes/class-wc-b2b-admin.php:78
+msgid "Resend Verification Email"
+msgstr "Повторная отправка письма с подтверждением"
+
+#: includes/class-wc-b2b-admin.php:445
+msgid "Resend verification email"
+msgstr "Повторно отправить письмо с подтверждением"
+
+#: includes/class-wc-b2b-account.php:131 includes/class-wc-b2b-email.php:399
+msgid "Retail / unassigned"
+msgstr "Розничная торговля / неназначенный"
+
+#: includes/class-wc-b2b-account.php:105
+msgid "Retail Reference Total"
+msgstr "Ссылка на розничную торговлю Всего"
+
+#: includes/class-wc-b2b-email.php:141
+msgid "Retail Reference Total:"
+msgstr "Ссылка на розничную торговлю Всего:"
+
+#: includes/class-wc-b2b-email.php:341
+msgid "Review the order details above"
+msgstr "Просмотрите детали заказа выше"
+
+#: includes/class-wc-b2b-membership.php:204
+msgid "Save Member Levels"
+msgstr "Сохранить уровни участников"
+
+#: includes/class-wc-b2b-quote.php:102
+msgid "Save Quote Settings"
+msgstr "Сохранить настройки предложений"
+
+#: includes/class-wc-b2b-ajax.php:50 includes/class-wc-b2b-ajax.php:58
+#: includes/class-wc-b2b-ajax.php:97 includes/class-wc-b2b-ajax.php:114
+msgid "Security check failed."
+msgstr "Проверка безопасности не удалась."
+
+#: includes/class-wc-b2b-registration.php:210
+msgid "Send a new verification email when this profile is saved"
+msgstr ""
+"Отправить новое электронное письмо с подтверждением после сохранения этого "
+"профиля"
+
+#: includes/class-wc-b2b-admin.php:448
+msgid "Send inquiry to reception email"
+msgstr "Отправьте запрос на адрес электронной почты администратора"
+
+#: includes/class-wc-b2b-order-manager.php:551
+msgid "Send Payment Reminder"
+msgstr "Отправить напоминание об оплате"
+
+#: includes/class-wc-b2b-admin.php:450
+msgid "Send quote to customer"
+msgstr "Отправить предложение клиенту"
+
+#: includes/class-wc-b2b-email.php:344
+msgid "Send quote via email or your preferred system"
+msgstr ""
+"Отправьте предложение по электронной почте или через предпочитаемую вами "
+"систему"
+
+#: includes/class-wc-b2b-admin.php:429
+msgid "Settings saved successfully!"
+msgstr "Настройки успешно сохранены!"
+
+#: includes/class-wc-b2b-account.php:157
+msgid "Shipment History"
+msgstr "История поставок"
+
+#: includes/class-wc-b2b-fulfillment.php:209
+msgid "Shipment recorded successfully."
+msgstr "Отгрузка зарегистрирована успешно."
+
+#: includes/class-wc-b2b-fulfillment.php:201
+#, php-format
+msgid "Shipment recorded with %1$s. Tracking: %2$s"
+msgstr "Отгрузка зарегистрирована с помощью %1$s. Отслеживание: %2$s"
+
+#: includes/class-wc-b2b-fulfillment.php:110
+msgid "Shipment Records"
+msgstr "Записи о доставке"
+
+#: includes/class-wc-b2b-notifications.php:99
+#, php-format
+msgid "Shipment update for order #%s"
+msgstr "Обновление отгрузки для заказа № %s"
+
+#: includes/class-wc-b2b-fulfillment.php:130
+msgid "Shipped contents/quantity"
+msgstr "Отгруженное содержимое/количество"
+
+#: includes/class-wc-b2b-email.php:288 includes/class-wc-b2b-email.php:424
+msgid "Shipping:"
+msgstr "Доставка:"
+
+#: includes/class-wc-b2b-email.php:314
+msgid "Shipping Address"
+msgstr "Адрес доставки"
+
+#: includes/class-wc-b2b-admin.php:715
+msgid "Shipping Cost"
+msgstr "Стоимость доставки"
+
+#: includes/class-wc-b2b-admin.php:645
+msgid "Shipping cost updated successfully!"
+msgstr "Стоимость доставки успешно обновлена!"
+
+#: includes/class-wc-b2b-admin.php:640
+#, php-format
+msgid "Shipping cost updated to %s by admin."
+msgstr "Стоимость доставки обновлена ​​администратором до %s."
+
+#: includes/class-wc-b2b-fulfillment.php:126
+#: includes/class-wc-b2b-notifications.php:103
+msgid "Shipping date"
+msgstr "Дата доставки"
+
+#: includes/class-wc-b2b-membership.php:188
+msgid "Show WooCommerce retail prices to visitors who are not signed in"
+msgstr ""
+"Показать розничные цены WooCommerce посетителям, которые не вошли в систему."
+
+#: includes/class-wc-b2b-email.php:263
+msgid "SKU:"
+msgstr "SKU:"
+
+#: includes/class-wc-b2b-account.php:57 includes/class-wc-b2b-account.php:71
+#: includes/class-wc-b2b-account.php:102
+msgid "Status"
+msgstr "Статус"
+
+#: includes/class-wc-b2b-ajax.php:232
+msgid "Status:"
+msgstr "Статус:"
+
+#: includes/class-wc-b2b-blocks.php:43 includes/class-wc-b2b-quote.php:196
+msgid ""
+"Submit an inquiry without displayed prices. We will receive it only after "
+"you verify your email; an administrator will then review prices and "
+"shipping."
+msgstr ""
+"Отправьте запрос без отображаемых цен. Мы получим его только после того, как"
+" вы подтвердите свой адрес электронной почты; Затем администратор проверит "
+"цены и доставку."
+
+#: includes/class-wc-b2b-blocks.php:45 includes/class-wc-b2b-quote.php:198
+msgid ""
+"Submit a quote request for administrator review. Prices and shipping may be "
+"adjusted before the formal quote and offline payment instructions are sent "
+"manually."
+msgstr ""
+"Отправьте запрос ценового предложения на рассмотрение администратора. Цены и"
+" условия доставки могут быть скорректированы до того, как официальное "
+"предложение и инструкции по оплате будут отправлены вручную."
+
+#: includes/class-wc-b2b-blocks.php:46 includes/class-wc-b2b-checkout.php:260
+msgid "Submit B2B Quote Order"
+msgstr "Отправить запрос предложения B2B"
+
+#: includes/class-wc-b2b-blocks.php:46 includes/class-wc-b2b-checkout.php:263
+msgid "Submit Inquiry & Verify Email"
+msgstr "Отправить запрос и подтвердить адрес электронной почты"
+
+#: includes/class-wc-b2b-quote.php:192
+msgid ""
+"Submits a quote request without collecting an online payment; an "
+"administrator prepares and sends the formal quote manually."
+msgstr ""
+"Отправляет запрос цен без получения онлайн-платежа; администратор "
+"подготавливает и отправляет официальное ценовое предложение вручную."
+
+#: includes/class-wc-b2b-email.php:283 includes/class-wc-b2b-email.php:423
+msgid "Subtotal:"
+msgstr "Итого:"
+
+#: includes/class-wc-b2b-admin.php:817
+#, php-format
+msgid "Successfully cleaned up %d tokens (%d expired, %d old used tokens)."
+msgstr ""
+"Успешно очищены токены %d (срок действия %d истек, %d старые использованные "
+"токены)."
+
+#: includes/class-wc-b2b-whatsapp-button.php:202
+msgid "Text displayed on the WhatsApp button"
+msgstr "Текст, отображаемый на кнопке WhatsApp"
+
+#: includes/class-wc-b2b-admin.php:344
+msgid "Text displayed on the WhatsApp button."
+msgstr "Текст, отображаемый на кнопке WhatsApp."
+
+#: includes/class-wc-b2b-email.php:126
+#, php-format
+msgid ""
+"Thank you for inquiry #%s. It has not yet been sent to our reception team. "
+"Click below to verify your email and deliver the inquiry:"
+msgstr ""
+"Спасибо за запрос #%s. Оно еще не отправлено в нашу приемную. Нажмите ниже, "
+"чтобы подтвердить свой адрес электронной почты и отправить запрос:"
+
+#: includes/class-wc-b2b-order-manager.php:341
+msgid "Thank you for your business!"
+msgstr "Спасибо за ваш бизнес!"
+
+#: includes/class-wc-b2b-email.php:127
+#, php-format
+msgid ""
+"Thank you for your order #%s. To proceed with your order, please verify your"
+" email address by clicking the button below:"
+msgstr ""
+"Спасибо за ваш заказ #%s. Чтобы продолжить оформление заказа, подтвердите "
+"свой адрес электронной почты, нажав кнопку ниже:"
+
+#: includes/class-wc-b2b-email.php:507
+msgid "Thank you for your understanding."
+msgstr "Спасибо за понимание."
+
+#: includes/class-wc-b2b-registration.php:180
+msgid ""
+"That verification link was invalid or expired. If it was an expired valid "
+"link, a new email has been sent; otherwise contact us for help."
+msgstr ""
+"Эта ссылка для проверки недействительна или срок ее действия истек. Если "
+"срок действия ссылки истек, было отправлено новое электронное письмо; в "
+"противном случае свяжитесь с нами для помощи."
+
+#: includes/class-wc-b2b-email.php:87
+msgid ""
+"The reception notification email could not be sent. Check the site mail "
+"configuration and resend the notification."
+msgstr ""
+"Не удалось отправить электронное письмо с уведомлением о получении. "
+"Проверьте конфигурацию почты сайта и повторно отправьте уведомление."
+
+#: includes/class-wc-b2b-order-manager.php:319
+#, php-format
+msgid ""
+"This is a friendly reminder that your order #%s is still awaiting payment."
+msgstr ""
+"Это дружеское напоминание о том, что ваш заказ #%s все еще ожидает оплаты."
+
+#: includes/class-wc-b2b-email.php:510
+msgid "This is an automated notification about your order cancellation."
+msgstr "Это автоматическое уведомление об отмене вашего заказа."
+
+#: includes/class-wc-b2b-order-manager.php:344
+#, php-format
+msgid "This is an automated reminder. Order expires on: %s"
+msgstr "Это автоматическое напоминание. Срок действия заказа истекает: %s"
+
+#: includes/class-wc-b2b-admin.php:65 includes/class-wc-b2b-fulfillment.php:70
+#: includes/class-wc-b2b-order-manager.php:496
+msgid "This is not a B2B order."
+msgstr "Это не заказ B2B."
+
+#: includes/class-wc-b2b-registration.php:139
+#, php-format
+msgid ""
+"This link expires in %d hours. A newer verification email invalidates "
+"earlier links."
+msgstr ""
+"Срок действия этой ссылки истекает через %d часов. Новое электронное письмо "
+"с подтверждением делает предыдущие ссылки недействительными."
+
+#: includes/class-wc-b2b-email.php:365
+#, php-format
+msgid "This notification was sent from %s | Order Date: %s"
+msgstr "Это уведомление было отправлено с %s | Дата заказа: %s"
+
+#: includes/class-wc-b2b-ajax.php:175
+msgid "This order cannot be cancelled at this time."
+msgstr "В настоящее время этот заказ невозможно отменить."
+
+#: includes/class-wc-b2b-order.php:365
+msgid "This order cannot be cancelled in its current status."
+msgstr "Этот заказ не может быть отменен в его текущем статусе."
+
+#: includes/class-wc-b2b-ajax.php:142
+msgid "This order cannot be confirmed at this time."
+msgstr "В настоящее время этот заказ не может быть подтвержден."
+
+#: includes/class-wc-b2b-order.php:333
+msgid "This quote cannot be accepted in its current status."
+msgstr "Это предложение не может быть принято в его текущем статусе."
+
+#: includes/class-wc-b2b-ajax.php:149 includes/class-wc-b2b-order.php:336
+msgid "This quote has expired. Please contact us for a new quote."
+msgstr ""
+"Срок действия этого предложения истек. Пожалуйста, свяжитесь с нами для "
+"получения нового предложения."
+
+#: includes/class-wc-b2b-fulfillment.php:132
+msgid "This shipment completes the order"
+msgstr "Эта поставка завершает заказ"
+
+#: includes/class-wc-b2b-email.php:149
+#, php-format
+msgid "This verification link will expire in %d hours."
+msgstr "Срок действия этой ссылки для проверки истекает через %d часов."
+
+#: includes/class-wc-b2b-admin.php:367
+msgid "Token Cleanup"
+msgstr "."
+
+#: includes/class-wc-b2b-account.php:58 includes/class-wc-b2b-account.php:72
+#: includes/class-wc-b2b-email.php:250
+msgid "Total"
+msgstr "Всего"
+
+#: includes/class-wc-b2b-ajax.php:281 includes/class-wc-b2b-email.php:141
+#: includes/class-wc-b2b-email.php:293 includes/class-wc-b2b-email.php:415
+#: includes/class-wc-b2b-email.php:425
+#: includes/class-wc-b2b-notifications.php:128
+msgid "Total:"
+msgstr "Всего:"
+
+#: includes/class-wc-b2b-email.php:498
+#: includes/class-wc-b2b-order-manager.php:332
+msgid "Total Amount:"
+msgstr "Общая сумма:"
+
+#: includes/class-wc-b2b-account.php:159
+#: includes/class-wc-b2b-notifications.php:109
+msgid "Tracking"
+msgstr "Отслеживание"
+
+#: includes/class-wc-b2b-fulfillment.php:113
+msgid "Tracking Number"
+msgstr "Номер отслеживания"
+
+#: includes/class-wc-b2b-fulfillment.php:128
+msgid "Tracking number"
+msgstr "Номер отслеживания"
+
+#: includes/class-wc-b2b-fulfillment.php:129
+msgid "Tracking URL"
+msgstr "URL-адрес отслеживания"
+
+#: includes/class-wc-b2b-account.php:160
+#: includes/class-wc-b2b-notifications.php:107
+msgid "Track shipment"
+msgstr "Отслеживать доставку"
+
+#: includes/class-wc-b2b-email.php:249
+msgid "Unit Price"
+msgstr "Цена за единицу"
+
+#: includes/class-wc-b2b-email.php:414
+msgid "Unit Price:"
+msgstr "Цена за единицу:"
+
+#: includes/class-wc-b2b-order-manager.php:531
+msgid "Unpaid"
+msgstr "Неоплачиваемый"
+
+#: includes/class-wc-b2b-admin.php:706
+msgid "Update"
+msgstr "Обновление"
+
+#: includes/class-wc-b2b-email.php:345
+msgid "Update order status in WordPress when quote is sent"
+msgstr "Обновление статуса заказа в WordPress при отправке предложения"
+
+#: includes/class-wc-b2b-admin.php:733
+msgid "Update Shipping"
+msgstr "Обновление доставки"
+
+#: includes/class-wc-b2b-email.php:400
+msgid "Valid Until:"
+msgstr "Действителен до:"
+
+#: includes/class-wc-b2b-admin.php:465
+msgid "Verification email resent to customer."
+msgstr "Клиенту повторно отправлено электронное письмо с подтверждением."
+
+#: includes/class-wc-b2b-admin.php:225 includes/class-wc-b2b-admin.php:519
+msgid "Verification email sent successfully!"
+msgstr "Письмо с подтверждением успешно отправлено!"
+
+#: includes/class-wc-b2b-admin.php:273
+msgid "Verification Expiry"
+msgstr "Срок действия проверки"
+
+#: includes/class-wc-b2b-admin.php:172
+msgid ""
+"Verification method will determine notification channel for future "
+"communications."
+msgstr "Метод проверки определит канал уведомлений для будущих коммуникаций."
+
+#: includes/class-wc-b2b-admin.php:524
+msgid "Verification sent via both email and WhatsApp!"
+msgstr ""
+"Подтверждение отправляется как по электронной почте, так и по WhatsApp!"
+
+#: includes/class-wc-b2b-admin.php:470
+msgid "Verification sent via both email and WhatsApp."
+msgstr ""
+"Подтверждение отправляется как по электронной почте, так и по WhatsApp."
+
+#: includes/class-wc-b2b-admin.php:140
+msgid "Verification Status:"
+msgstr "Статус проверки:"
+
+#: includes/class-wc-b2b-admin.php:370
+msgid "Verification tokens are automatically cleaned up:"
+msgstr "Токены проверки автоматически очищаются:"
+
+#: includes/class-wc-b2b-admin.php:145 includes/class-wc-b2b-admin.php:156
+msgid "Verified"
+msgstr "Проверено"
+
+#: includes/class-wc-b2b-admin.php:82
+msgid "Verified - Ready for Quote"
+msgstr "Проверено — готово к предложению"
+
+#: includes/class-wc-b2b-registration.php:207
+msgid "Verified Email"
+msgstr "Подтвержденный адрес электронной почты"
+
+#: includes/class-wc-b2b-admin.php:268
+msgid ""
+"Verified guest inquiries and B2B order notifications are sent to this "
+"address."
+msgstr ""
+"На этот адрес отправляются проверенные запросы гостей и уведомления о "
+"заказах B2B."
+
+#: includes/class-wc-b2b-email.php:172
+msgid "Verified Guest Inquiry - Ready for Review"
+msgstr "Запрос проверенного гостя — готов к рассмотрению"
+
+#: includes/class-wc-b2b-email.php:84
+msgid ""
+"Verified guest inquiry delivered to the configured reception email. A formal"
+" quote must be sent manually."
+msgstr ""
+"Запрос проверенного гостя доставлен на настроенный адрес электронной почты "
+"для приема. Официальное предложение необходимо отправить вручную."
+
+#: includes/class-wc-b2b-account.php:99
+msgid "Verified Inquiry"
+msgstr "Подтвержденный запрос"
+
+#: includes/class-wc-b2b-email.php:71
+#, php-format
+msgid "Verified inquiry #%s is ready for review"
+msgstr "Подтвержденный запрос # %s готов к рассмотрению"
+
+#: includes/class-wc-b2b-admin.php:166 includes/class-wc-b2b-email.php:207
+msgid "Verified via:"
+msgstr "Проверено через:"
+
+#: includes/class-wc-b2b-registration.php:137
+msgid "Verify Email"
+msgstr "Подтвердить адрес электронной почты"
+
+#: includes/class-wc-b2b-email.php:130
+msgid "Verify Email & Send Inquiry"
+msgstr "Проверить электронную почту и отправить запрос"
+
+#: includes/class-wc-b2b-email.php:130
+msgid "Verify Order"
+msgstr "Проверить заказ"
+
+#: includes/class-wc-b2b-registration.php:134
+msgid "Verify your email address"
+msgstr "Подтвердите свой адрес электронной почты"
+
+#: includes/class-wc-b2b-account.php:74
+msgid "View"
+msgstr "Посмотреть"
+
+#: includes/class-wc-b2b-notifications.php:134
+msgid "View Order"
+msgstr "Посмотреть заказ"
+
+#: includes/class-wc-b2b-email.php:444
+msgid "View printable quote, payment and shipment history"
+msgstr "Просмотреть печатное предложение, историю платежей и отправок"
+
+#: includes/class-wc-b2b-order-manager.php:336
+msgid "View Quote & Payment Information"
+msgstr "Просмотреть предложение и платёжную информацию"
+
+#: includes/class-wc-b2b-install.php:95 includes/class-wc-b2b-install.php:135
+#: includes/class-wc-b2b-membership.php:85
+msgid "VIP Customer"
+msgstr "VIP Клиент"
+
+#: includes/class-wc-b2b-admin.php:361
+msgid ""
+"Warning: This will permanently delete all B2B order data and verification "
+"tokens."
+msgstr ""
+"Предупреждение: это приведет к безвозвратному удалению всех данных заказа "
+"B2B и токенов проверки."
+
+#: includes/class-wc-b2b-notifications.php:82
+msgid "We have recorded the following offline payment:"
+msgstr "Мы зафиксировали следующий автономный платеж:"
+
+#: includes/class-wc-b2b-email.php:492
+#, php-format
+msgid ""
+"We regret to inform you that your order #%s has been cancelled due to non-"
+"payment within the specified time period."
+msgstr ""
+"С сожалением сообщаем вам, что ваш заказ #%s был отменен из-за неуплаты в "
+"течение указанного периода времени."
+
+#: includes/class-wc-b2b-admin.php:154
+msgid "WhatsApp:"
+msgstr "WhatsApp:"
+
+#: includes/class-wc-b2b-admin.php:318
+msgid "WhatsApp API authentication key."
+msgstr "WhatsApp API Ключ аутентификации."
+
+#: includes/class-wc-b2b-admin.php:310
+msgid "WhatsApp API endpoint URL."
+msgstr "WhatsApp API URL-адрес конечной точки."
+
+#: includes/class-wc-b2b-admin.php:315
+msgid "WhatsApp API Key"
+msgstr "WhatsApp API Ключ"
+
+#: includes/class-wc-b2b-admin.php:307
+msgid "WhatsApp API URL"
+msgstr "WhatsApp API URL"
+
+#: includes/class-wc-b2b-admin.php:341
+msgid "WhatsApp Button Text"
+msgstr "WhatsApp Текст кнопки"
+
+#: includes/class-wc-b2b-admin.php:333
+#: includes/class-wc-b2b-whatsapp-button.php:193
+msgid "WhatsApp Phone Number"
+msgstr "WhatsApp Номер телефона"
+
+#: includes/class-wc-b2b-whatsapp-button.php:256
+msgid "WhatsApp phone number not configured."
+msgstr "WhatsApp Номер телефона не настроен."
+
+#: includes/class-wc-b2b-whatsapp-button.php:178
+msgid "WhatsApp Quick Buy Settings"
+msgstr "WhatsApp Настройки быстрой покупки"
+
+#: includes/class-wc-b2b-membership.php:189
+msgid ""
+"When disabled, catalog, cart, checkout, verification emails, and pre-quote "
+"inquiry pages hide all amounts. If guest inquiries are allowed, every guest "
+"must verify the submitted email before the inquiry is delivered."
+msgstr ""
+"Если этот параметр отключен, каталог, корзина, оформление заказа, "
+"электронные письма с подтверждением и страницы запроса предварительного "
+"предложения скрывают все суммы. Если запросы гостей разрешены, каждый гость "
+"должен проверить отправленное электронное письмо, прежде чем запрос будет "
+"доставлен."
+
+#: includes/class-wc-b2b-admin.php:359
+msgid ""
+"When enabled, uninstalling the plugin will remove all database tables, "
+"settings, and order metadata. This action cannot be undone."
+msgstr ""
+"Если этот параметр включен, при удалении плагина будут удалены все таблицы "
+"базы данных, настройки и метаданные заказов. Это действие невозможно "
+"отменить."
+
+#: wc-to-b2b.php:195
+#, php-format
+msgid ""
+"WooCommerce to B2B requires WooCommerce to be installed and active. You can "
+"download %s here."
+msgstr ""
+"от WooCommerce до B2B требует, чтобы WooCommerce был установлен и активен. "
+"Вы можете скачать %s здесь."
+
+#: includes/class-wc-b2b-admin.php:258
+msgid "WooCommerce to B2B Settings"
+msgstr "Настройки от WooCommerce до B2B"
+
+#: includes/class-wc-b2b-admin.php:667
+msgid "You can modify item prices and shipping costs for this B2B order."
+msgstr ""
+"Вы можете изменить цены на товары и стоимость доставки для этого заказа B2B."
+
+#: includes/class-wc-b2b-admin.php:83
+msgid ""
+"You can now modify the order pricing and shipping, then send the quote to "
+"customer."
+msgstr ""
+"Теперь вы можете изменить цену заказа и доставку, а затем отправить "
+"предложение клиенту."
+
+#: includes/class-wc-b2b-account.php:49
+msgid "You do not have any B2B quotes or orders yet."
+msgstr "У вас еще нет предложений или заказов B2B."
+
+#: includes/class-wc-b2b-membership.php:158
+msgid "You do not have permission to manage B2B member levels."
+msgstr "У вас нет разрешения на управление уровнями участников B2B."
+
+#: includes/class-wc-b2b-quote.php:61
+msgid "You do not have permission to manage B2B quote settings."
+msgstr "У вас нет разрешения на управление настройками котировок B2B."
+
+#: includes/class-wc-b2b-notifications.php:64
+#, php-format
+msgid "Your B2B order #%1$s has changed from “%2$s” to “%3$s”."
+msgstr "Ваш заказ B2B #%1$s изменился с «%2$s» на «%3$s»."
+
+#: includes/class-wc-b2b-email.php:102
+#, php-format
+msgid "Your B2B quote %s is ready"
+msgstr "Ваше предложение B2B %s готово"
+
+#: includes/class-wc-b2b-quote.php:167
+msgid ""
+"Your formal quote has been generated and emailed to you. Please review it "
+"and use the offline payment information shown below."
+msgstr ""
+"Ваше официальное предложение было создано и отправлено вам по электронной "
+"почте. Пожалуйста, ознакомьтесь с ним и используйте информацию об офлайн-"
+"платеже, показанную ниже."
+
+#: includes/class-wc-b2b-account.php:109
+msgid ""
+"Your inquiry has been received. Prices, offline payment information, and "
+"payment records will appear here after the formal quote is sent."
+msgstr ""
+"Ваш запрос получен. Цены, информация об офлайн-платежах и записи о платежах "
+"появятся здесь после отправки официального предложения."
+
+#: includes/class-wc-b2b-ajax.php:292
+msgid "Your Message"
+msgstr "Ваше сообщение"
+
+#: includes/class-wc-b2b-email.php:145
+msgid "Your Message:"
+msgstr "Ваше сообщение:"
+
+#: includes/class-wc-b2b-order-manager.php:324
+#, php-format
+msgid ""
+"Your order will be automatically cancelled in %d days (on %s) if payment is "
+"not received."
+msgstr ""
+"Ваш заказ будет автоматически отменен через %d дней (%s), если оплата не "
+"будет получена."
+
+#: includes/class-wc-b2b-email.php:395
+#, php-format
+msgid ""
+"Your quote for order #%s is ready for review. Please find the details below:"
+msgstr ""
+"Ваше предложение по заказу #%s готово к рассмотрению. Пожалуйста, найдите "
+"подробную информацию ниже:"
+
+#: includes/class-wc-b2b-email.php:391
+msgid "Your Quote is Ready"
+msgstr "Ваше предложение готово"
+
+#: includes/class-wc-b2b-account.php:108
+msgid ""
+"Your request has been received. The amount above is a reference only; an "
+"administrator will review prices and shipping before sending the formal "
+"quote."
+msgstr ""
+"Ваш запрос получен. Сумма, указанная выше, является справочной; "
+"администратор проверит цены и доставку перед отправкой официального ценового"
+" предложения."
+
+#: includes/class-wc-b2b-quote.php:169
+msgid ""
+"Your request was received. We will email the formal quote after it has been "
+"reviewed."
+msgstr ""
+"Ваш запрос был получен. Мы отправим официальное предложение по электронной "
+"почте после его рассмотрения."
+
+#: includes/class-wc-b2b-registration.php:130
+#, php-format
+msgid "[%s] Verify your customer account"
+msgstr "[%s] Подтвердите свою учетную запись клиента"
+
+#: includes/class-wc-b2b-admin.php:373
+msgid "• Expired tokens: Cleaned daily"
+msgstr "• Токены с истекшим сроком действия: очищаются ежедневно."
+
+#: includes/class-wc-b2b-admin.php:374
+msgid "• Used tokens older than 30 days: Cleaned weekly"
+msgstr "• Использованные токены старше 30 дней: очищаются еженедельно."

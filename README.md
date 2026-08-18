@@ -1,7 +1,7 @@
 # WooCommerce to B2B
 
 [![GitHub](https://img.shields.io/badge/GitHub-wc--to--b2b-blue?logo=github)](https://github.com/hwc0212/wc-to-b2b)
-[![Version](https://img.shields.io/badge/Version-2.1.1-green)](https://github.com/hwc0212/wc-to-b2b/releases)
+[![Version](https://img.shields.io/badge/Version-2.1.2-green)](https://github.com/hwc0212/wc-to-b2b/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-purple)](https://woocommerce.com/)
 
@@ -84,6 +84,30 @@ WooCommerce to B2B 把 WooCommerce 的直接在线付款流程改造成“询价
 - 在“WooCommerce → B2B Settings → Reception Email”设置接收已验证询价的邮箱。
 - 如果接待邮件发送失败，订单会记录失败状态，管理员可以在订单操作中重新发送。
 
+## 语言与本地化
+
+- 插件源码及缺省界面语言为英文，不需要单独的英文语言包。
+- WordPress 会根据“设置 → 常规 → 站点语言”自动加载匹配的插件语言；没有匹配语言时安全回退到英文。
+- 主 README 始终使用中文，方便中文管理员安装和配置。
+- 每个内置语言都同时提供可编辑的 PO 和 WordPress 实际加载的 MO 文件。
+- `languages/wc-to-b2b.pot` 是包含全部 453 条界面、邮件和订单状态文本的翻译模板，并保留订单状态、占位符等上下文。
+
+安装包默认包含以下语言：
+
+| 语言 | WordPress 语言代码 | 文件前缀 |
+| --- | --- | --- |
+| 英文（默认） | `en_US` / `en_GB` | 使用源码英文，无需语言包 |
+| 简体中文 | `zh_CN` | `wc-to-b2b-zh_CN` |
+| 繁体中文 | `zh_TW` | `wc-to-b2b-zh_TW` |
+| 西班牙语 | `es_ES` | `wc-to-b2b-es_ES` |
+| 法语 | `fr_FR` | `wc-to-b2b-fr_FR` |
+| 德语 | `de_DE` | `wc-to-b2b-de_DE` |
+| 意大利语 | `it_IT` | `wc-to-b2b-it_IT` |
+| 葡萄牙语（巴西） | `pt_BR` | `wc-to-b2b-pt_BR` |
+| 日语 | `ja` | `wc-to-b2b-ja` |
+| 韩语 | `ko_KR` | `wc-to-b2b-ko_KR` |
+| 俄语 | `ru_RU` | `wc-to-b2b-ru_RU` |
+
 ## 安装与配置
 
 ### 系统要求
@@ -94,7 +118,7 @@ WooCommerce to B2B 把 WooCommerce 的直接在线付款流程改造成“询价
 
 ### 安装
 
-1. 下载 Release 中的 `wc-to-b2b-2.1.1.zip`。
+1. 下载 Release 中的 `wc-to-b2b-2.1.2.zip`。
 2. 在 WordPress 后台进入“插件 → 安装插件 → 上传插件”。
 3. 上传 ZIP、安装并激活；确保 WooCommerce 已安装并激活。
 
@@ -116,6 +140,14 @@ WooCommerce to B2B 把 WooCommerce 的直接在线付款流程改造成“询价
 - 2.1.1 升级会永久关闭旧版自动报价选项，现有正式报价和付款/发货记录不受影响。
 
 ## 更新日志
+
+### 版本 2.1.2
+
+- 明确英文为插件默认和最终回退语言，README 保持中文。
+- 默认包含简体中文、繁体中文、西班牙语、法语、德语、意大利语、葡萄牙语（巴西）、日语、韩语和俄语。
+- 每种内置语言均包含完整的 453 条 PO/MO 翻译，并支持订单状态上下文。
+- 新增完整 POT 翻译模板，保留 PHP 格式化占位符和源文件位置。
+- 修复旧简体中文 PO 的语法错误并生成可实际加载的 MO 文件。
 
 ### 版本 2.1.1
 

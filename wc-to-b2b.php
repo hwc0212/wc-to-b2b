@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce to B2B
  * Plugin URI: https://github.com/hwc0212/wc-to-b2b
  * Description: B2B membership pricing, online quotations, offline payment records, shipment tracking, customer account history, and email notifications for WooCommerce.
- * Version: 2.1.1
+ * Version: 2.1.2
  * Author: huwencai.com
  * Author URI: https://huwencai.com
  * Text Domain: wc-to-b2b
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WC_TO_B2B_VERSION', '2.1.1');
+define('WC_TO_B2B_VERSION', '2.1.2');
 define('WC_TO_B2B_PLUGIN_FILE', __FILE__);
 define('WC_TO_B2B_PLUGIN_BASENAME', plugin_basename(__FILE__));
 define('WC_TO_B2B_PLUGIN_PATH', plugin_dir_path(__FILE__));
