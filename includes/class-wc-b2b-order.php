@@ -167,10 +167,6 @@ class WC_B2B_Order {
                 if ($guest_inquiry) {
                     break;
                 }
-                if (get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
-                    WC_B2B_Quote::prepare_quote($order);
-                    $order->update_status('quote-sent', __('Automatic quotation generated after customer verification.', 'wc-to-b2b'));
-                }
                 break;
                 
             case 'quote-sent':

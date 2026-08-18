@@ -30,9 +30,10 @@ class WC_B2B_Checkout {
         // Modify checkout button text
         add_filter('woocommerce_order_button_text', array($this, 'change_order_button_text'));
         add_filter('woocommerce_checkout_registration_enabled', '__return_false');
-        add_filter('woocommerce_checkout_registration_required', '__return_false', 99);
+        add_filter('woocommerce_checkout_registration_required', array($this, 'checkout_registration_required'), 99);
         add_filter('pre_option_woocommerce_enable_signup_and_login_from_checkout', array($this, 'disable_checkout_account_creation'));
-        add_filter('pre_option_woocommerce_enable_guest_checkout', array($this, 'enable_guest_inquiries'));
+        add_filter('pre_option_woocommerce_enable_guest_checkout', array($this, 'guest_checkout_option'));
+        add_action('woocommerce_before_checkout_form', array($this, 'render_account_required_notice'), 5);
     }
     
     /**
@@ -77,6 +78,9 @@ class WC_B2B_Checkout {
      * Validate custom fields.
      */
     public function validate_custom_fields() {
+        if (!is_user_logged_in() && !WC_B2B_Membership::guest_inquiries_are_enabled()) {
+            wc_add_notice(__('Please register, verify your email, and sign in before requesting a quote.', 'wc-to-b2b'), 'error');
+        }
         if (is_user_logged_in() && class_exists('WC_B2B_Registration') && !WC_B2B_Registration::is_user_verified(get_current_user_id())) {
             wc_add_notice(__('Please verify your account email before submitting a quotation order.', 'wc-to-b2b'), 'error');
         }
@@ -157,6 +161,10 @@ class WC_B2B_Checkout {
         $verify_guest = !$order->get_customer_id();
 
         if ($verify_guest) {
+            if (!WC_B2B_Membership::guest_inquiries_are_enabled()) {
+                $order->update_status('failed', __('Guest inquiry blocked because customer registration is required.', 'wc-to-b2b'));
+                return;
+            }
             $order->update_meta_data('_wc_b2b_guest_inquiry', 'yes');
             $order->update_meta_data('_wc_b2b_inquiry_delivered', 'no');
             $order->update_meta_data('_email_verified', 'no');
@@ -180,12 +188,7 @@ class WC_B2B_Checkout {
         $order->update_meta_data('_verified_via', 'account');
         $order->save();
 
-        if (get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
-            WC_B2B_Quote::prepare_quote($order);
-            $order->update_status('quote-sent', __('Automatic quotation generated from the customer membership price.', 'wc-to-b2b'));
-        } else {
-            $order->update_status('verified', __('Order received and ready for administrator quotation.', 'wc-to-b2b'));
-        }
+        $order->update_status('verified', __('Order received and ready for administrator price and shipping review.', 'wc-to-b2b'));
     }
     
     /**
@@ -241,23 +244,46 @@ class WC_B2B_Checkout {
         if (is_admin() && !wp_doing_ajax()) {
             return $gateways;
         }
-        
+        if (!is_user_logged_in() && !WC_B2B_Membership::guest_inquiries_are_enabled()) {
+            return array();
+        }
+
         // Checkout is an order/quotation submission. Never expose an online gateway.
-        return isset($gateways['b2b_quote']) ? array('b2b_quote' => $gateways['b2b_quote']) : $gateways;
+        return isset($gateways['b2b_quote']) ? array('b2b_quote' => $gateways['b2b_quote']) : array();
     }
     
     /**
      * Change order button text.
      */
     public function change_order_button_text() {
-        return is_user_logged_in() ? __('Submit B2B Quote Order', 'wc-to-b2b') : __('Submit Inquiry & Verify Email', 'wc-to-b2b');
+        if (is_user_logged_in()) {
+            return __('Submit B2B Quote Order', 'wc-to-b2b');
+        }
+        return WC_B2B_Membership::guest_inquiries_are_enabled()
+            ? __('Submit Inquiry & Verify Email', 'wc-to-b2b')
+            : __('Register or Sign In to Request Quote', 'wc-to-b2b');
     }
 
     public function disable_checkout_account_creation($pre_option) {
         return 'no';
     }
 
-    public function enable_guest_inquiries($pre_option) {
-        return 'yes';
+    public function checkout_registration_required($required) {
+        return !is_user_logged_in() && !WC_B2B_Membership::guest_inquiries_are_enabled();
+    }
+
+    public function guest_checkout_option($pre_option) {
+        return WC_B2B_Membership::guest_inquiries_are_enabled() ? 'yes' : 'no';
+    }
+
+    public function render_account_required_notice($checkout = null) {
+        if (is_user_logged_in() || WC_B2B_Membership::guest_inquiries_are_enabled()) {
+            return;
+        }
+        $account_url = wc_get_page_permalink('myaccount');
+        wc_print_notice(sprintf(
+            wp_kses_post(__('A verified customer account is required to request a quote. <a href="%s">Register or sign in</a>, then return to checkout.', 'wc-to-b2b')),
+            esc_url($account_url)
+        ), 'notice');
     }
 }

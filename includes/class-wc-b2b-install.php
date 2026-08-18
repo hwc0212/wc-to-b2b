@@ -95,7 +95,8 @@ class WC_B2B_Install {
                 array('id' => 'vip', 'name' => __('VIP Customer', 'wc-to-b2b'), 'discount' => 20)
             ),
             'wc_b2b_guest_price_display' => 'hide',
-            'wc_b2b_auto_quote' => 'yes',
+            'wc_b2b_customer_access_mode' => 'guest_inquiry',
+            'wc_b2b_auto_quote' => 'no',
             'wc_b2b_require_account' => 'no',
             'wc_b2b_verify_guests' => 'yes',
             'wc_b2b_quote_validity_days' => '21',
@@ -133,6 +134,7 @@ class WC_B2B_Install {
             array('id' => 'regular', 'name' => __('Regular Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($regular['discount'] ?? 10)))),
             array('id' => 'vip', 'name' => __('VIP Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($vip['discount'] ?? 20)))),
         ));
+        update_option('wc_b2b_auto_quote', 'no');
 
         $wpdb->update($wpdb->usermeta, array('meta_value' => 'registered'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'standard'), array('%s'), array('%s', '%s'));
         $wpdb->update($wpdb->usermeta, array('meta_value' => 'regular'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'silver'), array('%s'), array('%s', '%s'));
@@ -203,6 +205,7 @@ class WC_B2B_Install {
             'wc_b2b_complete_uninstall',
             'wc_b2b_membership_tiers',
             'wc_b2b_guest_price_display',
+            'wc_b2b_customer_access_mode',
             'wc_b2b_auto_quote',
             'wc_b2b_require_account',
             'wc_b2b_verify_guests',

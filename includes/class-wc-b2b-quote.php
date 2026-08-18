@@ -28,7 +28,7 @@ class WC_B2B_Quote {
     }
 
     public function maybe_require_account($required) {
-        return false;
+        return !is_user_logged_in() && !WC_B2B_Membership::guest_inquiries_are_enabled();
     }
 
     public function load_blocks_support() {
@@ -63,15 +63,14 @@ class WC_B2B_Quote {
 
         if (isset($_POST['wc_b2b_save_quote_settings'])) {
             check_admin_referer('wc_b2b_quote_settings');
-            update_option('wc_b2b_auto_quote', isset($_POST['auto_quote']) ? 'yes' : 'no');
-            update_option('wc_b2b_require_account', 'no');
+            update_option('wc_b2b_auto_quote', 'no');
+            update_option('wc_b2b_require_account', WC_B2B_Membership::guest_inquiries_are_enabled() ? 'no' : 'yes');
             update_option('wc_b2b_verify_guests', 'yes');
             update_option('wc_b2b_quote_validity_days', max(1, min(365, absint($_POST['quote_validity_days'] ?? 30))));
             update_option('wc_b2b_payment_instructions', wp_kses_post(wp_unslash($_POST['payment_instructions'] ?? '')));
             echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Quote settings saved.', 'wc-to-b2b') . '</p></div>';
         }
 
-        $auto_quote    = get_option('wc_b2b_auto_quote', 'yes');
         $validity      = get_option('wc_b2b_quote_validity_days', 21);
         $instructions  = get_option('wc_b2b_payment_instructions', '');
         ?>
@@ -80,12 +79,17 @@ class WC_B2B_Quote {
             <form method="post">
                 <?php wp_nonce_field('wc_b2b_quote_settings'); ?>
                 <table class="form-table">
-                    <tr><th><?php esc_html_e('Automatic Quote', 'wc-to-b2b'); ?></th><td>
-                        <label><input type="checkbox" name="auto_quote" value="yes" <?php checked($auto_quote, 'yes'); ?> /> <?php esc_html_e('Generate and email the formal quote immediately for verified signed-in customers', 'wc-to-b2b'); ?></label>
-                        <p class="description"><?php esc_html_e('Guest inquiries are never quoted automatically. They reach the reception email only after the guest verifies the submitted email address.', 'wc-to-b2b'); ?></p>
+                    <tr><th><?php esc_html_e('Quote Preparation', 'wc-to-b2b'); ?></th><td>
+                        <p><strong><?php esc_html_e('Manual review is always required.', 'wc-to-b2b'); ?></strong></p>
+                        <p class="description"><?php esc_html_e('Every submission remains ready for review until an administrator adjusts product prices and shipping, then sends the formal quote manually.', 'wc-to-b2b'); ?></p>
                     </td></tr>
                     <tr><th><?php esc_html_e('Customer Access Rules', 'wc-to-b2b'); ?></th><td>
-                        <p><?php esc_html_e('Accounts must verify their registration email before signing in. Guests may submit an inquiry without prices, but the inquiry is held until its email link is verified.', 'wc-to-b2b'); ?></p>
+                        <?php if (WC_B2B_Membership::guest_inquiries_are_enabled()) : ?>
+                            <p><?php esc_html_e('Guests may submit inquiries, but each inquiry is delivered only after the guest clicks its email verification link. Registered customers must verify their account email before signing in.', 'wc-to-b2b'); ?></p>
+                        <?php else : ?>
+                            <p><?php esc_html_e('Customers must register, verify their account email, and sign in before requesting a quote. Guest checkout is disabled.', 'wc-to-b2b'); ?></p>
+                        <?php endif; ?>
+                        <p class="description"><?php esc_html_e('Change this rule under WooCommerce → B2B Member Levels → Customer Access Mode.', 'wc-to-b2b'); ?></p>
                     </td></tr>
                     <tr><th><label for="quote_validity_days"><?php esc_html_e('Quote Validity', 'wc-to-b2b'); ?></label></th><td>
                         <input id="quote_validity_days" type="number" min="1" max="365" name="quote_validity_days" value="<?php echo esc_attr($validity); ?>" /> <?php esc_html_e('days', 'wc-to-b2b'); ?>
@@ -185,18 +189,18 @@ if (class_exists('WC_Payment_Gateway')) {
             $this->id                 = 'b2b_quote';
             $this->has_fields         = false;
             $this->method_title       = __('B2B Offline Quote', 'wc-to-b2b');
-            $this->method_description = __('Creates a quotation/order without collecting an online payment.', 'wc-to-b2b');
+            $this->method_description = __('Submits a quote request without collecting an online payment; an administrator prepares and sends the formal quote manually.', 'wc-to-b2b');
             $this->title              = $is_guest ? __('Email-verified inquiry', 'wc-to-b2b') : __('Offline quotation', 'wc-to-b2b');
             $this->description        = $is_guest
                 ? ($guest_prices_hidden
-                    ? __('Submit an inquiry without displayed prices. We will receive it only after you verify your email, then prepare a formal quote.', 'wc-to-b2b')
-                    : __('Displayed amounts are retail references. Submit the inquiry and verify your email; we will then review it and prepare the formal quote.', 'wc-to-b2b'))
-                : __('Submit the order to receive a formal quotation and offline payment instructions. No online payment will be collected.', 'wc-to-b2b');
+                    ? __('Submit an inquiry without displayed prices. We will receive it only after you verify your email; an administrator will then review prices and shipping.', 'wc-to-b2b')
+                    : __('Displayed amounts are retail references. Submit the inquiry and verify your email; an administrator will then review prices and shipping.', 'wc-to-b2b'))
+                : __('Submit a quote request for administrator review. Prices and shipping may be adjusted before the formal quote and offline payment instructions are sent manually.', 'wc-to-b2b');
             $this->enabled            = 'yes';
         }
 
         public function is_available() {
-            return true;
+            return is_user_logged_in() || WC_B2B_Membership::guest_inquiries_are_enabled();
         }
 
         public function process_payment($order_id) {

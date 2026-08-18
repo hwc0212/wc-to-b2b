@@ -4,7 +4,7 @@
     var settings = window.wc.wcSettings.getSetting('b2b_quote_data', {});
     var label = window.wp.htmlEntities.decodeEntities(settings.title || 'Offline quotation');
     var description = window.wp.htmlEntities.decodeEntities(
-        settings.description || 'Submit the order to receive a formal quotation and offline payment instructions.'
+        settings.description || 'Submit a quote request for administrator review. The formal quote is sent manually.'
     );
     var buttonLabel = window.wp.htmlEntities.decodeEntities(settings.button_label || 'Submit B2B Quote Order');
     var element = window.wp.element.createElement;

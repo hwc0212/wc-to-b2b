@@ -44,10 +44,6 @@ class WC_B2B_Notifications {
         if (in_array($new_status, array('pending', 'b2b-verifying', 'pending-verificat', 'quote-sent'), true)) {
             return;
         }
-        if ('verified' === $new_status && !WC_B2B_Membership::is_guest_inquiry($order) && get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
-            return;
-        }
-
         $dedupe_key = $old_status . '>' . $new_status . ':' . current_time('Y-m-d H:i');
         if ($order->get_meta('_wc_b2b_last_status_email', true) === $dedupe_key) {
             return;
@@ -117,12 +113,13 @@ class WC_B2B_Notifications {
     }
 
     private function order_summary($order) {
-        if (class_exists('WC_B2B_Membership') && WC_B2B_Membership::is_guest_inquiry($order) && !WC_B2B_Membership::has_formal_quote($order)) {
+        if (class_exists('WC_B2B_Membership') && !WC_B2B_Membership::has_formal_quote($order)) {
+            $guest_inquiry = WC_B2B_Membership::is_guest_inquiry($order);
             $show_reference_price = WC_B2B_Membership::can_display_order_prices($order);
             return '<div style="background:#f6f7f7;padding:16px;margin:18px 0">' .
-                '<p><strong>' . esc_html__('Inquiry:', 'wc-to-b2b') . '</strong> #' . esc_html($order->get_order_number()) . '</p>' .
+                '<p><strong>' . esc_html($guest_inquiry ? __('Inquiry:', 'wc-to-b2b') : __('Order:', 'wc-to-b2b')) . '</strong> #' . esc_html($order->get_order_number()) . '</p>' .
                 ($show_reference_price
-                    ? '<p><strong>' . esc_html__('Retail reference total:', 'wc-to-b2b') . '</strong> ' . wp_kses_post($order->get_formatted_order_total()) . '</p><p>' . esc_html__('The final price will be provided in the formal quote after review.', 'wc-to-b2b') . '</p>'
+                    ? '<p><strong>' . esc_html__('Reference total:', 'wc-to-b2b') . '</strong> ' . wp_kses_post($order->get_formatted_order_total()) . '</p><p>' . esc_html__('An administrator will review prices and shipping before sending the formal quote.', 'wc-to-b2b') . '</p>'
                     : '<p>' . esc_html__('Prices will be provided in the formal quote after the inquiry is reviewed.', 'wc-to-b2b') . '</p>') .
                 '</div>';
         }

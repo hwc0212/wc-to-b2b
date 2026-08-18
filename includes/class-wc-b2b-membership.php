@@ -119,6 +119,10 @@ class WC_B2B_Membership {
         return 'show' === get_option('wc_b2b_guest_price_display', 'hide');
     }
 
+    public static function guest_inquiries_are_enabled() {
+        return 'account_required' !== get_option('wc_b2b_customer_access_mode', 'guest_inquiry');
+    }
+
     public static function can_display_order_prices($order) {
         if (!self::is_guest_inquiry($order)) {
             return true;
@@ -162,6 +166,7 @@ class WC_B2B_Membership {
 
         $tiers = array_values(self::get_tiers());
         $show_guest_prices = self::guest_prices_are_visible();
+        $access_mode = self::guest_inquiries_are_enabled() ? 'guest_inquiry' : 'account_required';
         ?>
         <div class="wrap">
             <h1><?php esc_html_e('B2B Member Levels', 'wc-to-b2b'); ?></h1>
@@ -169,10 +174,19 @@ class WC_B2B_Membership {
             <form method="post">
                 <?php wp_nonce_field('wc_b2b_save_tiers'); ?>
                 <table class="form-table"><tr>
+                    <th scope="row"><?php esc_html_e('Customer Access Mode', 'wc-to-b2b'); ?></th>
+                    <td>
+                        <fieldset>
+                            <label><input type="radio" name="wc_b2b_customer_access_mode" value="guest_inquiry" <?php checked($access_mode, 'guest_inquiry'); ?> /> <?php esc_html_e('Allow guests to submit an inquiry after verifying their email', 'wc-to-b2b'); ?></label><br>
+                            <label><input type="radio" name="wc_b2b_customer_access_mode" value="account_required" <?php checked($access_mode, 'account_required'); ?> /> <?php esc_html_e('Require customers to register, verify their email, and sign in before checkout', 'wc-to-b2b'); ?></label>
+                        </fieldset>
+                        <p class="description"><?php esc_html_e('All submissions wait for an administrator to adjust prices and shipping and send the formal quote manually.', 'wc-to-b2b'); ?></p>
+                    </td>
+                </tr><tr>
                     <th scope="row"><?php esc_html_e('Guest Price Display', 'wc-to-b2b'); ?></th>
                     <td>
                         <label><input type="checkbox" name="wc_b2b_show_guest_prices" value="yes" <?php checked($show_guest_prices); ?> /> <?php esc_html_e('Show WooCommerce retail prices to visitors who are not signed in', 'wc-to-b2b'); ?></label>
-                        <p class="description"><?php esc_html_e('When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all amounts. Guest submissions still require email verification in either mode.', 'wc-to-b2b'); ?></p>
+                        <p class="description"><?php esc_html_e('When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all amounts. If guest inquiries are allowed, every guest must verify the submitted email before the inquiry is delivered.', 'wc-to-b2b'); ?></p>
                     </td>
                 </tr></table>
                 <table class="widefat striped" id="wc-b2b-tier-table">
@@ -220,6 +234,14 @@ class WC_B2B_Membership {
 
         update_option('wc_b2b_membership_tiers', array_values($tiers));
         update_option('wc_b2b_guest_price_display', isset($_POST['wc_b2b_show_guest_prices']) ? 'show' : 'hide');
+        $access_mode = isset($_POST['wc_b2b_customer_access_mode']) ? sanitize_key(wp_unslash($_POST['wc_b2b_customer_access_mode'])) : 'guest_inquiry';
+        $access_mode = 'account_required' === $access_mode ? 'account_required' : 'guest_inquiry';
+        update_option('wc_b2b_customer_access_mode', $access_mode);
+
+        // Keep legacy settings deterministic for installations upgraded from 2.0.
+        update_option('wc_b2b_require_account', 'account_required' === $access_mode ? 'yes' : 'no');
+        update_option('wc_b2b_verify_guests', 'yes');
+        update_option('wc_b2b_auto_quote', 'no');
     }
 
     public function render_user_tier_field($user) {
@@ -438,7 +460,10 @@ class WC_B2B_Membership {
 
     public function guest_add_to_cart_text($text, $product = null) {
         $is_unverified = is_user_logged_in() && class_exists('WC_B2B_Registration') && !WC_B2B_Registration::is_user_verified(get_current_user_id());
-        return !is_user_logged_in() || $is_unverified ? __('Add to Inquiry', 'wc-to-b2b') : $text;
+        if (!is_user_logged_in() || $is_unverified) {
+            return self::guest_inquiries_are_enabled() ? __('Add to Inquiry', 'wc-to-b2b') : __('Add to Quote', 'wc-to-b2b');
+        }
+        return $text;
     }
 
     public function add_price_visibility_body_class($classes) {

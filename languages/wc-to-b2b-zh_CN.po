@@ -3,10 +3,10 @@
 # This file is distributed under the same license as the WooCommerce to B2B package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce to B2B 2.1.0\n"
+"Project-Id-Version: WooCommerce to B2B 2.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/hwc0212/wc-to-b2b/issues\n"
 "POT-Creation-Date: 2026-01-08 12:00+0000\n"
-"PO-Revision-Date: 2026-01-08 12:00+0000\n"
+"PO-Revision-Date: 2026-08-18 12:00+0800\n"
 "Last-Translator: huwencai.com\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -43,14 +43,14 @@ msgstr "访客价格显示"
 msgid "Show WooCommerce retail prices to visitors who are not signed in"
 msgstr "向未登录访客显示 WooCommerce 零售价"
 
-msgid "When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all amounts. Guest submissions still require email verification in either mode."
-msgstr "关闭后，商品目录、购物车、结账页、验证邮件和正式报价前的询价页都会隐藏金额。无论是否显示价格，访客询价都必须验证邮箱。"
+msgid "When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all amounts. If guest inquiries are allowed, every guest must verify the submitted email before the inquiry is delivered."
+msgstr "关闭后，商品目录、购物车、结账页、验证邮件和正式报价前的询价页都会隐藏金额。如果允许访客询价，每位访客都必须验证所填邮箱后，询价才会投递。"
 
 msgid "Registered customers use each product or variation's WooCommerce retail price. Regular and VIP fixed prices can be entered separately on every product or variation; when blank, the level discount above is used."
 msgstr "注册客户使用每个商品或变体自身的 WooCommerce 零售价。每个商品或变体都可以分别填写普通客户固定价和 VIP 固定价；留空时使用上方等级折扣。"
 
-msgid "Displayed amounts are retail references. Submit the inquiry and verify your email; we will then review it and prepare the formal quote."
-msgstr "当前金额仅为零售价参考。提交询价并验证邮箱后，我们会进行审核并准备正式报价。"
+msgid "Displayed amounts are retail references. Submit the inquiry and verify your email; an administrator will then review prices and shipping."
+msgstr "当前金额仅为零售价参考。提交询价并验证邮箱后，管理员会审核价格和运费。"
 
 msgid "Retail Reference Total"
 msgstr "零售价参考总额"
@@ -112,6 +112,113 @@ msgstr "询价编号"
 
 msgid "Pending formal quotation"
 msgstr "等待正式报价"
+
+#: includes/class-wc-b2b-membership.php
+msgid "Customer Access Mode"
+msgstr "客户访问模式"
+
+msgid "Allow guests to submit an inquiry after verifying their email"
+msgstr "允许访客验证邮箱后提交询价"
+
+msgid "Require customers to register, verify their email, and sign in before checkout"
+msgstr "要求客户注册、验证邮箱并登录后才能结账"
+
+msgid "All submissions wait for an administrator to adjust prices and shipping and send the formal quote manually."
+msgstr "所有提交都要等待管理员调整价格和运费，并人工发送正式报价。"
+
+msgid "Add to Quote"
+msgstr "加入报价请求"
+
+#: includes/class-wc-b2b-checkout.php
+msgid "Please register, verify your email, and sign in before requesting a quote."
+msgstr "请先注册、验证邮箱并登录，然后再申请报价。"
+
+msgid "Please verify your account email before submitting a quotation order."
+msgstr "请先验证账户邮箱，然后再提交报价请求。"
+
+msgid "Guest inquiry blocked because customer registration is required."
+msgstr "当前要求客户注册，访客询价已被阻止。"
+
+msgid "Inquiry created, awaiting customer email verification."
+msgstr "询价已创建，正在等待客户验证邮箱。"
+
+msgid "Quotation order blocked because the customer account email is unverified."
+msgstr "客户账户邮箱尚未验证，报价请求已被阻止。"
+
+msgid "Order received and ready for administrator price and shipping review."
+msgstr "报价请求已收到，等待管理员审核价格和运费。"
+
+msgid "Register or Sign In to Request Quote"
+msgstr "注册或登录后申请报价"
+
+msgid "A verified customer account is required to request a quote. <a href=\"%s\">Register or sign in</a>, then return to checkout."
+msgstr "申请报价需要已验证的客户账户。请先<a href=\"%s\">注册或登录</a>，然后返回结账页面。"
+
+#: includes/class-wc-b2b-account.php
+msgid "Quote Request Under Review"
+msgstr "报价请求审核中"
+
+msgid "Order Number"
+msgstr "订单号"
+
+msgid "Member Level"
+msgstr "会员等级"
+
+msgid "Pricing"
+msgstr "价格状态"
+
+msgid "Reference Total"
+msgstr "参考总额"
+
+msgid "Your request has been received. The amount above is a reference only; an administrator will review prices and shipping before sending the formal quote."
+msgstr "您的请求已收到。以上金额仅供参考；管理员审核价格和运费后才会发送正式报价。"
+
+#: includes/class-wc-b2b-notifications.php
+msgid "Inquiry:"
+msgstr "询价："
+
+msgid "Order:"
+msgstr "订单："
+
+msgid "Reference total:"
+msgstr "参考总额："
+
+msgid "An administrator will review prices and shipping before sending the formal quote."
+msgstr "管理员将在发送正式报价前审核价格和运费。"
+
+msgid "Prices will be provided in the formal quote after the inquiry is reviewed."
+msgstr "询价审核完成后，价格将在正式报价中提供。"
+
+#: includes/class-wc-b2b-quote.php
+msgid "Quote Preparation"
+msgstr "报价准备方式"
+
+msgid "Manual review is always required."
+msgstr "所有报价都必须人工审核。"
+
+msgid "Every submission remains ready for review until an administrator adjusts product prices and shipping, then sends the formal quote manually."
+msgstr "每次提交都会保持等待审核状态，直到管理员调整商品价格和运费并人工发送正式报价。"
+
+msgid "Customer Access Rules"
+msgstr "客户访问规则"
+
+msgid "Guests may submit inquiries, but each inquiry is delivered only after the guest clicks its email verification link. Registered customers must verify their account email before signing in."
+msgstr "访客可以提交询价，但必须点击该询价的邮箱验证链接后才会投递。注册客户必须验证账户邮箱后才能登录。"
+
+msgid "Customers must register, verify their account email, and sign in before requesting a quote. Guest checkout is disabled."
+msgstr "客户必须注册、验证账户邮箱并登录后才能申请报价。访客结账已禁用。"
+
+msgid "Change this rule under WooCommerce → B2B Member Levels → Customer Access Mode."
+msgstr "可在 WooCommerce → B2B Member Levels → Customer Access Mode 中修改此规则。"
+
+msgid "Submits a quote request without collecting an online payment; an administrator prepares and sends the formal quote manually."
+msgstr "提交报价请求且不收取在线付款；正式报价由管理员人工准备并发送。"
+
+msgid "Submit an inquiry without displayed prices. We will receive it only after you verify your email; an administrator will then review prices and shipping."
+msgstr "提交不显示价格的询价。只有验证邮箱后我们才会收到，随后由管理员审核价格和运费。"
+
+msgid "Submit a quote request for administrator review. Prices and shipping may be adjusted before the formal quote and offline payment instructions are sent manually."
+msgstr "提交报价请求供管理员审核。管理员可调整价格和运费，然后人工发送正式报价及线下付款信息。"
 
 #: wc-to-b2b.php
 msgid "WooCommerce to B2B requires WooCommerce to be installed and active. You can download %s here."
