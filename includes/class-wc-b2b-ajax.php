@@ -76,7 +76,7 @@ class WC_B2B_Ajax {
         
         $action = sanitize_text_field($_GET['wc_b2b_action']);
         $order_id = intval($_GET['order_id']);
-        $nonce = sanitize_text_field($_GET['nonce']);
+        $token = isset($_GET['token']) ? sanitize_text_field(wp_unslash($_GET['token'])) : '';
         
         if (!$order_id) {
             wc_add_notice(__('Invalid order ID.', 'wc-to-b2b'), 'error');
@@ -93,7 +93,7 @@ class WC_B2B_Ajax {
         
         switch ($action) {
             case 'confirm':
-                if (!wp_verify_nonce($nonce, 'wc_b2b_confirm_' . $order_id)) {
+                if (!WC_B2B_Quote::validate_action_token($order, 'confirm', $token)) {
                     wc_add_notice(__('Security check failed.', 'wc-to-b2b'), 'error');
                     wp_redirect(home_url());
                     exit;
@@ -110,7 +110,7 @@ class WC_B2B_Ajax {
                 exit;
                 
             case 'cancel':
-                if (!wp_verify_nonce($nonce, 'wc_b2b_cancel_' . $order_id)) {
+                if (!WC_B2B_Quote::validate_action_token($order, 'cancel', $token)) {
                     wc_add_notice(__('Security check failed.', 'wc-to-b2b'), 'error');
                     wp_redirect(home_url());
                     exit;
@@ -122,7 +122,11 @@ class WC_B2B_Ajax {
                 exit;
                 
             case 'view':
-                // Show order details page
+                if (!WC_B2B_Quote::validate_action_token($order, 'view', $token)) {
+                    wc_add_notice(__('Access denied.', 'wc-to-b2b'), 'error');
+                    wp_safe_redirect(home_url('/'));
+                    exit;
+                }
                 $this->show_order_details($order);
                 exit;
         }
@@ -138,17 +142,20 @@ class WC_B2B_Ajax {
                 'message' => __('This order cannot be confirmed at this time.', 'wc-to-b2b')
             );
         }
+
+        if (!WC_B2B_Quote::is_quote_valid($order)) {
+            return array(
+                'success' => false,
+                'message' => __('This quote has expired. Please contact us for a new quote.', 'wc-to-b2b')
+            );
+        }
         
-        // Update order status to processing (ready for payment)
-        $order->update_status('processing', __('Customer confirmed the quote.', 'wc-to-b2b'));
-        
-        // Enable payment for this order
-        update_post_meta($order->get_id(), '_payment_enabled', 'yes');
+        $order->update_status('quote-accepted', __('Customer accepted the quote and will pay offline.', 'wc-to-b2b'));
         
         $result = array(
             'success' => true,
-            'message' => __('Order confirmed successfully! You will be redirected to payment.', 'wc-to-b2b'),
-            'redirect_url' => $order->get_checkout_payment_url()
+            'message' => __('Quote accepted. Please pay offline using the payment information on the quote.', 'wc-to-b2b'),
+            'redirect_url' => WC_B2B_Quote::get_action_url($order, 'view')
         );
         
         if (wp_doing_ajax()) {
@@ -162,10 +169,16 @@ class WC_B2B_Ajax {
      * Cancel order.
      */
     private function cancel_order($order) {
-        if (!in_array($order->get_status(), array('quote-sent', 'pending-verification', 'verified'))) {
+        if (!in_array($order->get_status(), array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true)) {
             return array(
                 'success' => false,
                 'message' => __('This order cannot be cancelled at this time.', 'wc-to-b2b')
+            );
+        }
+        if (WC_B2B_Fulfillment::get_paid_total($order) > 0) {
+            return array(
+                'success' => false,
+                'message' => __('A payment has already been recorded. Please contact us to cancel this order.', 'wc-to-b2b')
             );
         }
         
@@ -209,7 +222,7 @@ class WC_B2B_Ajax {
     private function display_order_details_template($order) {
         $status = $order->get_status();
         $can_confirm = ($status === 'quote-sent');
-        $can_cancel = in_array($status, array('quote-sent', 'pending-verification', 'verified'));
+        $can_cancel = in_array($status, array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true) && WC_B2B_Fulfillment::get_paid_total($order) <= 0;
         ?>
         <div class="wc-b2b-order-details" style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: Arial, sans-serif;">
             <h1><?php printf(__('Order #%s Details', 'wc-to-b2b'), $order->get_order_number()); ?></h1>
@@ -271,7 +284,7 @@ class WC_B2B_Ajax {
                 </table>
             </div>
             
-            <?php $message = get_post_meta($order->get_id(), '_order_message', true); ?>
+            <?php $message = $order->get_meta('_order_message', true); ?>
             <?php if ($message): ?>
             <div class="customer-message" style="margin: 30px 0;">
                 <h3><?php _e('Your Message', 'wc-to-b2b'); ?></h3>
@@ -285,7 +298,7 @@ class WC_B2B_Ajax {
             <div class="order-actions" style="margin: 40px 0; text-align: center;">
                 <?php if ($can_confirm): ?>
                 <button type="button" class="wc-b2b-confirm-btn" data-order-id="<?php echo $order->get_id(); ?>" style="background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 3px; margin-right: 10px; cursor: pointer; font-size: 16px;">
-                    <?php _e('Accept Quote & Proceed to Payment', 'wc-to-b2b'); ?>
+                    <?php _e('Accept Quote & Pay Offline', 'wc-to-b2b'); ?>
                 </button>
                 <?php endif; ?>
                 
@@ -298,6 +311,12 @@ class WC_B2B_Ajax {
             
             <div id="wc-b2b-messages" style="margin: 20px 0;"></div>
             <?php endif; ?>
+
+            <?php
+            // Guest customers reach this page through a signed order link.
+            $account_view = new WC_B2B_Account();
+            $account_view->render_order_panel($order);
+            ?>
         </div>
         
         <style>

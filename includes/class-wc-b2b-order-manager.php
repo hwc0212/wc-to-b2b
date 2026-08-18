@@ -60,7 +60,7 @@ class WC_B2B_Order_Manager {
         $cutoff_date = date('Y-m-d H:i:s', strtotime("-{$expiry_days} days"));
         
         $args = array(
-            'status' => array('quote-sent', 'processing'),
+            'status' => array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped'),
             'meta_query' => array(
                 array(
                     'key' => '_is_b2b_order',
@@ -79,13 +79,10 @@ class WC_B2B_Order_Manager {
                 $order->update_status('cancelled', __('Order automatically cancelled due to expiry (3 weeks without payment).', 'wc-to-b2b'));
                 
                 // Send cancellation notification via the same method used for verification
-                $verified_via = get_post_meta($order->get_id(), '_verified_via', true);
+                $verified_via = $order->get_meta('_verified_via', true);
                 
                 if ($verified_via === 'whatsapp') {
                     $this->send_whatsapp_cancellation_notice($order->get_id());
-                } else {
-                    // Default to email if no verification method recorded or if verified via email
-                    do_action('wc_b2b_send_order_cancelled_email', $order->get_id());
                 }
                 
                 // Log the action
@@ -101,7 +98,7 @@ class WC_B2B_Order_Manager {
         $reminder_interval = get_option('wc_b2b_payment_reminder_interval', 7);
         
         $args = array(
-            'status' => array('quote-sent', 'processing'),
+            'status' => array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped'),
             'meta_query' => array(
                 array(
                     'key' => '_is_b2b_order',
@@ -115,7 +112,7 @@ class WC_B2B_Order_Manager {
         
         foreach ($orders as $order) {
             if (!$order->is_paid() && !$this->is_manually_paid($order->get_id())) {
-                $last_reminder = get_post_meta($order->get_id(), '_last_payment_reminder', true);
+                $last_reminder = $order->get_meta('_last_payment_reminder', true);
                 $order_date = $order->get_date_created()->getTimestamp();
                 $now = time();
                 
@@ -135,8 +132,8 @@ class WC_B2B_Order_Manager {
                     
                     if ($now < $expiry_date) {
                         $this->send_payment_reminder($order->get_id());
-                        update_post_meta($order->get_id(), '_last_payment_reminder', current_time('mysql'));
-                        
+                        $order->update_meta_data('_last_payment_reminder', current_time('mysql'));
+                        $order->save();
                         $order->add_order_note(__('Payment reminder sent to customer.', 'wc-to-b2b'));
                     }
                 }
@@ -154,7 +151,7 @@ class WC_B2B_Order_Manager {
         }
         
         // Check which method was actually used for verification
-        $verified_via = get_post_meta($order_id, '_verified_via', true);
+        $verified_via = $order->get_meta('_verified_via', true);
         
         // Send via the same method that was used for verification
         if ($verified_via === 'whatsapp') {
@@ -206,10 +203,10 @@ class WC_B2B_Order_Manager {
         $order_date = $order->get_date_created()->getTimestamp();
         $days_left = ceil(($order_date + ($expiry_days * 24 * 60 * 60) - time()) / (24 * 60 * 60));
         
-        $payment_url = $order->get_checkout_payment_url();
+        $payment_url = $order->get_customer_id() ? $order->get_view_order_url() : WC_B2B_Quote::get_action_url($order, 'view');
         
         $message = sprintf(
-            __("Payment Reminder 💰\n\nHello %s!\n\nYour order #%s is still awaiting payment.\n\n⚠️ Important: Your order will be cancelled in %d days if payment is not received.\n\nOrder Total: %s\n\nPay now: %s\n\nIf you have already paid or have questions, please contact us immediately.", 'wc-to-b2b'),
+            __("Payment Reminder 💰\n\nHello %s!\n\nYour order #%s is still awaiting offline payment.\n\n⚠️ Important: Your order will be cancelled in %d days if payment is not received.\n\nOrder Total: %s\n\nView quote and payment information: %s\n\nIf you have already paid or have questions, please contact us immediately.", 'wc-to-b2b'),
             $order->get_billing_first_name(),
             $order->get_order_number(),
             $days_left,
@@ -309,7 +306,7 @@ class WC_B2B_Order_Manager {
         $expiry_date = date('Y-m-d', $order_date + ($expiry_days * 24 * 60 * 60));
         $days_left = ceil(($order_date + ($expiry_days * 24 * 60 * 60) - time()) / (24 * 60 * 60));
         
-        $payment_url = $order->get_checkout_payment_url();
+        $payment_url = $order->get_customer_id() ? $order->get_view_order_url() : WC_B2B_Quote::get_action_url($order, 'view');
         
         ob_start();
         ?>
@@ -336,7 +333,7 @@ class WC_B2B_Order_Manager {
                 </div>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="<?php echo esc_url($payment_url); ?>" style="background-color: #0073aa; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block;"><?php _e('Pay Now', 'wc-to-b2b'); ?></a>
+                    <a href="<?php echo esc_url($payment_url); ?>" style="background-color: #0073aa; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block;"><?php _e('View Quote & Payment Information', 'wc-to-b2b'); ?></a>
                 </div>
                 
                 <p><?php _e('If you have already made the payment or have any questions, please contact us immediately.', 'wc-to-b2b'); ?></p>
@@ -357,17 +354,17 @@ class WC_B2B_Order_Manager {
     public function add_manual_payment_action($actions) {
         global $theorder;
         
-        if (!$theorder || get_post_meta($theorder->get_id(), '_is_b2b_order', true) !== 'yes') {
+        if (!$theorder || $theorder->get_meta('_is_b2b_order', true) !== 'yes') {
             return $actions;
         }
         
         $status = $theorder->get_status();
         
-        if (in_array($status, array('quote-sent', 'processing')) && !$theorder->is_paid()) {
+        if (in_array($status, array('quote-sent', 'quote-accepted', 'processing'), true) && !$theorder->is_paid()) {
             $actions['wc_b2b_mark_paid_manually'] = __('Mark as Paid (Manual Payment)', 'wc-to-b2b');
         }
         
-        if (in_array($status, array('quote-sent', 'processing', 'verified'))) {
+        if (in_array($status, array('quote-sent', 'quote-accepted', 'processing', 'verified'), true)) {
             $actions['wc_b2b_cancel_order_manually'] = __('Cancel Order Manually', 'wc-to-b2b');
         }
         
@@ -378,12 +375,38 @@ class WC_B2B_Order_Manager {
      * Mark order as paid manually.
      */
     public function mark_order_paid_manually($order) {
-        update_post_meta($order->get_id(), '_manually_paid', 'yes');
-        update_post_meta($order->get_id(), '_manually_paid_date', current_time('mysql'));
-        update_post_meta($order->get_id(), '_manually_paid_by', get_current_user_id());
-        
-        $order->payment_complete();
+        $outstanding = max(0, (float) $order->get_total() - WC_B2B_Fulfillment::get_paid_total($order));
+        if ($outstanding > 0) {
+            $payments = WC_B2B_Fulfillment::get_payments($order);
+            $payment = array(
+                'id' => wp_generate_uuid4(),
+                'date' => current_time('Y-m-d'),
+                'amount' => $outstanding,
+                'method' => __('Manual offline payment', 'wc-to-b2b'),
+                'reference' => '',
+                'note' => __('Recorded using the legacy “Mark as paid” order action.', 'wc-to-b2b'),
+                'created_at' => current_time('mysql'),
+                'created_by' => get_current_user_id(),
+            );
+            $payments[] = $payment;
+            $order->update_meta_data('_wc_b2b_payments', $payments);
+        }
+        $order->update_meta_data('_manually_paid', 'yes');
+        $order->update_meta_data('_manually_paid_date', current_time('mysql'));
+        $order->update_meta_data('_manually_paid_by', get_current_user_id());
+        $order->save();
+        if (in_array($order->get_status(), array('quote-sent', 'quote-accepted', 'on-hold', 'pending', 'failed'), true)) {
+            do_action('wc_b2b_suppress_next_status_email', $order->get_id());
+            $order->payment_complete();
+            do_action('wc_b2b_clear_status_email_suppression', $order->get_id());
+        } elseif (!$order->get_date_paid()) {
+            $order->set_date_paid(time());
+            $order->save();
+        }
         $order->add_order_note(__('Order marked as paid manually (offline payment received).', 'wc-to-b2b'));
+        if (isset($payment)) {
+            do_action('wc_b2b_payment_recorded', $order->get_id(), $payment);
+        }
     }
     
     /**
@@ -397,7 +420,8 @@ class WC_B2B_Order_Manager {
      * Check if order is manually paid.
      */
     private function is_manually_paid($order_id) {
-        return get_post_meta($order_id, '_manually_paid', true) === 'yes';
+        $order = wc_get_order($order_id);
+        return $order && $order->get_meta('_manually_paid', true) === 'yes';
     }
     
     /**
@@ -405,11 +429,14 @@ class WC_B2B_Order_Manager {
      */
     public function ajax_mark_paid() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(__('Permission denied.', 'wc-to-b2b'));
+        }
         
         $order_id = intval($_POST['order_id']);
         $order = wc_get_order($order_id);
         
-        if (!$order || get_post_meta($order_id, '_is_b2b_order', true) !== 'yes') {
+        if (!$order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
             wp_send_json_error(__('Invalid B2B order.', 'wc-to-b2b'));
         }
         
@@ -425,13 +452,16 @@ class WC_B2B_Order_Manager {
      */
     public function ajax_send_payment_reminder() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(__('Permission denied.', 'wc-to-b2b'));
+        }
         
         $order_id = intval($_POST['order_id']);
         
         if ($this->send_payment_reminder($order_id)) {
-            update_post_meta($order_id, '_last_payment_reminder', current_time('mysql'));
-            
             $order = wc_get_order($order_id);
+            $order->update_meta_data('_last_payment_reminder', current_time('mysql'));
+            $order->save();
             $order->add_order_note(__('Payment reminder sent manually by admin.', 'wc-to-b2b'));
             
             wp_send_json_success(array(
@@ -448,22 +478,21 @@ class WC_B2B_Order_Manager {
      * Add order expiry meta box.
      */
     public function add_order_expiry_meta_box() {
-        add_meta_box(
-            'wc-b2b-order-expiry',
-            __('B2B Order Expiry & Payment', 'wc-to-b2b'),
-            array($this, 'order_expiry_meta_box'),
-            'shop_order',
-            'side',
-            'high'
-        );
+        $screens = array('shop_order');
+        if (function_exists('wc_get_page_screen_id')) {
+            $screens[] = wc_get_page_screen_id('shop-order');
+        }
+        foreach (array_unique($screens) as $screen) {
+            add_meta_box('wc-b2b-order-expiry', __('B2B Order Expiry & Payment', 'wc-to-b2b'), array($this, 'order_expiry_meta_box'), $screen, 'side', 'high');
+        }
     }
     
     /**
      * Order expiry meta box content.
      */
     public function order_expiry_meta_box($post) {
-        $order = wc_get_order($post->ID);
-        if (!$order || get_post_meta($post->ID, '_is_b2b_order', true) !== 'yes') {
+        $order = $post instanceof WC_Order ? $post : wc_get_order($post->ID);
+        if (!$order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
             echo '<p>' . __('This is not a B2B order.', 'wc-to-b2b') . '</p>';
             return;
         }
@@ -472,8 +501,8 @@ class WC_B2B_Order_Manager {
         $order_date = $order->get_date_created()->getTimestamp();
         $expiry_date = $order_date + ($expiry_days * 24 * 60 * 60);
         $days_left = ceil(($expiry_date - time()) / (24 * 60 * 60));
-        $is_manually_paid = $this->is_manually_paid($post->ID);
-        $last_reminder = get_post_meta($post->ID, '_last_payment_reminder', true);
+        $is_manually_paid = $this->is_manually_paid($order->get_id());
+        $last_reminder = $order->get_meta('_last_payment_reminder', true);
         
         ?>
         <div class="wc-b2b-expiry-info">
@@ -497,12 +526,12 @@ class WC_B2B_Order_Manager {
                 <p style="color: #00a32a;"><?php _e('Paid', 'wc-to-b2b'); ?></p>
             <?php elseif ($is_manually_paid): ?>
                 <p style="color: #00a32a;"><?php _e('Manually Paid', 'wc-to-b2b'); ?></p>
-                <p><small><?php _e('Marked as paid:', 'wc-to-b2b'); ?> <?php echo get_post_meta($post->ID, '_manually_paid_date', true); ?></small></p>
+                <p><small><?php _e('Marked as paid:', 'wc-to-b2b'); ?> <?php echo esc_html($order->get_meta('_manually_paid_date', true)); ?></small></p>
             <?php else: ?>
                 <p style="color: #d63638;"><?php _e('Unpaid', 'wc-to-b2b'); ?></p>
                 
                 <?php if (in_array($order->get_status(), array('quote-sent', 'processing'))): ?>
-                <button type="button" class="button button-primary" id="wc-b2b-mark-paid" data-order-id="<?php echo $post->ID; ?>">
+                <button type="button" class="button button-primary" id="wc-b2b-mark-paid" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                     <?php _e('Mark as Paid', 'wc-to-b2b'); ?>
                 </button>
                 <?php endif; ?>
@@ -518,7 +547,7 @@ class WC_B2B_Order_Manager {
             <?php endif; ?>
             
             <?php if (!$order->is_paid() && !$is_manually_paid && in_array($order->get_status(), array('quote-sent', 'processing'))): ?>
-            <button type="button" class="button" id="wc-b2b-send-reminder" data-order-id="<?php echo $post->ID; ?>">
+            <button type="button" class="button" id="wc-b2b-send-reminder" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                 <?php _e('Send Payment Reminder', 'wc-to-b2b'); ?>
             </button>
             <?php endif; ?>
@@ -539,13 +568,14 @@ class WC_B2B_Order_Manager {
      * Handle order status changes.
      */
     public function handle_order_status_change($order_id, $old_status, $new_status, $order) {
-        if (get_post_meta($order_id, '_is_b2b_order', true) !== 'yes') {
+        if ($order->get_meta('_is_b2b_order', true) !== 'yes') {
             return;
         }
         
         // Reset reminder counter when order is paid
         if ($new_status === 'completed' || $order->is_paid()) {
-            delete_post_meta($order_id, '_last_payment_reminder');
+            $order->delete_meta_data('_last_payment_reminder');
+            $order->save();
         }
     }
 }

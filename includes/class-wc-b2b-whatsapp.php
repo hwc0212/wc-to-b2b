@@ -45,7 +45,7 @@ class WC_B2B_WhatsApp {
             return false;
         }
         
-        $token = get_post_meta($order_id, '_verification_token', true);
+        $token = $order->get_meta('_verification_token', true);
         if (!$token) {
             return false;
         }
@@ -84,17 +84,8 @@ class WC_B2B_WhatsApp {
             return false;
         }
         
-        $confirm_url = add_query_arg(array(
-            'wc_b2b_action' => 'confirm',
-            'order_id' => $order_id,
-            'nonce' => wp_create_nonce('wc_b2b_confirm_' . $order_id)
-        ), home_url());
-        
-        $cancel_url = add_query_arg(array(
-            'wc_b2b_action' => 'cancel',
-            'order_id' => $order_id,
-            'nonce' => wp_create_nonce('wc_b2b_cancel_' . $order_id)
-        ), home_url());
+        $confirm_url = WC_B2B_Quote::get_action_url($order, 'confirm');
+        $cancel_url = WC_B2B_Quote::get_action_url($order, 'cancel');
         
         $message = sprintf(
             __("Hello %s!\n\nYour quote for order #%s is ready.\n\nTotal: %s\n\nTo accept: %s\nTo cancel: %s\n\nOr reply:\nACCEPT %d - to accept\nCANCEL %d - to cancel", 'wc-to-b2b'),
@@ -244,14 +235,13 @@ class WC_B2B_WhatsApp {
             $order_id = intval($matches[1]);
             $order = wc_get_order($order_id);
             
-            if ($order && $this->verify_phone_matches_order($phone, $order)) {
-                $order->update_status('processing', __('Customer confirmed quote via WhatsApp.', 'wc-to-b2b'));
-                update_post_meta($order_id, '_payment_enabled', 'yes');
-                
+            if ($order && $order->get_status() === 'quote-sent' && WC_B2B_Quote::is_quote_valid($order) && $this->verify_phone_matches_order($phone, $order)) {
+                $order->update_status('quote-accepted', __('Customer accepted the quote via WhatsApp and will pay offline.', 'wc-to-b2b'));
+
                 $response_message = sprintf(
-                    __('Order #%s confirmed! Payment link: %s', 'wc-to-b2b'),
+                    __('Order #%s confirmed. View offline payment information: %s', 'wc-to-b2b'),
                     $order->get_order_number(),
-                    $order->get_checkout_payment_url()
+                    WC_B2B_Quote::get_action_url($order, 'view')
                 );
             } else {
                 $response_message = __('Invalid order or phone number mismatch.', 'wc-to-b2b');

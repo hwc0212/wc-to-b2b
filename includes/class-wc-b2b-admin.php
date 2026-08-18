@@ -17,7 +17,6 @@ class WC_B2B_Admin {
      */
     public function __construct() {
         add_action('add_meta_boxes', array($this, 'add_order_meta_boxes'));
-        add_action('woocommerce_process_shop_order_meta', array($this, 'save_order_meta'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
         
         // Add admin menu
@@ -46,31 +45,22 @@ class WC_B2B_Admin {
      * Add order meta boxes.
      */
     public function add_order_meta_boxes() {
-        add_meta_box(
-            'wc-b2b-order-actions',
-            __('B2B Order Actions', 'wc-to-b2b'),
-            array($this, 'order_actions_meta_box'),
-            'shop_order',
-            'side',
-            'high'
-        );
-        
-        add_meta_box(
-            'wc-b2b-order-info',
-            __('B2B Order Information', 'wc-to-b2b'),
-            array($this, 'order_info_meta_box'),
-            'shop_order',
-            'normal',
-            'high'
-        );
+        $screens = array('shop_order');
+        if (function_exists('wc_get_page_screen_id')) {
+            $screens[] = wc_get_page_screen_id('shop-order');
+        }
+        foreach (array_unique($screens) as $screen) {
+            add_meta_box('wc-b2b-order-actions', __('B2B Order Actions', 'wc-to-b2b'), array($this, 'order_actions_meta_box'), $screen, 'side', 'high');
+            add_meta_box('wc-b2b-order-info', __('B2B Order Information', 'wc-to-b2b'), array($this, 'order_info_meta_box'), $screen, 'normal', 'high');
+        }
     }
     
     /**
      * Order actions meta box.
      */
     public function order_actions_meta_box($post) {
-        $order = wc_get_order($post->ID);
-        $is_b2b = get_post_meta($post->ID, '_is_b2b_order', true);
+        $order = $post instanceof WC_Order ? $post : wc_get_order($post->ID);
+        $is_b2b = $order ? $order->get_meta('_is_b2b_order', true) : '';
         
         if ($is_b2b !== 'yes') {
             echo '<p>' . __('This is not a B2B order.', 'wc-to-b2b') . '</p>';
@@ -82,14 +72,14 @@ class WC_B2B_Admin {
         <div class="wc-b2b-actions">
             <?php wp_nonce_field('wc_b2b_order_actions', 'wc_b2b_nonce'); ?>
             
-            <?php if ($status === 'pending-verification'): ?>
+            <?php if (in_array($status, array('b2b-verifying', 'pending-verificat'), true)): ?>
                 <p><strong><?php _e('Order Status:', 'wc-to-b2b'); ?></strong> <?php _e('Pending Verification', 'wc-to-b2b'); ?></p>
                 
-                <button type="button" class="button" id="wc-b2b-resend-verification" data-order-id="<?php echo $post->ID; ?>">
+                <button type="button" class="button" id="wc-b2b-resend-verification" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                     <?php _e('Resend Verification Email', 'wc-to-b2b'); ?>
                 </button>
                 
-                <button type="button" class="button button-primary" id="wc-b2b-manual-verify" data-order-id="<?php echo $post->ID; ?>">
+                <button type="button" class="button button-primary" id="wc-b2b-manual-verify" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                     <?php _e('Manual Verify', 'wc-to-b2b'); ?>
                 </button>
                 
@@ -136,19 +126,19 @@ class WC_B2B_Admin {
      * Order info meta box.
      */
     public function order_info_meta_box($post) {
-        $order = wc_get_order($post->ID);
-        $is_b2b = get_post_meta($post->ID, '_is_b2b_order', true);
+        $order = $post instanceof WC_Order ? $post : wc_get_order($post->ID);
+        $is_b2b = $order ? $order->get_meta('_is_b2b_order', true) : '';
         
         if ($is_b2b !== 'yes') {
             return;
         }
         
-        $message = get_post_meta($post->ID, '_order_message', true);
-        $email_verified = get_post_meta($post->ID, '_email_verified', true) === 'yes';
-        $whatsapp_verified = get_post_meta($post->ID, '_whatsapp_verified', true) === 'yes';
-        $verified_via = get_post_meta($post->ID, '_verified_via', true);
-        $email_verified_at = get_post_meta($post->ID, '_email_verified_at', true);
-        $whatsapp_verified_at = get_post_meta($post->ID, '_whatsapp_verified_at', true);
+        $message = $order->get_meta('_order_message', true);
+        $email_verified = $order->get_meta('_email_verified', true) === 'yes';
+        $whatsapp_verified = $order->get_meta('_whatsapp_verified', true) === 'yes';
+        $verified_via = $order->get_meta('_verified_via', true);
+        $email_verified_at = $order->get_meta('_email_verified_at', true);
+        $whatsapp_verified_at = $order->get_meta('_whatsapp_verified_at', true);
         ?>
         <table class="form-table">
             <tr>
@@ -208,12 +198,11 @@ class WC_B2B_Admin {
      * Enqueue admin scripts.
      */
     public function enqueue_admin_scripts($hook) {
-        if ($hook !== 'post.php' && $hook !== 'post-new.php') {
-            return;
-        }
-        
-        global $post;
-        if (!$post || $post->post_type !== 'shop_order') {
+        $screen = get_current_screen();
+        $hpos_screen = function_exists('wc_get_page_screen_id') ? wc_get_page_screen_id('shop-order') : '';
+        $is_legacy = in_array($hook, array('post.php', 'post-new.php'), true) && $screen && 'shop_order' === $screen->post_type;
+        $is_hpos = $screen && $hpos_screen && $screen->id === $hpos_screen;
+        if (!$is_legacy && !$is_hpos) {
             return;
         }
         
@@ -451,13 +440,13 @@ class WC_B2B_Admin {
     public function add_order_actions($actions) {
         global $theorder;
         
-        if (!$theorder || get_post_meta($theorder->get_id(), '_is_b2b_order', true) !== 'yes') {
+        if (!$theorder || $theorder->get_meta('_is_b2b_order', true) !== 'yes') {
             return $actions;
         }
         
         $status = $theorder->get_status();
         
-        if ($status === 'pending-verification') {
+        if (in_array($status, array('b2b-verifying', 'pending-verificat'), true)) {
             $actions['wc_b2b_send_verification'] = __('Resend verification email', 'wc-to-b2b');
             $actions['wc_b2b_manual_verify'] = __('Manual verify order', 'wc-to-b2b');
         } elseif ($status === 'verified') {
@@ -495,10 +484,10 @@ class WC_B2B_Admin {
      * Send quote to customer action.
      */
     public function send_quote_to_customer($order) {
-        $verified_via = get_post_meta($order->get_id(), '_verified_via', true);
+        $verified_via = $order->get_meta('_verified_via', true);
         
         if ($verified_via === 'whatsapp') {
-            $note_message = __('Quote sent to customer via WhatsApp.', 'wc-to-b2b');
+            $note_message = __('Quote sent to customer via email and WhatsApp.', 'wc-to-b2b');
         } else {
             $note_message = __('Quote sent to customer via email.', 'wc-to-b2b');
         }
@@ -511,6 +500,9 @@ class WC_B2B_Admin {
      */
     public function ajax_resend_verification() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'wc-to-b2b')));
+        }
         
         $order_id = intval($_POST['order_id']);
         $order = wc_get_order($order_id);
@@ -535,6 +527,9 @@ class WC_B2B_Admin {
      */
     public function ajax_manual_verify() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'wc-to-b2b')));
+        }
         
         $order_id = intval($_POST['order_id']);
         $order = wc_get_order($order_id);
@@ -556,6 +551,9 @@ class WC_B2B_Admin {
      */
     public function ajax_update_item_price() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'wc-to-b2b')));
+        }
         
         $order_id = intval($_POST['order_id']);
         $item_id = intval($_POST['item_id']);
@@ -563,14 +561,14 @@ class WC_B2B_Admin {
         $quantity = intval($_POST['quantity']);
         
         $order = wc_get_order($order_id);
-        if (!$order || get_post_meta($order_id, '_is_b2b_order', true) !== 'yes') {
+        if (!$order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
             wp_send_json_error(array(
                 'message' => __('Invalid B2B order.', 'wc-to-b2b')
             ));
         }
         
         // Check if order is in editable status
-        if (!in_array($order->get_status(), array('verified', 'pending-verification'))) {
+        if (!in_array($order->get_status(), array('verified', 'b2b-verifying', 'pending-verificat'), true)) {
             wp_send_json_error(array(
                 'message' => __('Order cannot be modified in current status.', 'wc-to-b2b')
             ));
@@ -615,19 +613,22 @@ class WC_B2B_Admin {
      */
     public function ajax_update_shipping_cost() {
         check_ajax_referer('wc_b2b_admin', 'nonce');
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'wc-to-b2b')));
+        }
         
         $order_id = intval($_POST['order_id']);
         $new_shipping_cost = floatval($_POST['shipping_cost']);
         
         $order = wc_get_order($order_id);
-        if (!$order || get_post_meta($order_id, '_is_b2b_order', true) !== 'yes') {
+        if (!$order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
             wp_send_json_error(array(
                 'message' => __('Invalid B2B order.', 'wc-to-b2b')
             ));
         }
         
         // Check if order is in editable status
-        if (!in_array($order->get_status(), array('verified', 'pending-verification'))) {
+        if (!in_array($order->get_status(), array('verified', 'b2b-verifying', 'pending-verificat'), true)) {
             wp_send_json_error(array(
                 'message' => __('Order cannot be modified in current status.', 'wc-to-b2b')
             ));
@@ -668,13 +669,13 @@ class WC_B2B_Admin {
      * Add B2B price editing interface.
      */
     public function add_b2b_price_editing($order_id) {
-        $order = wc_get_order($order_id);
-        if (!$order || get_post_meta($order_id, '_is_b2b_order', true) !== 'yes') {
+        $order = $order_id instanceof WC_Order ? $order_id : wc_get_order($order_id);
+        if (!$order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
             return;
         }
         
         $status = $order->get_status();
-        if (!in_array($status, array('verified', 'pending-verification'))) {
+        if (!in_array($status, array('verified', 'b2b-verifying', 'pending-verificat'), true)) {
             return;
         }
         ?>
@@ -786,8 +787,9 @@ class WC_B2B_Admin {
      * Add B2B price column header.
      */
     public function add_b2b_price_column_header($headers) {
-        global $post;
-        if ($post && get_post_meta($post->ID, '_is_b2b_order', true) === 'yes') {
+        global $post, $theorder;
+        $order = $theorder instanceof WC_Order ? $theorder : ($post ? wc_get_order($post->ID) : false);
+        if ($order && $order->get_meta('_is_b2b_order', true) === 'yes') {
             $headers['b2b_custom_price'] = __('B2B Price', 'wc-to-b2b');
         }
         return $headers;
@@ -797,8 +799,9 @@ class WC_B2B_Admin {
      * Add B2B price column content.
      */
     public function add_b2b_price_column_content($product, $item, $item_id) {
-        global $post;
-        if ($post && get_post_meta($post->ID, '_is_b2b_order', true) === 'yes') {
+        global $post, $theorder;
+        $order = $theorder instanceof WC_Order ? $theorder : ($post ? wc_get_order($post->ID) : false);
+        if ($order && $order->get_meta('_is_b2b_order', true) === 'yes') {
             $custom_price = wc_get_order_item_meta($item_id, '_wc_b2b_custom_price', true);
             if ($custom_price) {
                 echo '<div class="b2b-custom-price">';

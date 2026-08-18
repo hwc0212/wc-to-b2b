@@ -26,18 +26,18 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 if (response.success) {
                     showMessage(response.data.message, 'success');
-                    // Redirect to payment after 2 seconds
+                    // Return to the signed quote view after accepting.
                     setTimeout(function() {
                         window.location.href = response.data.redirect_url;
                     }, 2000);
                 } else {
                     showMessage(response.data.message || 'Error confirming order.', 'error');
-                    $button.prop('disabled', false).text('Accept Quote & Proceed to Payment');
+                    $button.prop('disabled', false).text('Accept Quote & Pay Offline');
                 }
             },
             error: function() {
                 showMessage('Error confirming order. Please try again.', 'error');
-                $button.prop('disabled', false).text('Accept Quote & Proceed to Payment');
+                $button.prop('disabled', false).text('Accept Quote & Pay Offline');
             }
         });
     });

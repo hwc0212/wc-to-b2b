@@ -24,6 +24,8 @@ class WC_B2B_Install {
         self::create_options();
         self::schedule_cleanup_events();
         self::update_version();
+        add_rewrite_endpoint('b2b-orders', EP_ROOT | EP_PAGES);
+        flush_rewrite_rules();
         
         // Trigger action
         do_action('wc_to_b2b_installed');
@@ -85,7 +87,17 @@ class WC_B2B_Install {
                 'email' => 'required',
                 'message' => 'optional'
             ),
-            'wc_b2b_complete_uninstall' => 'no'
+            'wc_b2b_complete_uninstall' => 'no',
+            'wc_b2b_membership_tiers' => array(
+                array('id' => 'standard', 'name' => __('Standard B2B', 'wc-to-b2b'), 'discount' => 0),
+                array('id' => 'silver', 'name' => __('Silver', 'wc-to-b2b'), 'discount' => 5),
+                array('id' => 'gold', 'name' => __('Gold', 'wc-to-b2b'), 'discount' => 10)
+            ),
+            'wc_b2b_auto_quote' => 'yes',
+            'wc_b2b_require_account' => 'no',
+            'wc_b2b_verify_guests' => 'yes',
+            'wc_b2b_quote_validity_days' => '21',
+            'wc_b2b_payment_instructions' => ''
         );
         
         foreach ($default_options as $option => $value) {
@@ -157,6 +169,12 @@ class WC_B2B_Install {
             'wc_b2b_whatsapp_button_text',
             'wc_b2b_checkout_fields',
             'wc_b2b_complete_uninstall',
+            'wc_b2b_membership_tiers',
+            'wc_b2b_auto_quote',
+            'wc_b2b_require_account',
+            'wc_b2b_verify_guests',
+            'wc_b2b_quote_validity_days',
+            'wc_b2b_payment_instructions',
             'wc_to_b2b_version'
         );
         
@@ -166,6 +184,12 @@ class WC_B2B_Install {
         
         // Remove order meta data
         $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '_wc_b2b_%' OR meta_key LIKE '_is_b2b_order%' OR meta_key LIKE '_order_message%' OR meta_key LIKE '_email_verified%' OR meta_key LIKE '_whatsapp_verified%' OR meta_key LIKE '_verified_via%' OR meta_key LIKE '_verification_token%' OR meta_key LIKE '_manually_paid%' OR meta_key LIKE '_last_payment_reminder%'");
+        $wpdb->delete($wpdb->usermeta, array('meta_key' => '_wc_b2b_tier'), array('%s'));
+
+        $hpos_meta_table = $wpdb->prefix . 'wc_orders_meta';
+        if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $hpos_meta_table)) === $hpos_meta_table) {
+            $wpdb->query("DELETE FROM {$hpos_meta_table} WHERE meta_key LIKE '_wc_b2b_%' OR meta_key IN ('_is_b2b_order', '_order_message', '_email_verified', '_whatsapp_verified', '_verified_via', '_verification_token', '_manually_paid', '_manually_paid_date', '_manually_paid_by', '_last_payment_reminder')");
+        }
         
         // Remove scheduled events
         self::cleanup_events();

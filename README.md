@@ -1,7 +1,7 @@
 # WooCommerce to B2B 插件
 
 [![GitHub](https://img.shields.io/badge/GitHub-wc--to--b2b-blue?logo=github)](https://github.com/hwc0212/wc-to-b2b)
-[![Version](https://img.shields.io/badge/Version-1.5.3-green)](https://github.com/hwc0212/wc-to-b2b/releases)
+[![Version](https://img.shields.io/badge/Version-2.0.0-green)](https://github.com/hwc0212/wc-to-b2b/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-purple)](https://woocommerce.com/)
 
@@ -10,6 +10,22 @@
 **WooCommerce to B2B** 是一个专为B2B企业设计的WordPress插件，将传统的WooCommerce直接付款模式转换为"询价→沟通→报价→确认→付款"的专业B2B工作流程。
 
 **GitHub仓库**: [https://github.com/hwc0212/wc-to-b2b](https://github.com/hwc0212/wc-to-b2b)
+
+## 2.0 B2B 会员报价与线下履约
+
+2.0 版本在原有询盘流程上增加了可实际运营的 B2B 交易闭环：
+
+- **会员等级价**：在“WooCommerce → B2B Member Levels”添加等级、默认折扣，再到用户资料中分配等级。商品和每个变体均可设置等级固定价；固定价优先，未设置固定价时使用等级折扣。
+- **在线生成报价**：传统结账和区块版 Checkout 均只显示“Offline quotation”，不会调用任何在线支付网关。可在“WooCommerce → B2B Quote Settings”选择自动生成报价，或由管理员调整价格、运费后人工发送。
+- **线下付款资料**：在报价设置中填写银行账户、收款人、SWIFT、付款附言等资料，系统会显示在报价邮件、订单详情和客户中心。
+- **收款登记**：管理员可在订单的“B2B Payments & Shipments”区域逐笔登记日期、金额、方式和银行流水号。累计足额后订单自动进入已收款/处理中状态。
+- **发货登记**：支持多次/部分发货，记录承运商、单号、查询链接、发货内容和备注；最后一次发货可直接标记全部发货。
+- **客户查询**：客户登录“我的账户 → B2B Quotes & Orders”，可查看并打印报价、付款余额、每笔收款和每次发货记录。访客订单通过邮件中的签名链接安全查看。
+- **邮件通知**：报价生成、报价接受、付款登记、发货登记和取消等关键变化都会发送邮件；发货邮件包含物流查询信息。
+
+推荐启用“结账时必须创建账户”，以便客户长期登录查询历史记录。旧订单状态和原有邮箱/WhatsApp 验证流程仍保持兼容。
+
+如果旧版本曾启用“Replace add to cart buttons with WhatsApp buttons”，请在原 B2B 设置中关闭该选项，商品页才会恢复加入购物车并进入在线报价结账流程。
 
 ## 解决的核心问题
 
@@ -220,7 +236,15 @@ WhatsApp功能默认关闭，需要手动配置开启：
 
 ## 更新日志
 
-### 版本 1.5.3 (最新版本) - 2026年
+### 版本 2.0.0
+- 新增可配置的 B2B 会员等级、用户等级分配、商品及变体等级价
+- 新增自动/人工正式报价与仅线下付款的结账方式
+- 新增报价编号、有效期、银行付款资料和可打印客户报价页
+- 新增多笔付款、部分发货及多次物流记录
+- 新增客户中心 B2B 报价订单入口和状态/履约邮件通知
+- 新增 WooCommerce HPOS 订单存储兼容与签名链接访问控制
+
+### 版本 1.5.3 - 2026年
 - � ***管理员邮件优化**: 大幅改进管理员通知邮件，包含完整订单信息
 - 🏢 **系统兼容性**: 支持各种CRM/ERP系统，销售人员可直接基于邮件回复
 - � **详档细产品信息**: 邮件包含SKU、变体、单价等完整产品详情

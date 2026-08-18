@@ -18,6 +18,8 @@ class WC_B2B_Order {
     public function __construct() {
         add_action('init', array($this, 'register_order_statuses'));
         add_filter('wc_order_statuses', array($this, 'add_order_statuses'));
+        add_filter('woocommerce_order_is_paid', array($this, 'preserve_paid_state_after_shipping'), 10, 2);
+        add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'add_payment_complete_statuses'), 10, 2);
         add_action('woocommerce_order_status_changed', array($this, 'handle_status_change'), 10, 4);
         
         // Add verification actions
@@ -38,7 +40,7 @@ class WC_B2B_Order {
      * Register custom order statuses.
      */
     public function register_order_statuses() {
-        register_post_status('wc-pending-verification', array(
+        register_post_status('wc-b2b-verifying', array(
             'label' => _x('Pending Verification', 'Order status', 'wc-to-b2b'),
             'public' => true,
             'exclude_from_search' => false,
@@ -64,6 +66,43 @@ class WC_B2B_Order {
             'show_in_admin_status_list' => true,
             'label_count' => _n_noop('Quote Sent <span class="count">(%s)</span>', 'Quote Sent <span class="count">(%s)</span>', 'wc-to-b2b')
         ));
+
+        // Compatibility for early releases whose overlong status was truncated by the database.
+        register_post_status('wc-pending-verificat', array(
+            'label' => _x('Pending Verification (Legacy)', 'Order status', 'wc-to-b2b'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Pending Verification (Legacy) <span class="count">(%s)</span>', 'Pending Verification (Legacy) <span class="count">(%s)</span>', 'wc-to-b2b')
+        ));
+
+        register_post_status('wc-quote-accepted', array(
+            'label' => _x('Quote Accepted / Awaiting Payment', 'Order status', 'wc-to-b2b'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Quote Accepted <span class="count">(%s)</span>', 'Quote Accepted <span class="count">(%s)</span>', 'wc-to-b2b')
+        ));
+
+        register_post_status('wc-partially-shipped', array(
+            'label' => _x('Partially Shipped', 'Order status', 'wc-to-b2b'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Partially Shipped <span class="count">(%s)</span>', 'Partially Shipped <span class="count">(%s)</span>', 'wc-to-b2b')
+        ));
+
+        register_post_status('wc-shipped', array(
+            'label' => _x('Shipped', 'Order status', 'wc-to-b2b'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Shipped <span class="count">(%s)</span>', 'Shipped <span class="count">(%s)</span>', 'wc-to-b2b')
+        ));
     }
     
     /**
@@ -77,13 +116,38 @@ class WC_B2B_Order {
             $new_order_statuses[$key] = $status;
             
             if ('wc-pending' === $key) {
-                $new_order_statuses['wc-pending-verification'] = _x('Pending Verification', 'Order status', 'wc-to-b2b');
+                $new_order_statuses['wc-b2b-verifying'] = _x('Pending Verification', 'Order status', 'wc-to-b2b');
+                $new_order_statuses['wc-pending-verificat'] = _x('Pending Verification (Legacy)', 'Order status', 'wc-to-b2b');
                 $new_order_statuses['wc-verified'] = _x('Verified', 'Order status', 'wc-to-b2b');
                 $new_order_statuses['wc-quote-sent'] = _x('Quote Sent', 'Order status', 'wc-to-b2b');
+                $new_order_statuses['wc-quote-accepted'] = _x('Quote Accepted / Awaiting Payment', 'Order status', 'wc-to-b2b');
+                $new_order_statuses['wc-partially-shipped'] = _x('Partially Shipped', 'Order status', 'wc-to-b2b');
+                $new_order_statuses['wc-shipped'] = _x('Shipped', 'Order status', 'wc-to-b2b');
             }
         }
         
         return $new_order_statuses;
+    }
+
+    public function preserve_paid_state_after_shipping($is_paid, $order) {
+        if ($is_paid || !$order instanceof WC_Order || $order->get_meta('_is_b2b_order', true) !== 'yes') {
+            return $is_paid;
+        }
+        if (!in_array($order->get_status(), array('partially-shipped', 'shipped'), true)) {
+            return false;
+        }
+        if ($order->get_date_paid()) {
+            return true;
+        }
+        return class_exists('WC_B2B_Fulfillment') && WC_B2B_Fulfillment::get_paid_total($order) + 0.00001 >= (float) $order->get_total();
+    }
+
+    public function add_payment_complete_statuses($statuses, $order) {
+        if ($order instanceof WC_Order && $order->get_meta('_is_b2b_order', true) === 'yes') {
+            $statuses[] = 'quote-sent';
+            $statuses[] = 'quote-accepted';
+        }
+        return array_unique($statuses);
     }
     
     /**
@@ -94,17 +158,19 @@ class WC_B2B_Order {
             case 'verified':
                 // Send notification to admin (always email for admin)
                 do_action('wc_b2b_send_admin_notification', $order_id);
+                if (get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
+                    WC_B2B_Quote::prepare_quote($order);
+                    $order->update_status('quote-sent', __('Automatic quotation generated after customer verification.', 'wc-to-b2b'));
+                }
                 break;
                 
             case 'quote-sent':
-                // Send quote via the same method used for verification
-                $verified_via = get_post_meta($order_id, '_verified_via', true);
-                
+                // Email is the durable record; WhatsApp is an optional additional channel.
+                WC_B2B_Quote::prepare_quote($order);
+                $verified_via = $order->get_meta('_verified_via', true);
+                do_action('wc_b2b_send_quote_email', $order_id);
                 if ($verified_via === 'whatsapp') {
                     do_action('wc_b2b_send_whatsapp_quote', $order_id);
-                } else {
-                    // Default to email if no verification method recorded or if verified via email
-                    do_action('wc_b2b_send_quote_email', $order_id);
                 }
                 break;
         }
@@ -123,7 +189,8 @@ class WC_B2B_Order {
         
         if ($result['success']) {
             wc_add_notice(__('Order verified successfully!', 'wc-to-b2b'), 'success');
-            wp_redirect(wc_get_page_permalink('myaccount'));
+            $order = wc_get_order($result['order_id']);
+            wp_safe_redirect($order ? WC_B2B_Quote::get_action_url($order, 'view') : wc_get_page_permalink('myaccount'));
         } else {
             wc_add_notice($result['message'], 'error');
             wp_redirect(home_url());
@@ -173,26 +240,34 @@ class WC_B2B_Order {
         
         // Update verification status based on token type
         if ($token_data->type === 'whatsapp') {
-            update_post_meta($token_data->order_id, '_whatsapp_verified', 'yes');
-            update_post_meta($token_data->order_id, '_whatsapp_verified_at', current_time('mysql'));
+            $order = wc_get_order($token_data->order_id);
+            if ($order) {
+                $order->update_meta_data('_whatsapp_verified', 'yes');
+                $order->update_meta_data('_whatsapp_verified_at', current_time('mysql'));
+                $order->save();
+            }
         } else {
-            update_post_meta($token_data->order_id, '_email_verified', 'yes');
-            update_post_meta($token_data->order_id, '_email_verified_at', current_time('mysql'));
+            $order = wc_get_order($token_data->order_id);
+            if ($order) {
+                $order->update_meta_data('_email_verified', 'yes');
+                $order->update_meta_data('_email_verified_at', current_time('mysql'));
+                $order->save();
+            }
         }
-        
+
         // Check if order should be marked as verified (either method works)
-        $email_verified = get_post_meta($token_data->order_id, '_email_verified', true) === 'yes';
-        $whatsapp_verified = get_post_meta($token_data->order_id, '_whatsapp_verified', true) === 'yes';
-        
         $order = wc_get_order($token_data->order_id);
+        $email_verified = $order && $order->get_meta('_email_verified', true) === 'yes';
+        $whatsapp_verified = $order && $order->get_meta('_whatsapp_verified', true) === 'yes';
+
         if ($order && ($email_verified || $whatsapp_verified)) {
             // Only update status if not already verified
-            if ($order->get_status() === 'pending-verification') {
+            if (in_array($order->get_status(), array('b2b-verifying', 'pending-verificat'), true)) {
                 $verification_method = $token_data->type === 'whatsapp' ? 'WhatsApp' : 'Email';
-                $order->update_status('verified', sprintf(__('Order verified by customer via %s.', 'wc-to-b2b'), $verification_method));
-                
                 // Store which method was used for verification
-                update_post_meta($token_data->order_id, '_verified_via', $token_data->type);
+                $order->update_meta_data('_verified_via', $token_data->type);
+                $order->save();
+                $order->update_status('verified', sprintf(__('Order verified by customer via %s.', 'wc-to-b2b'), $verification_method));
             }
         }
         
@@ -233,15 +308,17 @@ class WC_B2B_Order {
             wp_send_json_error(__('Access denied.', 'wc-to-b2b'));
         }
         
-        // Update order status to processing (ready for payment)
-        $order->update_status('processing', __('Customer confirmed the quote.', 'wc-to-b2b'));
-        
-        // Enable payment for this order
-        update_post_meta($order_id, '_payment_enabled', 'yes');
-        
+        if ($order->get_status() !== 'quote-sent') {
+            wp_send_json_error(__('This quote cannot be accepted in its current status.', 'wc-to-b2b'));
+        }
+        if (!WC_B2B_Quote::is_quote_valid($order)) {
+            wp_send_json_error(__('This quote has expired. Please contact us for a new quote.', 'wc-to-b2b'));
+        }
+        $order->update_status('quote-accepted', __('Customer accepted the quote and will pay offline.', 'wc-to-b2b'));
+
         wp_send_json_success(array(
-            'message' => __('Order confirmed successfully!', 'wc-to-b2b'),
-            'payment_url' => $order->get_checkout_payment_url()
+            'message' => __('Quote accepted. Please use the offline payment information on the quote.', 'wc-to-b2b'),
+            'redirect_url' => $order->get_view_order_url()
         ));
     }
     
@@ -262,7 +339,14 @@ class WC_B2B_Order {
         if (!$this->can_customer_access_order($order)) {
             wp_send_json_error(__('Access denied.', 'wc-to-b2b'));
         }
-        
+
+        if (!in_array($order->get_status(), array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true)) {
+            wp_send_json_error(__('This order cannot be cancelled in its current status.', 'wc-to-b2b'));
+        }
+        if (class_exists('WC_B2B_Fulfillment') && WC_B2B_Fulfillment::get_paid_total($order) > 0) {
+            wp_send_json_error(__('A payment has already been recorded. Please contact us to cancel this order.', 'wc-to-b2b'));
+        }
+
         // Update order status to cancelled
         $order->update_status('cancelled', __('Order cancelled by customer.', 'wc-to-b2b'));
         
@@ -275,8 +359,9 @@ class WC_B2B_Order {
      * Check if customer can access order.
      */
     private function can_customer_access_order($order) {
-        // For now, we'll use email verification
-        // In a more secure implementation, you might want to use customer accounts
-        return true; // Implement proper access control based on your needs
+        if (current_user_can('manage_woocommerce')) {
+            return true;
+        }
+        return is_user_logged_in() && $order->get_customer_id() && get_current_user_id() === (int) $order->get_customer_id();
     }
 }

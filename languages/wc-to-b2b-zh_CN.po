@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the WooCommerce to B2B package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce to B2B 1.5.3\n"
+"Project-Id-Version: WooCommerce to B2B 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/hwc0212/wc-to-b2b/issues\n"
 "POT-Creation-Date: 2026-01-08 12:00+0000\n"
 "PO-Revision-Date: 2026-01-08 12:00+0000\n"

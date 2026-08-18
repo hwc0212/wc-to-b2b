@@ -35,7 +35,7 @@ class WC_B2B_Email {
             return false;
         }
         
-        $token = get_post_meta($order_id, '_verification_token', true);
+        $token = $order->get_meta('_verification_token', true);
         if (!$token) {
             return false;
         }
@@ -84,7 +84,7 @@ class WC_B2B_Email {
         }
         
         $to = $order->get_billing_email();
-        $subject = sprintf(__('Your quote for order #%s is ready', 'wc-to-b2b'), $order->get_order_number());
+        $subject = sprintf(__('Your B2B quote %s is ready', 'wc-to-b2b'), $order->get_meta('_wc_b2b_quote_number', true) ?: '#' . $order->get_order_number());
         
         $message = $this->get_quote_email_template($order);
         
@@ -121,13 +121,13 @@ class WC_B2B_Email {
                 <p><strong><?php _e('Order Date:', 'wc-to-b2b'); ?></strong> <?php echo wc_format_datetime($order->get_date_created()); ?></p>
                 <p><strong><?php _e('Total:', 'wc-to-b2b'); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p>
                 
-                <?php $message = get_post_meta($order->get_id(), '_order_message', true); ?>
+                <?php $message = $order->get_meta('_order_message', true); ?>
                 <?php if ($message): ?>
                 <p><strong><?php _e('Your Message:', 'wc-to-b2b'); ?></strong></p>
                 <p style="background-color: #f9f9f9; padding: 15px; border-left: 3px solid #0073aa;"><?php echo nl2br(esc_html($message)); ?></p>
                 <?php endif; ?>
                 
-                <p style="margin-top: 30px; color: #666; font-size: 12px;"><?php _e('This verification link will expire in 24 hours.', 'wc-to-b2b'); ?></p>
+                <p style="margin-top: 30px; color: #666; font-size: 12px;"><?php printf(__('This verification link will expire in %d hours.', 'wc-to-b2b'), absint(get_option('wc_b2b_verification_expiry', 48))); ?></p>
             </div>
         </div>
         <?php
@@ -142,8 +142,8 @@ class WC_B2B_Email {
         
         $billing_address = $order->get_formatted_billing_address();
         $shipping_address = $order->get_formatted_shipping_address();
-        $message = get_post_meta($order->get_id(), '_order_message', true);
-        $verified_via = get_post_meta($order->get_id(), '_verified_via', true);
+        $message = $order->get_meta('_order_message', true);
+        $verified_via = $order->get_meta('_verified_via', true);
         
         ?>
         <div style="background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;">
@@ -357,17 +357,12 @@ class WC_B2B_Email {
     private function get_quote_email_template($order) {
         ob_start();
         
-        $confirm_url = add_query_arg(array(
-            'wc_b2b_action' => 'confirm',
-            'order_id' => $order->get_id(),
-            'nonce' => wp_create_nonce('wc_b2b_confirm_' . $order->get_id())
-        ), home_url());
-        
-        $cancel_url = add_query_arg(array(
-            'wc_b2b_action' => 'cancel',
-            'order_id' => $order->get_id(),
-            'nonce' => wp_create_nonce('wc_b2b_cancel_' . $order->get_id())
-        ), home_url());
+        $confirm_url = WC_B2B_Quote::get_action_url($order, 'confirm');
+        $cancel_url  = WC_B2B_Quote::get_action_url($order, 'cancel');
+        $view_url    = $order->get_customer_id() ? $order->get_view_order_url() : WC_B2B_Quote::get_action_url($order, 'view');
+        $payment_instructions = WC_B2B_Quote::get_payment_instructions();
+        $quote_number = $order->get_meta('_wc_b2b_quote_number', true);
+        $valid_until  = $order->get_meta('_wc_b2b_quote_valid_until', true);
         ?>
         <div style="background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;">
             <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 5px;">
@@ -376,6 +371,12 @@ class WC_B2B_Email {
                 <p><?php printf(__('Hello %s,', 'wc-to-b2b'), $order->get_billing_first_name()); ?></p>
                 
                 <p><?php printf(__('Your quote for order #%s is ready for review. Please find the details below:', 'wc-to-b2b'), $order->get_order_number()); ?></p>
+
+                <div style="background:#eef6fc;padding:15px;margin:20px 0;border-left:4px solid #2271b1;">
+                    <p><strong><?php _e('Quote Number:', 'wc-to-b2b'); ?></strong> <?php echo esc_html($quote_number); ?></p>
+                    <p><strong><?php _e('Member Level:', 'wc-to-b2b'); ?></strong> <?php echo esc_html($order->get_meta('_wc_b2b_tier_name', true) ?: __('Retail / unassigned', 'wc-to-b2b')); ?></p>
+                    <p><strong><?php _e('Valid Until:', 'wc-to-b2b'); ?></strong> <?php echo esc_html($valid_until); ?></p>
+                </div>
                 
                 <div style="background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 3px;">
                     <h3><?php _e('Order Summary:', 'wc-to-b2b'); ?></h3>
@@ -402,6 +403,14 @@ class WC_B2B_Email {
                         <p><strong><?php _e('Total:', 'wc-to-b2b'); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p>
                     </div>
                 </div>
+
+                <?php if ($payment_instructions): ?>
+                <div style="background-color:#fff8e5;border:1px solid #f0c36d;padding:20px;margin:20px 0;border-radius:3px;">
+                    <h3><?php _e('Offline Payment Information', 'wc-to-b2b'); ?></h3>
+                    <?php echo wpautop(wp_kses_post($payment_instructions)); ?>
+                    <p><strong><?php printf(__('Please include quote number %s with your transfer.', 'wc-to-b2b'), esc_html($quote_number)); ?></strong></p>
+                </div>
+                <?php endif; ?>
                 
                 <p><?php _e('Please review the quote and choose one of the following options:', 'wc-to-b2b'); ?></p>
                 
@@ -409,8 +418,9 @@ class WC_B2B_Email {
                     <a href="<?php echo esc_url($confirm_url); ?>" style="background-color: #28a745; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block; margin-right: 10px;"><?php _e('Accept Quote', 'wc-to-b2b'); ?></a>
                     <a href="<?php echo esc_url($cancel_url); ?>" style="background-color: #dc3545; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block;"><?php _e('Cancel Order', 'wc-to-b2b'); ?></a>
                 </div>
-                
-                <p style="color: #666; font-size: 12px;"><?php _e('If you accept the quote, you will be redirected to complete the payment.', 'wc-to-b2b'); ?></p>
+
+                <p style="text-align:center"><a href="<?php echo esc_url($view_url); ?>"><?php _e('View printable quote, payment and shipment history', 'wc-to-b2b'); ?></a></p>
+                <p style="color: #666; font-size: 12px;"><?php _e('Accepting the quote confirms your order. Payment is made offline only; no online payment will be requested.', 'wc-to-b2b'); ?></p>
             </div>
         </div>
         <?php
