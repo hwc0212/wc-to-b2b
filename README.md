@@ -1,7 +1,7 @@
 # WooCommerce to B2B 插件
 
 [![GitHub](https://img.shields.io/badge/GitHub-wc--to--b2b-blue?logo=github)](https://github.com/hwc0212/wc-to-b2b)
-[![Version](https://img.shields.io/badge/Version-2.0.0-green)](https://github.com/hwc0212/wc-to-b2b/releases)
+[![Version](https://img.shields.io/badge/Version-2.1.0-green)](https://github.com/hwc0212/wc-to-b2b/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-purple)](https://woocommerce.com/)
 
@@ -10,6 +10,19 @@
 **WooCommerce to B2B** 是一个专为B2B企业设计的WordPress插件，将传统的WooCommerce直接付款模式转换为"询价→沟通→报价→确认→付款"的专业B2B工作流程。
 
 **GitHub仓库**: [https://github.com/hwc0212/wc-to-b2b](https://github.com/hwc0212/wc-to-b2b)
+
+## 2.1 邮箱验证与固定三级价格权限
+
+2.1 版本将访客、注册客户、普通客户和 VIP 客户的权限明确分开：
+
+- **访客**：可在“WooCommerce → B2B Member Levels”选择隐藏全部金额（默认），或显示 WooCommerce 零售价作为参考。无论是否显示价格，访客都只能提交询价；点击邮箱验证链接前不会投递到接待邮箱，验证后也不会自动发送正式报价。
+- **注册客户**：注册后必须先验证邮箱才能登录。首次验证成功后默认属于“注册客户”，登录后查看 WooCommerce 零售价，后续下单不重复验证邮箱。
+- **普通客户**：管理员在用户资料中把等级改为“普通客户”后，客户登录可查看批发价。每个商品和变体都能单独填写普通客户固定价；留空时才按普通客户统一折扣计算。
+- **VIP 客户**：管理员改为“VIP 客户”后显示 VIP 价。每个商品和变体同样可以单独填写 VIP 固定价，留空时使用 VIP 统一折扣。
+- **正式报价**：访客询价经验证到达后台后，由管理员审核价格、运费并发送正式报价。即使设置为向访客显示零售价，该金额也只是参考；正式报价发出后才显示最终报价及线下付款信息。
+- **接待邮箱**：在“WooCommerce → B2B Settings → Reception Email”设置接收已验证询价的邮箱。
+
+三个等级 ID 固定为 `registered`、`regular`、`vip`。从 2.0 升级时，原 `standard`、`silver`、`gold` 会分别迁移为上述三个等级，旧商品的 Silver/Gold 固定价仍会作为普通客户价/VIP 价兼容读取。
 
 ## 2.0 B2B 会员报价与线下履约
 
@@ -23,7 +36,7 @@
 - **客户查询**：客户登录“我的账户 → B2B Quotes & Orders”，可查看并打印报价、付款余额、每笔收款和每次发货记录。访客订单通过邮件中的签名链接安全查看。
 - **邮件通知**：报价生成、报价接受、付款登记、发货登记和取消等关键变化都会发送邮件；发货邮件包含物流查询信息。
 
-推荐启用“结账时必须创建账户”，以便客户长期登录查询历史记录。旧订单状态和原有邮箱/WhatsApp 验证流程仍保持兼容。
+客户可以选择注册账户长期查询历史记录，也可以不注册、通过邮件里的签名链接查看询价和后续正式报价。旧订单状态仍保持兼容。
 
 如果旧版本曾启用“Replace add to cart buttons with WhatsApp buttons”，请在原 B2B 设置中关闭该选项，商品页才会恢复加入购物车并进入在线报价结账流程。
 
@@ -143,7 +156,7 @@
 4. 在 WooCommerce > B2B设置 中配置插件
 
 ### 基本配置
-- **管理员邮箱**: 接收订单通知的邮箱地址
+- **接待邮箱**: 只接收已经通过邮箱验证的访客询价和 B2B 订单通知
 - **验证过期时间**: 验证链接有效期（默认48小时）
 - **订单过期时间**: 订单自动取消时间（默认21天）
 - **WhatsApp集成**: 可选功能，需要配置WhatsApp API
@@ -235,6 +248,15 @@ WhatsApp功能默认关闭，需要手动配置开启：
 - 支持WordPress标准翻译机制
 
 ## 更新日志
+
+### 版本 2.1.0
+- 固定注册客户、普通客户、VIP 客户三级价格权限
+- 新注册账户必须验证邮箱后才能登录，注册客户默认查看零售价
+- 新增访客价格显示开关，可选择隐藏金额或显示零售价参考，默认隐藏
+- 普通客户和 VIP 支持每个商品、每个变体分别设置固定会员价，统一折扣作为留空时的兜底规则
+- 访客询价验证邮箱前不投递，验证后发送到接待邮箱且不自动报价
+- 隐藏访客价格时，正式报价前的验证邮件、状态邮件及签名询价页也不显示金额
+- 兼容迁移 2.0 的会员等级、用户等级及商品等级价
 
 ### 版本 2.0.0
 - 新增可配置的 B2B 会员等级、用户等级分配、商品及变体等级价

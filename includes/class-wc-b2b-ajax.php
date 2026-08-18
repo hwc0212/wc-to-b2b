@@ -221,6 +221,7 @@ class WC_B2B_Ajax {
      */
     private function display_order_details_template($order) {
         $status = $order->get_status();
+        $show_prices = !class_exists('WC_B2B_Membership') || WC_B2B_Membership::can_display_order_prices($order);
         $can_confirm = ($status === 'quote-sent');
         $can_cancel = in_array($status, array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true) && WC_B2B_Fulfillment::get_paid_total($order) <= 0;
         ?>
@@ -263,7 +264,7 @@ class WC_B2B_Ajax {
                         <tr style="background: #f5f5f5;">
                             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;"><?php _e('Product', 'wc-to-b2b'); ?></th>
                             <th style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><?php _e('Quantity', 'wc-to-b2b'); ?></th>
-                            <th style="padding: 12px; text-align: right; border-bottom: 1px solid #ddd;"><?php _e('Price', 'wc-to-b2b'); ?></th>
+                            <?php if ($show_prices) : ?><th style="padding: 12px; text-align: right; border-bottom: 1px solid #ddd;"><?php _e('Price', 'wc-to-b2b'); ?></th><?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -271,17 +272,18 @@ class WC_B2B_Ajax {
                         <tr style="border-bottom: 1px solid #eee;">
                             <td style="padding: 12px;"><?php echo $item->get_name(); ?></td>
                             <td style="padding: 12px; text-align: center;"><?php echo $item->get_quantity(); ?></td>
-                            <td style="padding: 12px; text-align: right;"><?php echo wc_price($item->get_total()); ?></td>
+                            <?php if ($show_prices) : ?><td style="padding: 12px; text-align: right;"><?php echo wc_price($item->get_total()); ?></td><?php endif; ?>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
-                    <tfoot>
+                    <?php if ($show_prices) : ?><tfoot>
                         <tr style="background: #f9f9f9; font-weight: bold;">
                             <td colspan="2" style="padding: 12px; text-align: right;"><?php _e('Total:', 'wc-to-b2b'); ?></td>
                             <td style="padding: 12px; text-align: right;"><?php echo $order->get_formatted_order_total(); ?></td>
                         </tr>
-                    </tfoot>
+                    </tfoot><?php endif; ?>
                 </table>
+                <?php if (!$show_prices) : ?><p><?php esc_html_e('Pricing will be shown after our team sends the formal quote.', 'wc-to-b2b'); ?></p><?php endif; ?>
             </div>
             
             <?php $message = $order->get_meta('_order_message', true); ?>

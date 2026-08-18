@@ -6,6 +6,7 @@
     var description = window.wp.htmlEntities.decodeEntities(
         settings.description || 'Submit the order to receive a formal quotation and offline payment instructions.'
     );
+    var buttonLabel = window.wp.htmlEntities.decodeEntities(settings.button_label || 'Submit B2B Quote Order');
     var element = window.wp.element.createElement;
 
     var Content = function () {
@@ -18,6 +19,7 @@
         ariaLabel: label,
         content: element(Content, null),
         edit: element(Content, null),
+        placeOrderButtonLabel: buttonLabel,
         canMakePayment: function () { return true; },
         supports: {
             features: settings.supports || ['products']

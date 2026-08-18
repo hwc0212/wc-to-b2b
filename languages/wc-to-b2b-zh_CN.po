@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the WooCommerce to B2B package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce to B2B 2.0.0\n"
+"Project-Id-Version: WooCommerce to B2B 2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/hwc0212/wc-to-b2b/issues\n"
 "POT-Creation-Date: 2026-01-08 12:00+0000\n"
 "PO-Revision-Date: 2026-01-08 12:00+0000\n"
@@ -14,6 +14,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: includes/class-wc-b2b-membership.php
+msgid "Registered Customer"
+msgstr "注册客户"
+
+msgid "Regular Customer"
+msgstr "普通客户"
+
+msgid "VIP Customer"
+msgstr "VIP 客户"
+
+msgid "Register or sign in to view prices"
+msgstr "注册或登录后查看价格"
+
+msgid "Price provided after quotation"
+msgstr "正式报价后提供价格"
+
+msgid "Add to Inquiry"
+msgstr "加入询价单"
+
+msgid "Always retail price"
+msgstr "始终使用零售价"
+
+msgid "Guest Price Display"
+msgstr "访客价格显示"
+
+msgid "Show WooCommerce retail prices to visitors who are not signed in"
+msgstr "向未登录访客显示 WooCommerce 零售价"
+
+msgid "When disabled, catalog, cart, checkout, verification emails, and pre-quote inquiry pages hide all amounts. Guest submissions still require email verification in either mode."
+msgstr "关闭后，商品目录、购物车、结账页、验证邮件和正式报价前的询价页都会隐藏金额。无论是否显示价格，访客询价都必须验证邮箱。"
+
+msgid "Registered customers use each product or variation's WooCommerce retail price. Regular and VIP fixed prices can be entered separately on every product or variation; when blank, the level discount above is used."
+msgstr "注册客户使用每个商品或变体自身的 WooCommerce 零售价。每个商品或变体都可以分别填写普通客户固定价和 VIP 固定价；留空时使用上方等级折扣。"
+
+msgid "Displayed amounts are retail references. Submit the inquiry and verify your email; we will then review it and prepare the formal quote."
+msgstr "当前金额仅为零售价参考。提交询价并验证邮箱后，我们会进行审核并准备正式报价。"
+
+msgid "Retail Reference Total"
+msgstr "零售价参考总额"
+
+msgid "Retail Reference Total:"
+msgstr "零售价参考总额："
+
+msgid "Retail reference total:"
+msgstr "零售价参考总额："
+
+#: includes/class-wc-b2b-registration.php
+msgid "Please verify your email address using the link we sent before signing in."
+msgstr "请先点击我们发送的邮件验证链接，然后再登录。"
+
+msgid "Registration received. Check your inbox and verify your email before signing in."
+msgstr "注册申请已收到。请查看收件箱并验证邮箱后再登录。"
+
+msgid "Email verified successfully. You can now sign in and view your retail price."
+msgstr "邮箱验证成功。现在可以登录并查看零售价。"
+
+msgid "Verify your email address"
+msgstr "验证您的邮箱地址"
+
+msgid "Verify Email"
+msgstr "验证邮箱"
+
+msgid "B2B Email Verification"
+msgstr "B2B 邮箱验证"
+
+msgid "Verified Email"
+msgstr "邮箱已验证"
+
+msgid "Allow this customer to sign in"
+msgstr "允许此客户登录"
+
+#: includes/class-wc-b2b-checkout.php includes/class-wc-b2b-blocks.php
+msgid "Submit Inquiry & Verify Email"
+msgstr "提交询价并验证邮箱"
+
+msgid "Submit B2B Quote Order"
+msgstr "提交 B2B 报价订单"
+
+msgid "Email-verified inquiry"
+msgstr "需邮箱验证的询价"
+
+#: includes/class-wc-b2b-admin.php
+msgid "Reception Email"
+msgstr "接待邮箱"
+
+msgid "Send inquiry to reception email"
+msgstr "将询价发送到接待邮箱"
+
+#: includes/class-wc-b2b-account.php
+msgid "Verified Inquiry"
+msgstr "已验证询价"
+
+msgid "Inquiry Number"
+msgstr "询价编号"
+
+msgid "Pending formal quotation"
+msgstr "等待正式报价"
 
 #: wc-to-b2b.php
 msgid "WooCommerce to B2B requires WooCommerce to be installed and active. You can download %s here."

@@ -28,7 +28,7 @@ class WC_B2B_Quote {
     }
 
     public function maybe_require_account($required) {
-        return get_option('wc_b2b_require_account', 'no') === 'yes' ? true : $required;
+        return false;
     }
 
     public function load_blocks_support() {
@@ -64,16 +64,14 @@ class WC_B2B_Quote {
         if (isset($_POST['wc_b2b_save_quote_settings'])) {
             check_admin_referer('wc_b2b_quote_settings');
             update_option('wc_b2b_auto_quote', isset($_POST['auto_quote']) ? 'yes' : 'no');
-            update_option('wc_b2b_require_account', isset($_POST['require_account']) ? 'yes' : 'no');
-            update_option('wc_b2b_verify_guests', isset($_POST['verify_guests']) ? 'yes' : 'no');
+            update_option('wc_b2b_require_account', 'no');
+            update_option('wc_b2b_verify_guests', 'yes');
             update_option('wc_b2b_quote_validity_days', max(1, min(365, absint($_POST['quote_validity_days'] ?? 30))));
             update_option('wc_b2b_payment_instructions', wp_kses_post(wp_unslash($_POST['payment_instructions'] ?? '')));
             echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Quote settings saved.', 'wc-to-b2b') . '</p></div>';
         }
 
         $auto_quote    = get_option('wc_b2b_auto_quote', 'yes');
-        $require       = get_option('wc_b2b_require_account', 'no');
-        $verify_guests = get_option('wc_b2b_verify_guests', 'yes');
         $validity      = get_option('wc_b2b_quote_validity_days', 21);
         $instructions  = get_option('wc_b2b_payment_instructions', '');
         ?>
@@ -83,15 +81,11 @@ class WC_B2B_Quote {
                 <?php wp_nonce_field('wc_b2b_quote_settings'); ?>
                 <table class="form-table">
                     <tr><th><?php esc_html_e('Automatic Quote', 'wc-to-b2b'); ?></th><td>
-                        <label><input type="checkbox" name="auto_quote" value="yes" <?php checked($auto_quote, 'yes'); ?> /> <?php esc_html_e('Generate and email the formal quote immediately after checkout', 'wc-to-b2b'); ?></label>
-                        <p class="description"><?php esc_html_e('Disable this if an administrator must adjust prices or freight before sending a quote.', 'wc-to-b2b'); ?></p>
+                        <label><input type="checkbox" name="auto_quote" value="yes" <?php checked($auto_quote, 'yes'); ?> /> <?php esc_html_e('Generate and email the formal quote immediately for verified signed-in customers', 'wc-to-b2b'); ?></label>
+                        <p class="description"><?php esc_html_e('Guest inquiries are never quoted automatically. They reach the reception email only after the guest verifies the submitted email address.', 'wc-to-b2b'); ?></p>
                     </td></tr>
-                    <tr><th><?php esc_html_e('Customer Account', 'wc-to-b2b'); ?></th><td>
-                        <label><input type="checkbox" name="require_account" value="yes" <?php checked($require, 'yes'); ?> /> <?php esc_html_e('Require an account during checkout', 'wc-to-b2b'); ?></label>
-                    </td></tr>
-                    <tr><th><?php esc_html_e('Guest Verification', 'wc-to-b2b'); ?></th><td>
-                        <label><input type="checkbox" name="verify_guests" value="yes" <?php checked($verify_guests, 'yes'); ?> /> <?php esc_html_e('Require email verification for guest orders', 'wc-to-b2b'); ?></label>
-                        <p class="description"><?php esc_html_e('Signed-in customers are trusted and do not receive a verification step.', 'wc-to-b2b'); ?></p>
+                    <tr><th><?php esc_html_e('Customer Access Rules', 'wc-to-b2b'); ?></th><td>
+                        <p><?php esc_html_e('Accounts must verify their registration email before signing in. Guests may submit an inquiry without prices, but the inquiry is held until its email link is verified.', 'wc-to-b2b'); ?></p>
                     </td></tr>
                     <tr><th><label for="quote_validity_days"><?php esc_html_e('Quote Validity', 'wc-to-b2b'); ?></label></th><td>
                         <input id="quote_validity_days" type="number" min="1" max="365" name="quote_validity_days" value="<?php echo esc_attr($validity); ?>" /> <?php esc_html_e('days', 'wc-to-b2b'); ?>
@@ -161,8 +155,11 @@ class WC_B2B_Quote {
             return;
         }
         echo '<section class="woocommerce-order-details wc-b2b-thankyou-quote">';
-        echo '<h2>' . esc_html__('Quotation submitted', 'wc-to-b2b') . '</h2>';
-        if ('quote-sent' === $order->get_status()) {
+        $guest_inquiry = WC_B2B_Membership::is_guest_inquiry($order);
+        echo '<h2>' . esc_html($guest_inquiry ? __('Inquiry submitted', 'wc-to-b2b') : __('Quotation submitted', 'wc-to-b2b')) . '</h2>';
+        if ($guest_inquiry && in_array($order->get_status(), array('b2b-verifying', 'pending-verificat'), true)) {
+            echo '<p>' . esc_html__('Please check your inbox and click the verification link. Your inquiry will be delivered to our reception team only after verification.', 'wc-to-b2b') . '</p>';
+        } elseif ('quote-sent' === $order->get_status()) {
             echo '<p>' . esc_html__('Your formal quote has been generated and emailed to you. Please review it and use the offline payment information shown below.', 'wc-to-b2b') . '</p>';
         } else {
             echo '<p>' . esc_html__('Your request was received. We will email the formal quote after it has been reviewed.', 'wc-to-b2b') . '</p>';
@@ -183,12 +180,18 @@ if (class_exists('WC_Payment_Gateway')) {
     class WC_Gateway_B2B_Quote extends WC_Payment_Gateway {
 
         public function __construct() {
+            $is_guest = !is_user_logged_in();
+            $guest_prices_hidden = WC_B2B_Membership::are_catalog_prices_hidden();
             $this->id                 = 'b2b_quote';
             $this->has_fields         = false;
             $this->method_title       = __('B2B Offline Quote', 'wc-to-b2b');
             $this->method_description = __('Creates a quotation/order without collecting an online payment.', 'wc-to-b2b');
-            $this->title              = __('Offline quotation', 'wc-to-b2b');
-            $this->description        = __('Submit the order to receive a formal quotation and offline payment instructions. No online payment will be collected.', 'wc-to-b2b');
+            $this->title              = $is_guest ? __('Email-verified inquiry', 'wc-to-b2b') : __('Offline quotation', 'wc-to-b2b');
+            $this->description        = $is_guest
+                ? ($guest_prices_hidden
+                    ? __('Submit an inquiry without displayed prices. We will receive it only after you verify your email, then prepare a formal quote.', 'wc-to-b2b')
+                    : __('Displayed amounts are retail references. Submit the inquiry and verify your email; we will then review it and prepare the formal quote.', 'wc-to-b2b'))
+                : __('Submit the order to receive a formal quotation and offline payment instructions. No online payment will be collected.', 'wc-to-b2b');
             $this->enabled            = 'yes';
         }
 

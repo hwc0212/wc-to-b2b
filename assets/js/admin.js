@@ -34,47 +34,6 @@ jQuery(document).ready(function($) {
         });
     });
     
-    // Manual verify order
-    $('#wc-b2b-manual-verify').on('click', function(e) {
-        e.preventDefault();
-        
-        if (!confirm('Are you sure you want to manually verify this order?')) {
-            return;
-        }
-        
-        var $button = $(this);
-        var orderId = $button.data('order-id');
-        
-        $button.prop('disabled', true).text('Processing...');
-        
-        $.ajax({
-            url: wc_b2b_admin.ajax_url,
-            type: 'POST',
-            data: {
-                action: 'wc_b2b_manual_verify',
-                order_id: orderId,
-                nonce: wc_b2b_admin.nonce
-            },
-            success: function(response) {
-                if (response.success) {
-                    showMessage(response.data.message, 'success');
-                    // Reload page after 2 seconds to show updated status
-                    setTimeout(function() {
-                        location.reload();
-                    }, 2000);
-                } else {
-                    showMessage(response.data.message || wc_b2b_admin.messages.error, 'error');
-                }
-            },
-            error: function() {
-                showMessage(wc_b2b_admin.messages.error, 'error');
-            },
-            complete: function() {
-                $button.prop('disabled', false).text('Manual Verify');
-            }
-        });
-    });
-    
     // Update item price
     $(document).on('click', '.wc-b2b-update-price', function(e) {
         e.preventDefault();

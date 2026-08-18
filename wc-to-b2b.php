@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce to B2B
  * Plugin URI: https://github.com/hwc0212/wc-to-b2b
  * Description: B2B membership pricing, online quotations, offline payment records, shipment tracking, customer account history, and email notifications for WooCommerce.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: huwencai.com
  * Author URI: https://huwencai.com
  * Text Domain: wc-to-b2b
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WC_TO_B2B_VERSION', '2.0.0');
+define('WC_TO_B2B_VERSION', '2.1.0');
 define('WC_TO_B2B_PLUGIN_FILE', __FILE__);
 define('WC_TO_B2B_PLUGIN_BASENAME', plugin_basename(__FILE__));
 define('WC_TO_B2B_PLUGIN_PATH', plugin_dir_path(__FILE__));
@@ -122,8 +122,9 @@ final class WC_To_B2B {
     public function includes() {
         $includes = array(
             'class-wc-b2b-install.php',
-            'class-wc-b2b-checkout.php',
             'class-wc-b2b-membership.php',
+            'class-wc-b2b-registration.php',
+            'class-wc-b2b-checkout.php',
             'class-wc-b2b-quote.php',
             'class-wc-b2b-order.php',
             'class-wc-b2b-order-manager.php',
@@ -152,8 +153,9 @@ final class WC_To_B2B {
      */
     public function init_classes() {
         $classes = array(
-            'WC_B2B_Checkout',
             'WC_B2B_Membership',
+            'WC_B2B_Registration',
+            'WC_B2B_Checkout',
             'WC_B2B_Quote',
             'WC_B2B_Order',
             'WC_B2B_Order_Manager',

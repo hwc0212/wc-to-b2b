@@ -70,6 +70,10 @@ class WC_B2B_Fulfillment {
             echo '<p>' . esc_html__('This is not a B2B order.', 'wc-to-b2b') . '</p>';
             return;
         }
+        if (class_exists('WC_B2B_Membership') && (!$order->get_meta('_wc_b2b_quote_number', true) || !in_array($order->get_status(), array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped', 'completed'), true))) {
+            echo '<p>' . esc_html__('Payment and shipment records become available after the formal quote is sent.', 'wc-to-b2b') . '</p>';
+            return;
+        }
 
         $payments  = self::get_payments($order);
         $shipments = self::get_shipments($order);
@@ -214,6 +218,9 @@ class WC_B2B_Fulfillment {
         $order = wc_get_order($order_id);
         if (!self::is_b2b_order($order)) {
             wp_die(esc_html__('Invalid B2B order.', 'wc-to-b2b'));
+        }
+        if (class_exists('WC_B2B_Membership') && (!$order->get_meta('_wc_b2b_quote_number', true) || !in_array($order->get_status(), array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped', 'completed'), true))) {
+            wp_die(esc_html__('A formal quote must be sent before recording payments or shipments.', 'wc-to-b2b'));
         }
         return $order;
     }

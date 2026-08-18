@@ -29,6 +29,10 @@ class WC_B2B_Checkout {
         
         // Modify checkout button text
         add_filter('woocommerce_order_button_text', array($this, 'change_order_button_text'));
+        add_filter('woocommerce_checkout_registration_enabled', '__return_false');
+        add_filter('woocommerce_checkout_registration_required', '__return_false', 99);
+        add_filter('pre_option_woocommerce_enable_signup_and_login_from_checkout', array($this, 'disable_checkout_account_creation'));
+        add_filter('pre_option_woocommerce_enable_guest_checkout', array($this, 'enable_guest_inquiries'));
     }
     
     /**
@@ -73,6 +77,10 @@ class WC_B2B_Checkout {
      * Validate custom fields.
      */
     public function validate_custom_fields() {
+        if (is_user_logged_in() && class_exists('WC_B2B_Registration') && !WC_B2B_Registration::is_user_verified(get_current_user_id())) {
+            wc_add_notice(__('Please verify your account email before submitting a quotation order.', 'wc-to-b2b'), 'error');
+        }
+
         // Validate phone
         if (empty($_POST['billing_phone'])) {
             wc_add_notice(__('Phone is a required field.', 'wc-to-b2b'), 'error');
@@ -98,9 +106,11 @@ class WC_B2B_Checkout {
             $order->update_meta_data('_order_message', sanitize_textarea_field(wp_unslash($_POST['order_message'])));
         }
         $order->update_meta_data('_is_b2b_order', 'yes');
-        $order->update_meta_data('_email_verified', 'no');
+        $is_guest = !$order->get_customer_id();
+        $order->update_meta_data('_wc_b2b_guest_inquiry', $is_guest ? 'yes' : 'no');
+        $order->update_meta_data('_wc_b2b_inquiry_delivered', 'no');
+        $order->update_meta_data('_email_verified', $is_guest ? 'no' : 'yes');
         $order->update_meta_data('_whatsapp_verified', 'no');
-        $order->save();
         $order->save();
     }
 
@@ -112,7 +122,10 @@ class WC_B2B_Checkout {
             $order->update_meta_data('_order_message', sanitize_textarea_field(wp_unslash($_POST['order_message'])));
         }
         $order->update_meta_data('_is_b2b_order', 'yes');
-        $order->update_meta_data('_email_verified', 'no');
+        $is_guest = !$order->get_customer_id();
+        $order->update_meta_data('_wc_b2b_guest_inquiry', $is_guest ? 'yes' : 'no');
+        $order->update_meta_data('_wc_b2b_inquiry_delivered', 'no');
+        $order->update_meta_data('_email_verified', $is_guest ? 'no' : 'yes');
         $order->update_meta_data('_whatsapp_verified', 'no');
     }
 
@@ -121,7 +134,10 @@ class WC_B2B_Checkout {
             return;
         }
         $order->update_meta_data('_is_b2b_order', 'yes');
-        $order->update_meta_data('_email_verified', 'no');
+        $is_guest = !$order->get_customer_id();
+        $order->update_meta_data('_wc_b2b_guest_inquiry', $is_guest ? 'yes' : 'no');
+        $order->update_meta_data('_wc_b2b_inquiry_delivered', 'no');
+        $order->update_meta_data('_email_verified', $is_guest ? 'no' : 'yes');
         $order->update_meta_data('_whatsapp_verified', 'no');
     }
 
@@ -138,23 +154,27 @@ class WC_B2B_Checkout {
         if (in_array($order->get_status(), array('b2b-verifying', 'verified', 'quote-sent', 'quote-accepted', 'processing', 'completed'), true)) {
             return;
         }
-        $verify_guest = !$order->get_customer_id() && get_option('wc_b2b_verify_guests', 'yes') === 'yes';
+        $verify_guest = !$order->get_customer_id();
 
         if ($verify_guest) {
-            $order->update_status('b2b-verifying', __('Order created, awaiting customer verification.', 'wc-to-b2b'));
-            $email_token = $this->generate_verification_token($order_id, 'email');
+            $order->update_meta_data('_wc_b2b_guest_inquiry', 'yes');
+            $order->update_meta_data('_wc_b2b_inquiry_delivered', 'no');
+            $order->update_meta_data('_email_verified', 'no');
+            $order->save();
+            $order->update_status('b2b-verifying', __('Inquiry created, awaiting customer email verification.', 'wc-to-b2b'));
+            $email_token = self::generate_verification_token($order_id, 'email');
             if ($email_token) {
                 do_action('wc_b2b_send_verification_email', $order_id);
-            }
-            if (get_option('wc_b2b_whatsapp_enabled', 'no') === 'yes' && $order->get_billing_phone()) {
-                $whatsapp_token = $this->generate_verification_token($order_id, 'whatsapp');
-                if ($whatsapp_token) {
-                    do_action('wc_b2b_send_whatsapp_verification', $order_id);
-                }
             }
             return;
         }
 
+        if (class_exists('WC_B2B_Registration') && !WC_B2B_Registration::is_user_verified($order->get_customer_id())) {
+            $order->update_status('failed', __('Quotation order blocked because the customer account email is unverified.', 'wc-to-b2b'));
+            return;
+        }
+
+        $order->update_meta_data('_wc_b2b_guest_inquiry', 'no');
         $order->update_meta_data('_email_verified', 'yes');
         $order->update_meta_data('_email_verified_at', current_time('mysql'));
         $order->update_meta_data('_verified_via', 'account');
@@ -171,20 +191,28 @@ class WC_B2B_Checkout {
     /**
      * Generate verification token.
      */
-    private function generate_verification_token($order_id, $type = 'email') {
+    public static function generate_verification_token($order_id, $type = 'email') {
         global $wpdb;
         
         $token = wp_generate_password(32, false);
         $expires_at = date('Y-m-d H:i:s', strtotime('+' . get_option('wc_b2b_verification_expiry', 48) . ' hours'));
         
         $table_name = $wpdb->prefix . 'wc_b2b_verification_tokens';
-        
+
+        // A newly sent link invalidates every older unused link for the same channel.
+        $wpdb->query($wpdb->prepare(
+            "UPDATE {$table_name} SET used_at = %s WHERE order_id = %d AND type = %s AND used_at IS NULL",
+            current_time('mysql'),
+            absint($order_id),
+            sanitize_key($type)
+        ));
+
         $result = $wpdb->insert(
             $table_name,
             array(
                 'order_id' => $order_id,
                 'token' => $token,
-                'type' => $type,
+                'type' => sanitize_key($type),
                 'expires_at' => $expires_at
             ),
             array('%d', '%s', '%s', '%s')
@@ -222,6 +250,14 @@ class WC_B2B_Checkout {
      * Change order button text.
      */
     public function change_order_button_text() {
-        return __('Submit B2B Quote Order', 'wc-to-b2b');
+        return is_user_logged_in() ? __('Submit B2B Quote Order', 'wc-to-b2b') : __('Submit Inquiry & Verify Email', 'wc-to-b2b');
+    }
+
+    public function disable_checkout_account_creation($pre_option) {
+        return 'no';
+    }
+
+    public function enable_guest_inquiries($pre_option) {
+        return 'yes';
     }
 }

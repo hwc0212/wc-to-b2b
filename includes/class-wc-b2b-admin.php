@@ -25,12 +25,11 @@ class WC_B2B_Admin {
         // Add order actions
         add_filter('woocommerce_order_actions', array($this, 'add_order_actions'));
         add_action('woocommerce_order_action_wc_b2b_send_verification', array($this, 'send_verification_email'));
-        add_action('woocommerce_order_action_wc_b2b_manual_verify', array($this, 'manual_verify_order'));
+        add_action('woocommerce_order_action_wc_b2b_send_reception_notification', array($this, 'send_reception_notification'));
         add_action('woocommerce_order_action_wc_b2b_send_quote', array($this, 'send_quote_to_customer'));
         
         // AJAX actions
         add_action('wp_ajax_wc_b2b_resend_verification', array($this, 'ajax_resend_verification'));
-        add_action('wp_ajax_wc_b2b_manual_verify', array($this, 'ajax_manual_verify'));
         add_action('wp_ajax_wc_b2b_update_item_price', array($this, 'ajax_update_item_price'));
         add_action('wp_ajax_wc_b2b_update_shipping_cost', array($this, 'ajax_update_shipping_cost'));
         add_action('wp_ajax_wc_b2b_cleanup_tokens', array($this, 'ajax_cleanup_tokens'));
@@ -77,10 +76,6 @@ class WC_B2B_Admin {
                 
                 <button type="button" class="button" id="wc-b2b-resend-verification" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                     <?php _e('Resend Verification Email', 'wc-to-b2b'); ?>
-                </button>
-                
-                <button type="button" class="button button-primary" id="wc-b2b-manual-verify" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
-                    <?php _e('Manual Verify', 'wc-to-b2b'); ?>
                 </button>
                 
             <?php elseif ($status === 'verified'): ?>
@@ -267,10 +262,10 @@ class WC_B2B_Admin {
                 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><?php _e('Admin Email', 'wc-to-b2b'); ?></th>
+                        <th scope="row"><?php _e('Reception Email', 'wc-to-b2b'); ?></th>
                         <td>
                             <input type="email" name="admin_email" value="<?php echo esc_attr($settings['admin_email']); ?>" class="regular-text" />
-                            <p class="description"><?php _e('Email address to receive order notifications.', 'wc-to-b2b'); ?></p>
+                            <p class="description"><?php _e('Verified guest inquiries and B2B order notifications are sent to this address.', 'wc-to-b2b'); ?></p>
                         </td>
                     </tr>
                     
@@ -448,8 +443,10 @@ class WC_B2B_Admin {
         
         if (in_array($status, array('b2b-verifying', 'pending-verificat'), true)) {
             $actions['wc_b2b_send_verification'] = __('Resend verification email', 'wc-to-b2b');
-            $actions['wc_b2b_manual_verify'] = __('Manual verify order', 'wc-to-b2b');
         } elseif ($status === 'verified') {
+            if ('yes' !== $theorder->get_meta('_wc_b2b_inquiry_delivered', true)) {
+                $actions['wc_b2b_send_reception_notification'] = __('Send inquiry to reception email', 'wc-to-b2b');
+            }
             $actions['wc_b2b_send_quote'] = __('Send quote to customer', 'wc-to-b2b');
         }
         
@@ -461,11 +458,14 @@ class WC_B2B_Admin {
      */
     public function send_verification_email($order) {
         // Always send email verification (default method)
-        do_action('wc_b2b_send_verification_email', $order->get_id());
-        $note = __('Verification email resent to customer.', 'wc-to-b2b');
+        $token = WC_B2B_Checkout::generate_verification_token($order->get_id(), 'email');
+        if ($token) {
+            do_action('wc_b2b_send_verification_email', $order->get_id());
+        }
+        $note = $token ? __('Verification email resent to customer.', 'wc-to-b2b') : __('A new verification link could not be generated.', 'wc-to-b2b');
         
         // Only send WhatsApp verification if explicitly enabled and phone available
-        if (get_option('wc_b2b_whatsapp_enabled', 'no') === 'yes' && !empty($order->get_billing_phone())) {
+        if ($token && !WC_B2B_Membership::is_guest_inquiry($order) && get_option('wc_b2b_whatsapp_enabled', 'no') === 'yes' && !empty($order->get_billing_phone())) {
             do_action('wc_b2b_send_whatsapp_verification', $order->get_id());
             $note = __('Verification sent via both email and WhatsApp.', 'wc-to-b2b');
         }
@@ -473,11 +473,10 @@ class WC_B2B_Admin {
         $order->add_order_note($note);
     }
     
-    /**
-     * Manual verify order action.
-     */
-    public function manual_verify_order($order) {
-        $order->update_status('verified', __('Order manually verified by admin.', 'wc-to-b2b'));
+    public function send_reception_notification($order) {
+        if ($order instanceof WC_Order && 'yes' === $order->get_meta('_email_verified', true)) {
+            do_action('wc_b2b_send_admin_notification', $order->get_id());
+        }
     }
     
     /**
@@ -506,13 +505,21 @@ class WC_B2B_Admin {
         
         $order_id = intval($_POST['order_id']);
         $order = wc_get_order($order_id);
+        if (!$order) {
+            wp_send_json_error(array('message' => __('Order not found.', 'wc-to-b2b')));
+        }
         
         // Always send email verification (default method)
-        do_action('wc_b2b_send_verification_email', $order_id);
+        $token = $order ? WC_B2B_Checkout::generate_verification_token($order_id, 'email') : false;
+        if ($token) {
+            do_action('wc_b2b_send_verification_email', $order_id);
+        } else {
+            wp_send_json_error(array('message' => __('A new verification link could not be generated.', 'wc-to-b2b')));
+        }
         $message = __('Verification email sent successfully!', 'wc-to-b2b');
         
         // Only send WhatsApp verification if explicitly enabled and phone available
-        if (get_option('wc_b2b_whatsapp_enabled', 'no') === 'yes' && $order && !empty($order->get_billing_phone())) {
+        if ($order && !WC_B2B_Membership::is_guest_inquiry($order) && get_option('wc_b2b_whatsapp_enabled', 'no') === 'yes' && !empty($order->get_billing_phone())) {
             do_action('wc_b2b_send_whatsapp_verification', $order_id);
             $message = __('Verification sent via both email and WhatsApp!', 'wc-to-b2b');
         }
@@ -520,30 +527,6 @@ class WC_B2B_Admin {
         wp_send_json_success(array(
             'message' => $message
         ));
-    }
-    
-    /**
-     * AJAX manual verify.
-     */
-    public function ajax_manual_verify() {
-        check_ajax_referer('wc_b2b_admin', 'nonce');
-        if (!current_user_can('manage_woocommerce')) {
-            wp_send_json_error(array('message' => __('Permission denied.', 'wc-to-b2b')));
-        }
-        
-        $order_id = intval($_POST['order_id']);
-        $order = wc_get_order($order_id);
-        
-        if ($order) {
-            $order->update_status('verified', __('Order manually verified by admin.', 'wc-to-b2b'));
-            wp_send_json_success(array(
-                'message' => __('Order verified successfully!', 'wc-to-b2b')
-            ));
-        } else {
-            wp_send_json_error(array(
-                'message' => __('Order not found.', 'wc-to-b2b')
-            ));
-        }
     }
     
     /**

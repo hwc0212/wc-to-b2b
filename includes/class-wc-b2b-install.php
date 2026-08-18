@@ -22,6 +22,7 @@ class WC_B2B_Install {
         
         self::create_tables();
         self::create_options();
+        self::migrate_membership_data();
         self::schedule_cleanup_events();
         self::update_version();
         add_rewrite_endpoint('b2b-orders', EP_ROOT | EP_PAGES);
@@ -89,10 +90,11 @@ class WC_B2B_Install {
             ),
             'wc_b2b_complete_uninstall' => 'no',
             'wc_b2b_membership_tiers' => array(
-                array('id' => 'standard', 'name' => __('Standard B2B', 'wc-to-b2b'), 'discount' => 0),
-                array('id' => 'silver', 'name' => __('Silver', 'wc-to-b2b'), 'discount' => 5),
-                array('id' => 'gold', 'name' => __('Gold', 'wc-to-b2b'), 'discount' => 10)
+                array('id' => 'registered', 'name' => __('Registered Customer', 'wc-to-b2b'), 'discount' => 0),
+                array('id' => 'regular', 'name' => __('Regular Customer', 'wc-to-b2b'), 'discount' => 10),
+                array('id' => 'vip', 'name' => __('VIP Customer', 'wc-to-b2b'), 'discount' => 20)
             ),
+            'wc_b2b_guest_price_display' => 'hide',
             'wc_b2b_auto_quote' => 'yes',
             'wc_b2b_require_account' => 'no',
             'wc_b2b_verify_guests' => 'yes',
@@ -105,6 +107,36 @@ class WC_B2B_Install {
                 add_option($option, $value);
             }
         }
+    }
+
+    /**
+     * Replace the former free-form levels with the three supported customer levels.
+     */
+    private static function migrate_membership_data() {
+        global $wpdb;
+
+        $existing = get_option('wc_b2b_membership_tiers', array());
+        $by_id    = array();
+        if (is_array($existing)) {
+            foreach ($existing as $tier) {
+                $id = sanitize_key($tier['id'] ?? '');
+                if ($id) {
+                    $by_id[$id] = $tier;
+                }
+            }
+        }
+
+        $regular = $by_id['regular'] ?? ($by_id['silver'] ?? array());
+        $vip     = $by_id['vip'] ?? ($by_id['gold'] ?? array());
+        update_option('wc_b2b_membership_tiers', array(
+            array('id' => 'registered', 'name' => __('Registered Customer', 'wc-to-b2b'), 'discount' => 0),
+            array('id' => 'regular', 'name' => __('Regular Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($regular['discount'] ?? 10)))),
+            array('id' => 'vip', 'name' => __('VIP Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($vip['discount'] ?? 20)))),
+        ));
+
+        $wpdb->update($wpdb->usermeta, array('meta_value' => 'registered'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'standard'), array('%s'), array('%s', '%s'));
+        $wpdb->update($wpdb->usermeta, array('meta_value' => 'regular'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'silver'), array('%s'), array('%s', '%s'));
+        $wpdb->update($wpdb->usermeta, array('meta_value' => 'vip'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'gold'), array('%s'), array('%s', '%s'));
     }
     
     /**
@@ -170,6 +202,7 @@ class WC_B2B_Install {
             'wc_b2b_checkout_fields',
             'wc_b2b_complete_uninstall',
             'wc_b2b_membership_tiers',
+            'wc_b2b_guest_price_display',
             'wc_b2b_auto_quote',
             'wc_b2b_require_account',
             'wc_b2b_verify_guests',
@@ -184,7 +217,7 @@ class WC_B2B_Install {
         
         // Remove order meta data
         $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '_wc_b2b_%' OR meta_key LIKE '_is_b2b_order%' OR meta_key LIKE '_order_message%' OR meta_key LIKE '_email_verified%' OR meta_key LIKE '_whatsapp_verified%' OR meta_key LIKE '_verified_via%' OR meta_key LIKE '_verification_token%' OR meta_key LIKE '_manually_paid%' OR meta_key LIKE '_last_payment_reminder%'");
-        $wpdb->delete($wpdb->usermeta, array('meta_key' => '_wc_b2b_tier'), array('%s'));
+        $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key = '_wc_b2b_tier' OR meta_key LIKE '_wc_b2b_email_%'");
 
         $hpos_meta_table = $wpdb->prefix . 'wc_orders_meta';
         if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $hpos_meta_table)) === $hpos_meta_table) {

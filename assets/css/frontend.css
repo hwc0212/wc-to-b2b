@@ -1,5 +1,22 @@
 /* WooCommerce to B2B Frontend Styles */
 
+/* Guest visitors can build an inquiry, but no catalogue/cart/checkout amount is displayed. */
+.wc-b2b-prices-hidden .woocommerce-Price-amount,
+.wc-b2b-prices-hidden .wc-block-formatted-money-amount,
+.wc-b2b-prices-hidden .wc-block-components-formatted-money-amount,
+.wc-b2b-prices-hidden .wc-block-components-product-price,
+.wc-b2b-prices-hidden .wc-block-components-totals-item__value,
+.wc-b2b-prices-hidden .wc-block-cart-item__total-price-and-sale-badge-wrapper,
+.wc-b2b-prices-hidden .wc-block-components-order-summary-item__individual-price,
+.wc-b2b-prices-hidden .wc-block-components-order-summary-item__total-price {
+    display: none !important;
+}
+
+.wc-b2b-price-login {
+    display: inline-block;
+    font-weight: 600;
+}
+
 /* Order details page */
 .wc-b2b-order-details {
     max-width: 800px;

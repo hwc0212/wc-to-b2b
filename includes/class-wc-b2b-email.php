@@ -46,7 +46,9 @@ class WC_B2B_Email {
         ), home_url());
         
         $to = $order->get_billing_email();
-        $subject = sprintf(__('Please verify your order #%s', 'wc-to-b2b'), $order->get_order_number());
+        $subject = sprintf(WC_B2B_Membership::is_guest_inquiry($order)
+            ? __('Please verify your inquiry #%s', 'wc-to-b2b')
+            : __('Please verify your order #%s', 'wc-to-b2b'), $order->get_order_number());
         
         $message = $this->get_verification_email_template($order, $verification_url);
         
@@ -65,13 +67,26 @@ class WC_B2B_Email {
         }
         
         $admin_email = get_option('wc_b2b_admin_email', get_option('admin_email'));
-        $subject = sprintf(__('Order #%s has been verified', 'wc-to-b2b'), $order->get_order_number());
+        $subject = sprintf(WC_B2B_Membership::is_guest_inquiry($order)
+            ? __('Verified inquiry #%s is ready for review', 'wc-to-b2b')
+            : __('Order #%s has been verified', 'wc-to-b2b'), $order->get_order_number());
         
         $message = $this->get_admin_notification_template($order);
         
         $headers = array('Content-Type: text/html; charset=UTF-8');
         
-        return wp_mail($admin_email, $subject, $message, $headers);
+        $sent = wp_mail($admin_email, $subject, $message, $headers);
+        if ($sent) {
+            $order->update_meta_data('_wc_b2b_inquiry_delivered', 'yes');
+            $order->update_meta_data('_wc_b2b_inquiry_delivered_at', current_time('mysql'));
+            $order->save();
+            if (WC_B2B_Membership::is_guest_inquiry($order)) {
+                $order->add_order_note(__('Verified guest inquiry delivered to the configured reception email. A formal quote must be sent manually.', 'wc-to-b2b'));
+            }
+        } else {
+            $order->add_order_note(__('The reception notification email could not be sent. Check the site mail configuration and resend the notification.', 'wc-to-b2b'));
+        }
+        return $sent;
     }
     
     /**
@@ -97,18 +112,22 @@ class WC_B2B_Email {
      * Get verification email template.
      */
     private function get_verification_email_template($order, $verification_url) {
+        $guest_inquiry = WC_B2B_Membership::is_guest_inquiry($order);
+        $show_price = !$guest_inquiry || WC_B2B_Membership::can_display_order_prices($order);
         ob_start();
         ?>
         <div style="background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;">
             <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 5px;">
-                <h2 style="color: #333; margin-bottom: 20px;"><?php _e('Order Verification Required', 'wc-to-b2b'); ?></h2>
+                <h2 style="color: #333; margin-bottom: 20px;"><?php echo esc_html($guest_inquiry ? __('Inquiry Email Verification Required', 'wc-to-b2b') : __('Order Verification Required', 'wc-to-b2b')); ?></h2>
                 
                 <p><?php printf(__('Hello %s,', 'wc-to-b2b'), $order->get_billing_first_name()); ?></p>
                 
-                <p><?php printf(__('Thank you for your order #%s. To proceed with your order, please verify your email address by clicking the button below:', 'wc-to-b2b'), $order->get_order_number()); ?></p>
+                <p><?php printf(esc_html($guest_inquiry
+                    ? __('Thank you for inquiry #%s. It has not yet been sent to our reception team. Click below to verify your email and deliver the inquiry:', 'wc-to-b2b')
+                    : __('Thank you for your order #%s. To proceed with your order, please verify your email address by clicking the button below:', 'wc-to-b2b')), esc_html($order->get_order_number())); ?></p>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="<?php echo esc_url($verification_url); ?>" style="background-color: #0073aa; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block;"><?php _e('Verify Order', 'wc-to-b2b'); ?></a>
+                    <a href="<?php echo esc_url($verification_url); ?>" style="background-color: #0073aa; color: white; padding: 12px 30px; text-decoration: none; border-radius: 3px; display: inline-block;"><?php echo esc_html($guest_inquiry ? __('Verify Email & Send Inquiry', 'wc-to-b2b') : __('Verify Order', 'wc-to-b2b')); ?></a>
                 </div>
                 
                 <p><?php _e('If the button doesn\'t work, you can copy and paste this link into your browser:', 'wc-to-b2b'); ?></p>
@@ -116,10 +135,10 @@ class WC_B2B_Email {
                 
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
                 
-                <h3><?php _e('Order Details:', 'wc-to-b2b'); ?></h3>
-                <p><strong><?php _e('Order Number:', 'wc-to-b2b'); ?></strong> #<?php echo $order->get_order_number(); ?></p>
+                <h3><?php echo esc_html($guest_inquiry ? __('Inquiry Details:', 'wc-to-b2b') : __('Order Details:', 'wc-to-b2b')); ?></h3>
+                <p><strong><?php echo esc_html($guest_inquiry ? __('Inquiry Number:', 'wc-to-b2b') : __('Order Number:', 'wc-to-b2b')); ?></strong> #<?php echo esc_html($order->get_order_number()); ?></p>
                 <p><strong><?php _e('Order Date:', 'wc-to-b2b'); ?></strong> <?php echo wc_format_datetime($order->get_date_created()); ?></p>
-                <p><strong><?php _e('Total:', 'wc-to-b2b'); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p>
+                <?php if ($show_price) : ?><p><strong><?php echo esc_html($guest_inquiry ? __('Retail Reference Total:', 'wc-to-b2b') : __('Total:', 'wc-to-b2b')); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p><?php endif; ?>
                 
                 <?php $message = $order->get_meta('_order_message', true); ?>
                 <?php if ($message): ?>
@@ -144,17 +163,20 @@ class WC_B2B_Email {
         $shipping_address = $order->get_formatted_shipping_address();
         $message = $order->get_meta('_order_message', true);
         $verified_via = $order->get_meta('_verified_via', true);
+        $guest_inquiry = WC_B2B_Membership::is_guest_inquiry($order);
         
         ?>
         <div style="background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;">
             <div style="max-width: 800px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 5px;">
                 <h2 style="color: #333; margin-bottom: 20px; border-bottom: 2px solid #0073aa; padding-bottom: 10px;">
-                    📋 <?php _e('New B2B Order - Ready for Quote', 'wc-to-b2b'); ?>
+                    📋 <?php echo esc_html($guest_inquiry ? __('Verified Guest Inquiry - Ready for Review', 'wc-to-b2b') : __('New B2B Order - Ready for Quote', 'wc-to-b2b')); ?>
                 </h2>
                 
                 <div style="background-color: #e7f3ff; padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #0073aa;">
                     <p style="margin: 0; font-weight: bold; color: #0073aa;">
-                        <?php printf(__('Order #%s has been verified and is ready for your quote. All information needed for pricing is included below.', 'wc-to-b2b'), $order->get_order_number()); ?>
+                        <?php printf(esc_html($guest_inquiry
+                            ? __('Guest inquiry #%s has passed email verification. Review it and send a formal quote manually when pricing is ready.', 'wc-to-b2b')
+                            : __('Order #%s has been verified and is ready for your quote. All information needed for pricing is included below.', 'wc-to-b2b')), esc_html($order->get_order_number())); ?>
                     </p>
                 </div>
                 
@@ -458,6 +480,7 @@ class WC_B2B_Email {
      * Get order cancelled email template.
      */
     private function get_order_cancelled_template($order) {
+        $show_price = !class_exists('WC_B2B_Membership') || WC_B2B_Membership::can_display_order_prices($order);
         ob_start();
         ?>
         <div style="background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;">
@@ -472,7 +495,7 @@ class WC_B2B_Email {
                     <h3><?php _e('Cancelled Order Details:', 'wc-to-b2b'); ?></h3>
                     <p><strong><?php _e('Order Number:', 'wc-to-b2b'); ?></strong> #<?php echo $order->get_order_number(); ?></p>
                     <p><strong><?php _e('Order Date:', 'wc-to-b2b'); ?></strong> <?php echo wc_format_datetime($order->get_date_created()); ?></p>
-                    <p><strong><?php _e('Total Amount:', 'wc-to-b2b'); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p>
+                    <?php if ($show_price) : ?><p><strong><?php _e('Total Amount:', 'wc-to-b2b'); ?></strong> <?php echo $order->get_formatted_order_total(); ?></p><?php endif; ?>
                 </div>
                 
                 <p><?php _e('If you are still interested in these products, please feel free to place a new order or contact us directly.', 'wc-to-b2b'); ?></p>

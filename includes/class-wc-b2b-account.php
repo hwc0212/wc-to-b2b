@@ -91,6 +91,25 @@ class WC_B2B_Account {
             return;
         }
 
+        if (class_exists('WC_B2B_Membership') && WC_B2B_Membership::is_guest_inquiry($order) && !WC_B2B_Membership::has_formal_quote($order)) {
+            $show_reference_price = WC_B2B_Membership::can_display_order_prices($order);
+            ?>
+            <section class="woocommerce-order-details wc-b2b-customer-ledger">
+                <h2><?php esc_html_e('Verified Inquiry', 'wc-to-b2b'); ?></h2>
+                <table class="shop_table shop_table_responsive"><tbody>
+                    <tr><th><?php esc_html_e('Inquiry Number', 'wc-to-b2b'); ?></th><td>#<?php echo esc_html($order->get_order_number()); ?></td></tr>
+                    <tr><th><?php esc_html_e('Status', 'wc-to-b2b'); ?></th><td><?php echo esc_html(wc_get_order_status_name($order->get_status())); ?></td></tr>
+                    <tr><th><?php esc_html_e('Pricing', 'wc-to-b2b'); ?></th><td><?php esc_html_e('Pending formal quotation', 'wc-to-b2b'); ?></td></tr>
+                    <?php if ($show_reference_price) : ?><tr><th><?php esc_html_e('Retail Reference Total', 'wc-to-b2b'); ?></th><td><?php echo wp_kses_post($order->get_formatted_order_total()); ?></td></tr><?php endif; ?>
+                </tbody></table>
+                <p><?php echo esc_html($show_reference_price
+                    ? __('Your inquiry has been received. The amount above is a retail reference only; the final price, offline payment information, and payment records will appear after the formal quote is sent.', 'wc-to-b2b')
+                    : __('Your inquiry has been received. Prices, offline payment information, and payment records will appear here after the formal quote is sent.', 'wc-to-b2b')); ?></p>
+            </section>
+            <?php
+            return;
+        }
+
         $payments    = WC_B2B_Fulfillment::get_payments($order);
         $shipments   = WC_B2B_Fulfillment::get_shipments($order);
         $paid        = WC_B2B_Fulfillment::get_paid_total($order);

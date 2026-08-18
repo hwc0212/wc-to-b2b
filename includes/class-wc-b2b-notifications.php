@@ -31,6 +31,9 @@ class WC_B2B_Notifications {
         if (!WC_B2B_Fulfillment::is_b2b_order($order)) {
             return;
         }
+        if ($order->get_status() !== $new_status) {
+            return;
+        }
 
         if (!empty($this->suppressed_orders[$order_id])) {
             unset($this->suppressed_orders[$order_id]);
@@ -41,7 +44,7 @@ class WC_B2B_Notifications {
         if (in_array($new_status, array('pending', 'b2b-verifying', 'pending-verificat', 'quote-sent'), true)) {
             return;
         }
-        if ('verified' === $new_status && get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
+        if ('verified' === $new_status && !WC_B2B_Membership::is_guest_inquiry($order) && get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
             return;
         }
 
@@ -114,6 +117,15 @@ class WC_B2B_Notifications {
     }
 
     private function order_summary($order) {
+        if (class_exists('WC_B2B_Membership') && WC_B2B_Membership::is_guest_inquiry($order) && !WC_B2B_Membership::has_formal_quote($order)) {
+            $show_reference_price = WC_B2B_Membership::can_display_order_prices($order);
+            return '<div style="background:#f6f7f7;padding:16px;margin:18px 0">' .
+                '<p><strong>' . esc_html__('Inquiry:', 'wc-to-b2b') . '</strong> #' . esc_html($order->get_order_number()) . '</p>' .
+                ($show_reference_price
+                    ? '<p><strong>' . esc_html__('Retail reference total:', 'wc-to-b2b') . '</strong> ' . wp_kses_post($order->get_formatted_order_total()) . '</p><p>' . esc_html__('The final price will be provided in the formal quote after review.', 'wc-to-b2b') . '</p>'
+                    : '<p>' . esc_html__('Prices will be provided in the formal quote after the inquiry is reviewed.', 'wc-to-b2b') . '</p>') .
+                '</div>';
+        }
         return '<div style="background:#f6f7f7;padding:16px;margin:18px 0">' .
             '<p><strong>' . esc_html__('Quote:', 'wc-to-b2b') . '</strong> ' . esc_html($order->get_meta('_wc_b2b_quote_number', true) ?: '#' . $order->get_order_number()) . '</p>' .
             '<p><strong>' . esc_html__('Total:', 'wc-to-b2b') . '</strong> ' . wp_kses_post($order->get_formatted_order_total()) . '</p>' .

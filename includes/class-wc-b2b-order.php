@@ -156,8 +156,17 @@ class WC_B2B_Order {
     public function handle_status_change($order_id, $old_status, $new_status, $order) {
         switch ($new_status) {
             case 'verified':
-                // Send notification to admin (always email for admin)
-                do_action('wc_b2b_send_admin_notification', $order_id);
+                $guest_inquiry = WC_B2B_Membership::is_guest_inquiry($order);
+                if ($guest_inquiry && 'yes' !== $order->get_meta('_email_verified', true)) {
+                    $order->update_status('b2b-verifying', __('Guest inquiries can be delivered only after the customer clicks the email verification link.', 'wc-to-b2b'));
+                    break;
+                }
+                if ('yes' !== $order->get_meta('_wc_b2b_inquiry_delivered', true)) {
+                    do_action('wc_b2b_send_admin_notification', $order_id);
+                }
+                if ($guest_inquiry) {
+                    break;
+                }
                 if (get_option('wc_b2b_auto_quote', 'yes') === 'yes') {
                     WC_B2B_Quote::prepare_quote($order);
                     $order->update_status('quote-sent', __('Automatic quotation generated after customer verification.', 'wc-to-b2b'));
@@ -165,6 +174,10 @@ class WC_B2B_Order {
                 break;
                 
             case 'quote-sent':
+                if (WC_B2B_Membership::is_guest_inquiry($order) && 'yes' !== $order->get_meta('_email_verified', true)) {
+                    $order->update_status('b2b-verifying', __('A formal quote cannot be sent until the guest verifies the inquiry email.', 'wc-to-b2b'));
+                    break;
+                }
                 // Email is the durable record; WhatsApp is an optional additional channel.
                 WC_B2B_Quote::prepare_quote($order);
                 $verified_via = $order->get_meta('_verified_via', true);
@@ -188,8 +201,15 @@ class WC_B2B_Order {
         $result = $this->verify_order_by_token($token);
         
         if ($result['success']) {
-            wc_add_notice(__('Order verified successfully!', 'wc-to-b2b'), 'success');
             $order = wc_get_order($result['order_id']);
+            if ($order && WC_B2B_Membership::is_guest_inquiry($order)) {
+                $delivered = 'yes' === $order->get_meta('_wc_b2b_inquiry_delivered', true);
+                wc_add_notice($delivered
+                    ? __('Email verified. Your inquiry has now been delivered to our reception team.', 'wc-to-b2b')
+                    : __('Email verified. The inquiry was saved, but the reception email could not be sent; our administrator can resend it.', 'wc-to-b2b'), $delivered ? 'success' : 'notice');
+            } else {
+                wc_add_notice(__('Order verified successfully!', 'wc-to-b2b'), 'success');
+            }
             wp_safe_redirect($order ? WC_B2B_Quote::get_action_url($order, 'view') : wc_get_page_permalink('myaccount'));
         } else {
             wc_add_notice($result['message'], 'error');
@@ -260,14 +280,19 @@ class WC_B2B_Order {
         $email_verified = $order && $order->get_meta('_email_verified', true) === 'yes';
         $whatsapp_verified = $order && $order->get_meta('_whatsapp_verified', true) === 'yes';
 
-        if ($order && ($email_verified || $whatsapp_verified)) {
+        $guest_inquiry = $order && WC_B2B_Membership::is_guest_inquiry($order);
+        $verification_complete = $guest_inquiry ? $email_verified : ($email_verified || $whatsapp_verified);
+
+        if ($order && $verification_complete) {
             // Only update status if not already verified
             if (in_array($order->get_status(), array('b2b-verifying', 'pending-verificat'), true)) {
                 $verification_method = $token_data->type === 'whatsapp' ? 'WhatsApp' : 'Email';
                 // Store which method was used for verification
                 $order->update_meta_data('_verified_via', $token_data->type);
                 $order->save();
-                $order->update_status('verified', sprintf(__('Order verified by customer via %s.', 'wc-to-b2b'), $verification_method));
+                $order->update_status('verified', sprintf($guest_inquiry
+                    ? __('Inquiry email verified by customer via %s.', 'wc-to-b2b')
+                    : __('Order verified by customer via %s.', 'wc-to-b2b'), $verification_method));
             }
         }
         
