@@ -77,7 +77,8 @@ class WC_B2B_Install {
         $default_options = array(
             'wc_b2b_enable_verification' => 'yes',
             'wc_b2b_verification_expiry' => '48', // hours
-            'wc_b2b_order_expiry' => '21', // days (3 weeks)
+            'wc_b2b_auto_cancel_enabled' => 'no',
+            'wc_b2b_auto_reminders_enabled' => 'no',
             'wc_b2b_payment_reminder_interval' => '7', // days (weekly)
             'wc_b2b_admin_email' => get_option('admin_email'),
             'wc_b2b_whatsapp_enabled' => 'no',
@@ -193,6 +194,10 @@ class WC_B2B_Install {
             'wc_b2b_enable_verification',
             'wc_b2b_verification_expiry',
             'wc_b2b_order_expiry',
+            'wc_b2b_auto_cancel_enabled',
+            'wc_b2b_auto_reminders_enabled',
+            'wc_b2b_auto_cancel_enabled_since',
+            'wc_b2b_auto_reminders_enabled_since',
             'wc_b2b_payment_reminder_interval',
             'wc_b2b_admin_email',
             'wc_b2b_whatsapp_enabled',
