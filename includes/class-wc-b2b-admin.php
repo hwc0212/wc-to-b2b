@@ -278,13 +278,14 @@ class WC_B2B_Admin {
                     </tr>
                     
                     <tr>
-                        <th scope="row"><?php _e('Order Expiry', 'wc-to-b2b'); ?></th>
+                        <th scope="row"><?php esc_html_e('Order automation', 'wc-to-b2b'); ?></th>
                         <td>
-                            <input type="number" name="order_expiry" value="<?php echo esc_attr($settings['order_expiry']); ?>" min="1" max="90" /> <?php _e('days', 'wc-to-b2b'); ?>
-                            <p class="description"><?php _e('Orders will be automatically cancelled after this period without payment.', 'wc-to-b2b'); ?></p>
+                            <label><input type="checkbox" name="auto_cancel_enabled" value="yes" <?php checked(get_option('wc_b2b_auto_cancel_enabled'), 'yes'); ?> /> <?php esc_html_e('Cancel expired, unaccepted and unpaid quotations', 'wc-to-b2b'); ?></label><br>
+                            <label><input type="checkbox" name="auto_reminders_enabled" value="yes" <?php checked(get_option('wc_b2b_auto_reminders_enabled'), 'yes'); ?> /> <?php esc_html_e('Send automatic payment reminders', 'wc-to-b2b'); ?></label>
+                            <p class="description"><?php esc_html_e('Earlier versions ran both jobs automatically. Both are off by default. Each switch applies to orders created after it is enabled. Quotes without a recorded validity date require manual review.', 'wc-to-b2b'); ?></p>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <th scope="row"><?php _e('Payment Reminder Interval', 'wc-to-b2b'); ?></th>
                         <td>
@@ -394,7 +395,6 @@ class WC_B2B_Admin {
         return array(
             'admin_email' => get_option('wc_b2b_admin_email', get_option('admin_email')),
             'verification_expiry' => get_option('wc_b2b_verification_expiry', '48'),
-            'order_expiry' => get_option('wc_b2b_order_expiry', '21'),
             'payment_reminder_interval' => get_option('wc_b2b_payment_reminder_interval', '7'),
             'whatsapp_enabled' => get_option('wc_b2b_whatsapp_enabled', 'no'),
             'whatsapp_api_url' => get_option('wc_b2b_whatsapp_api_url', ''),
@@ -410,13 +410,15 @@ class WC_B2B_Admin {
      * Save settings.
      */
     private function save_settings() {
-        if (!wp_verify_nonce($_POST['wc_b2b_settings_nonce'], 'wc_b2b_settings')) {
+        if (!current_user_can('manage_woocommerce') || !isset($_POST['wc_b2b_settings_nonce'])
+            || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['wc_b2b_settings_nonce'])), 'wc_b2b_settings')) {
             return;
         }
         
         update_option('wc_b2b_admin_email', sanitize_email($_POST['admin_email']));
         update_option('wc_b2b_verification_expiry', intval($_POST['verification_expiry']));
-        update_option('wc_b2b_order_expiry', intval($_POST['order_expiry']));
+        WC_B2B_Order_Manager::configure_automation('cancel', isset($_POST['auto_cancel_enabled']));
+        WC_B2B_Order_Manager::configure_automation('reminders', isset($_POST['auto_reminders_enabled']));
         update_option('wc_b2b_payment_reminder_interval', intval($_POST['payment_reminder_interval']));
         update_option('wc_b2b_whatsapp_enabled', isset($_POST['whatsapp_enabled']) ? 'yes' : 'no');
         update_option('wc_b2b_whatsapp_api_url', esc_url_raw($_POST['whatsapp_api_url']));

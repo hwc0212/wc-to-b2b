@@ -148,8 +148,17 @@ class WC_B2B_Quote {
         return trim((string) get_option('wc_b2b_payment_instructions', ''));
     }
 
+    public static function get_valid_until($order) {
+        $date = $order instanceof WC_Order ? $order->get_meta('_wc_b2b_quote_valid_until', true) : '';
+        if (!is_string($date) || !preg_match('/^(\d{4})-(\d{2})-(\d{2})$/D', $date, $parts)
+            || !checkdate((int) $parts[2], (int) $parts[3], (int) $parts[1])) {
+            return '';
+        }
+        return $date;
+    }
+
     public static function is_quote_valid($order) {
-        $valid_until = $order instanceof WC_Order ? $order->get_meta('_wc_b2b_quote_valid_until', true) : '';
+        $valid_until = self::get_valid_until($order);
         return !$valid_until || $valid_until >= current_time('Y-m-d');
     }
 

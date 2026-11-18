@@ -39,108 +39,131 @@ class WC_B2B_Order_Manager {
         add_action('woocommerce_order_status_changed', array($this, 'handle_order_status_change'), 10, 4);
     }
     
-    /**
-     * Schedule cron jobs.
-     */
-    public function schedule_cron_jobs() {
-        if (!wp_next_scheduled('wc_b2b_check_expired_orders')) {
-            wp_schedule_event(time(), 'daily', 'wc_b2b_check_expired_orders');
+    private const AUTOMATION = array(
+        'cancel' => array('wc_b2b_auto_cancel_enabled', 'wc_b2b_check_expired_orders'),
+        'reminders' => array('wc_b2b_auto_reminders_enabled', 'wc_b2b_send_payment_reminders'),
+    );
+
+    public static function configure_automation($task, $enabled) {
+        list($option) = self::AUTOMATION[$task];
+        if (!$enabled) {
+            update_option($option, 'no', false);
+            delete_option($option . '_since');
+        } elseif (!self::automation_since($task)) {
+            // Record the new cohort before making the task eligible to run.
+            update_option($option . '_since', time(), false);
+            update_option($option, 'yes', false);
         }
-        
-        if (!wp_next_scheduled('wc_b2b_send_payment_reminders')) {
-            wp_schedule_event(time(), 'daily', 'wc_b2b_send_payment_reminders');
+        self::schedule_cron_jobs();
+    }
+
+    private static function automation_since($task) {
+        list($option) = self::AUTOMATION[$task];
+        return get_option($option, 'no') === 'yes' ? (int) get_option($option . '_since', 0) : 0;
+    }
+
+    public static function schedule_cron_jobs() {
+        foreach (self::AUTOMATION as $task => list($option, $hook)) {
+            $scheduled = wp_next_scheduled($hook);
+            if (!self::automation_since($task)) {
+                if ($scheduled) {
+                    wp_clear_scheduled_hook($hook);
+                }
+            } elseif (!$scheduled) {
+                wp_schedule_event(time() + HOUR_IN_SECONDS, 'daily', $hook);
+            }
         }
     }
-    
-    /**
-     * Check for expired orders and cancel them.
-     */
+
     public function check_expired_orders() {
-        $expiry_days = get_option('wc_b2b_order_expiry', 21);
-        $cutoff_date = date('Y-m-d H:i:s', strtotime("-{$expiry_days} days"));
-        
-        $args = array(
-            'status' => array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped'),
-            'meta_query' => array(
-                array(
-                    'key' => '_is_b2b_order',
-                    'value' => 'yes'
-                )
-            ),
-            'date_created' => '<' . $cutoff_date,
-            'limit' => -1
-        );
-        
-        $orders = wc_get_orders($args);
-        
-        foreach ($orders as $order) {
-            // Check if order is still unpaid
-            if (!$order->is_paid() && !$this->is_manually_paid($order->get_id())) {
-                $order->update_status('cancelled', __('Order automatically cancelled due to expiry (3 weeks without payment).', 'wc-to-b2b'));
-                
-                // Send cancellation notification via the same method used for verification
-                $verified_via = $order->get_meta('_verified_via', true);
-                
-                if ($verified_via === 'whatsapp') {
-                    $this->send_whatsapp_cancellation_notice($order->get_id());
-                }
-                
-                // Log the action
-                $order->add_order_note(__('Order automatically cancelled after 3 weeks without payment.', 'wc-to-b2b'));
+        $this->run_automation('cancel', array('quote-sent'), function ($order) {
+            if (WC_B2B_Quote::is_quote_valid($order)) {
+                return;
             }
-        }
+            if ($order->update_status('cancelled', __('An unaccepted and unpaid quote was cancelled after its validity period.', 'wc-to-b2b'))
+                && $order->get_meta('_verified_via', true) === 'whatsapp') {
+                $this->send_whatsapp_cancellation_notice($order->get_id());
+            }
+        });
     }
-    
-    /**
-     * Send payment reminders for unpaid orders.
-     */
+
     public function send_payment_reminders() {
-        $reminder_interval = get_option('wc_b2b_payment_reminder_interval', 7);
-        
+        $interval = max(1, (int) get_option('wc_b2b_payment_reminder_interval', 7)) * DAY_IN_SECONDS;
+        $this->run_automation('reminders', array('quote-sent', 'quote-accepted'), function ($order) use ($interval) {
+            if (!WC_B2B_Quote::is_quote_valid($order)) {
+                return;
+            }
+            $last_sent = $order->get_meta('_last_payment_reminder', true);
+            $quoted = $order->get_meta('_wc_b2b_quote_created_at', true);
+            $last_due_from = max(
+                $order->get_date_created()->getTimestamp(),
+                $quoted ? wc_string_to_datetime($quoted)->getTimestamp() : 0,
+                $last_sent ? wc_string_to_datetime($last_sent)->getTimestamp() : 0,
+                (int) $order->get_meta('_wc_b2b_last_reminder_attempt', true)
+            );
+            if (time() < $last_due_from + $interval) {
+                return;
+            }
+            // Persist the attempt before delivery so an interrupted worker
+            // cannot resend the message on its next execution.
+            $order->update_meta_data('_wc_b2b_last_reminder_attempt', time());
+            $order->save_meta_data();
+            if ($this->send_payment_reminder($order->get_id())) {
+                $order->update_meta_data('_last_payment_reminder', current_time('mysql'));
+                $order->save_meta_data();
+                $order->add_order_note(__('Payment reminder sent to customer.', 'wc-to-b2b'));
+            }
+        });
+    }
+
+    private function run_automation($task, array $statuses, callable $process) {
+        global $wpdb;
+        $since = self::automation_since($task);
+        if (!$since) {
+            return;
+        }
+
         $args = array(
-            'status' => array('quote-sent', 'quote-accepted', 'processing', 'partially-shipped', 'shipped'),
-            'meta_query' => array(
-                array(
-                    'key' => '_is_b2b_order',
-                    'value' => 'yes'
-                )
-            ),
-            'limit' => -1
+            'type' => 'shop_order', 'status' => $statuses, 'date_created' => '>' . $since,
+            'limit' => 50, 'return' => 'ids', 'orderby' => 'ID', 'order' => 'ASC', 'paginate' => true,
         );
-        
-        $orders = wc_get_orders($args);
-        
-        foreach ($orders as $order) {
-            if (!$order->is_paid() && !$this->is_manually_paid($order->get_id())) {
-                $last_reminder = $order->get_meta('_last_payment_reminder', true);
-                $order_date = $order->get_date_created()->getTimestamp();
-                $now = time();
-                
-                // Calculate when to send reminder
-                if (empty($last_reminder)) {
-                    // First reminder after 1 week
-                    $send_reminder_after = $order_date + (7 * 24 * 60 * 60);
-                } else {
-                    // Subsequent reminders every week
-                    $send_reminder_after = strtotime($last_reminder) + ($reminder_interval * 24 * 60 * 60);
+        $result = wc_get_orders($args + array('page' => 1));
+
+        // Work from the last page back. Cancelling an order removes it from
+        // the query and must not cause an earlier page to skip an order.
+        for ($page = $result->max_num_pages; $page > 0; $page--) {
+            $orders = $page === 1 ? $result : wc_get_orders($args + array('page' => $page));
+            foreach ($orders->orders as $order_id) {
+                if (self::automation_since($task) !== $since) {
+                    return;
                 }
-                
-                if ($now >= $send_reminder_after) {
-                    // Check if order is not expired yet
-                    $expiry_days = get_option('wc_b2b_order_expiry', 21);
-                    $expiry_date = $order_date + ($expiry_days * 24 * 60 * 60);
-                    
-                    if ($now < $expiry_date) {
-                        $this->send_payment_reminder($order->get_id());
-                        $order->update_meta_data('_last_payment_reminder', current_time('mysql'));
-                        $order->save();
-                        $order->add_order_note(__('Payment reminder sent to customer.', 'wc-to-b2b'));
+                $lock = 'wc_b2b_' . md5($wpdb->prefix . ':' . $order_id);
+                if ('1' !== (string) $wpdb->get_var($wpdb->prepare('SELECT GET_LOCK(%s, 0)', $lock))) {
+                    continue;
+                }
+                try {
+                    $order = wc_get_order($order_id);
+                    if ($order && $order->has_status($statuses) && $this->is_automatable($order, $since)) {
+                        $process($order);
                     }
+                } finally {
+                    $wpdb->get_var($wpdb->prepare('SELECT RELEASE_LOCK(%s)', $lock));
                 }
             }
         }
     }
-    
+
+    private function is_automatable($order, $since) {
+        $created = $order->get_date_created();
+        return $order->get_meta('_is_b2b_order', true) === 'yes'
+            && $created && $created->getTimestamp() > $since
+            && WC_B2B_Quote::get_valid_until($order) !== ''
+            && !$order->is_paid() && !$order->get_date_paid()
+            && $order->get_meta('_manually_paid', true) !== 'yes'
+            && !$order->get_meta('_wc_b2b_payments', true)
+            && !$order->get_meta('_wc_b2b_shipments', true);
+    }
+
     /**
      * Send payment reminder based on verification method used.
      */
@@ -199,21 +222,14 @@ class WC_B2B_Order_Manager {
             return false;
         }
         
-        $expiry_days = get_option('wc_b2b_order_expiry', 21);
-        $order_date = $order->get_date_created()->getTimestamp();
-        $days_left = ceil(($order_date + ($expiry_days * 24 * 60 * 60) - time()) / (24 * 60 * 60));
-        
         $payment_url = $order->get_customer_id() ? $order->get_view_order_url() : WC_B2B_Quote::get_action_url($order, 'view');
-        
         $message = sprintf(
-            __("Payment Reminder 💰\n\nHello %s!\n\nYour order #%s is still awaiting offline payment.\n\n⚠️ Important: Your order will be cancelled in %d days if payment is not received.\n\nOrder Total: %s\n\nView quote and payment information: %s\n\nIf you have already paid or have questions, please contact us immediately.", 'wc-to-b2b'),
-            $order->get_billing_first_name(),
+            __('Payment reminder for order #%1$s. Total: %2$s. View payment information: %3$s', 'wc-to-b2b'),
             $order->get_order_number(),
-            $days_left,
-            $order->get_formatted_order_total(),
+            wp_strip_all_tags($order->get_formatted_order_total()),
             $payment_url
         );
-        
+
         return $this->send_whatsapp_message($phone, $message);
     }
     
@@ -301,11 +317,6 @@ class WC_B2B_Order_Manager {
      * Get payment reminder email template.
      */
     private function get_payment_reminder_template($order) {
-        $expiry_days = get_option('wc_b2b_order_expiry', 21);
-        $order_date = $order->get_date_created()->getTimestamp();
-        $expiry_date = date('Y-m-d', $order_date + ($expiry_days * 24 * 60 * 60));
-        $days_left = ceil(($order_date + ($expiry_days * 24 * 60 * 60) - time()) / (24 * 60 * 60));
-        
         $payment_url = $order->get_customer_id() ? $order->get_view_order_url() : WC_B2B_Quote::get_action_url($order, 'view');
         
         ob_start();
@@ -317,13 +328,6 @@ class WC_B2B_Order_Manager {
                 <p><?php printf(__('Hello %s,', 'wc-to-b2b'), $order->get_billing_first_name()); ?></p>
                 
                 <p><?php printf(__('This is a friendly reminder that your order #%s is still awaiting payment.', 'wc-to-b2b'), $order->get_order_number()); ?></p>
-                
-                <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; margin: 20px 0; border-radius: 3px;">
-                    <p style="margin: 0; color: #856404;">
-                        <strong><?php _e('Important:', 'wc-to-b2b'); ?></strong> 
-                        <?php printf(__('Your order will be automatically cancelled in %d days (on %s) if payment is not received.', 'wc-to-b2b'), $days_left, $expiry_date); ?>
-                    </p>
-                </div>
                 
                 <div style="background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 3px;">
                     <h3><?php _e('Order Summary:', 'wc-to-b2b'); ?></h3>
@@ -341,7 +345,6 @@ class WC_B2B_Order_Manager {
                 <p><?php _e('Thank you for your business!', 'wc-to-b2b'); ?></p>
                 
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
-                <p style="color: #666; font-size: 12px;"><?php printf(__('This is an automated reminder. Order expires on: %s', 'wc-to-b2b'), $expiry_date); ?></p>
             </div>
         </div>
         <?php
@@ -497,10 +500,7 @@ class WC_B2B_Order_Manager {
             return;
         }
         
-        $expiry_days = get_option('wc_b2b_order_expiry', 21);
-        $order_date = $order->get_date_created()->getTimestamp();
-        $expiry_date = $order_date + ($expiry_days * 24 * 60 * 60);
-        $days_left = ceil(($expiry_date - time()) / (24 * 60 * 60));
+        $valid_until = WC_B2B_Quote::get_valid_until($order);
         $is_manually_paid = $this->is_manually_paid($order->get_id());
         $last_reminder = $order->get_meta('_last_payment_reminder', true);
         
@@ -508,17 +508,8 @@ class WC_B2B_Order_Manager {
         <div class="wc-b2b-expiry-info">
             <?php wp_nonce_field('wc_b2b_order_expiry', 'wc_b2b_expiry_nonce'); ?>
             
-            <p><strong><?php _e('Order Expiry:', 'wc-to-b2b'); ?></strong></p>
-            <p><?php echo date('Y-m-d H:i', $expiry_date); ?></p>
-            
-            <?php if ($days_left > 0): ?>
-                <p style="color: <?php echo $days_left <= 3 ? '#d63638' : '#00a32a'; ?>;">
-                    <?php printf(__('%d days remaining', 'wc-to-b2b'), $days_left); ?>
-                </p>
-            <?php else: ?>
-                <p style="color: #d63638;"><?php _e('Order expired', 'wc-to-b2b'); ?></p>
-            <?php endif; ?>
-            
+            <p><strong><?php esc_html_e('Quote valid through', 'wc-to-b2b'); ?></strong></p>
+            <p><?php echo $valid_until ? esc_html($valid_until) : esc_html__('No valid date recorded. Review manually.', 'wc-to-b2b'); ?></p>
             <hr>
             
             <p><strong><?php _e('Payment Status:', 'wc-to-b2b'); ?></strong></p>
