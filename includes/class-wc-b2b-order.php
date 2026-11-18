@@ -15,10 +15,13 @@ class WC_B2B_Order {
     /**
      * Constructor.
      */
-    public function __construct() {
+    public function __construct($workflow = true) {
         add_action('init', array($this, 'register_order_statuses'));
         add_filter('wc_order_statuses', array($this, 'add_order_statuses'));
         add_filter('woocommerce_order_is_paid', array($this, 'preserve_paid_state_after_shipping'), 10, 2);
+        if (!$workflow) {
+            return;
+        }
         add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'add_payment_complete_statuses'), 10, 2);
         add_action('woocommerce_order_status_changed', array($this, 'handle_status_change'), 10, 4);
         
