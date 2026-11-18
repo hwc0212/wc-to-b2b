@@ -16,13 +16,24 @@ class WC_B2B_Install {
      * Install WC_To_B2B.
      */
     public static function install() {
+        if (!class_exists('WooCommerce') || !WC_B2B_Mode::is_full()) {
+            // Activation still registers the endpoint for historical orders.
+            add_rewrite_endpoint('b2b-orders', EP_ROOT | EP_PAGES);
+            flush_rewrite_rules(false);
+            self::cleanup_events();
+            return;
+        }
+        $previous = get_option('wc_to_b2b_version', '');
+        add_option(WC_B2B_Mode::OPTION, 'full', '', false);
         if (!defined('WC_TO_B2B_INSTALLING')) {
             define('WC_TO_B2B_INSTALLING', true);
         }
         
         self::create_tables();
         self::create_options();
-        self::migrate_membership_data();
+        if (is_string($previous) && preg_match('/^2\.0\.\d+$/D', $previous)) {
+            self::migrate_membership_data();
+        }
         self::schedule_cleanup_events();
         self::update_version();
         add_rewrite_endpoint('b2b-orders', EP_ROOT | EP_PAGES);
@@ -135,7 +146,6 @@ class WC_B2B_Install {
             array('id' => 'regular', 'name' => __('Regular Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($regular['discount'] ?? 10)))),
             array('id' => 'vip', 'name' => __('VIP Customer', 'wc-to-b2b'), 'discount' => min(100, max(0, (float) ($vip['discount'] ?? 20)))),
         ));
-        update_option('wc_b2b_auto_quote', 'no');
 
         $wpdb->update($wpdb->usermeta, array('meta_value' => 'registered'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'standard'), array('%s'), array('%s', '%s'));
         $wpdb->update($wpdb->usermeta, array('meta_value' => 'regular'), array('meta_key' => '_wc_b2b_tier', 'meta_value' => 'silver'), array('%s'), array('%s', '%s'));
@@ -145,7 +155,10 @@ class WC_B2B_Install {
     /**
      * Schedule cleanup events.
      */
-    private static function schedule_cleanup_events() {
+    public static function schedule_cleanup_events() {
+        if (!WC_B2B_Mode::is_full()) {
+            return;
+        }
         // Schedule daily cleanup of expired tokens
         if (!wp_next_scheduled('wc_b2b_cleanup_expired_tokens')) {
             wp_schedule_event(time(), 'daily', 'wc_b2b_cleanup_expired_tokens');
@@ -161,8 +174,7 @@ class WC_B2B_Install {
      * Update WC version to current.
      */
     private static function update_version() {
-        delete_option('wc_to_b2b_version');
-        add_option('wc_to_b2b_version', WC_TO_B2B_VERSION);
+        update_option('wc_to_b2b_version', WC_TO_B2B_VERSION);
     }
     
     /**
@@ -173,9 +185,7 @@ class WC_B2B_Install {
         if (get_option('wc_b2b_complete_uninstall', 'no') === 'yes') {
             self::remove_all_data();
         } else {
-            // Only remove scheduled events and temporary data
             self::cleanup_events();
-            self::cleanup_expired_tokens();
         }
     }
     
@@ -216,6 +226,7 @@ class WC_B2B_Install {
             'wc_b2b_verify_guests',
             'wc_b2b_quote_validity_days',
             'wc_b2b_payment_instructions',
+            WC_B2B_Mode::OPTION,
             'wc_to_b2b_version'
         );
         
@@ -252,6 +263,9 @@ class WC_B2B_Install {
      * Cleanup expired verification tokens.
      */
     public static function cleanup_expired_tokens() {
+        if (!WC_B2B_Mode::is_full()) {
+            return 0;
+        }
         global $wpdb;
         
         $table_name = $wpdb->prefix . 'wc_b2b_verification_tokens';
@@ -274,6 +288,9 @@ class WC_B2B_Install {
      * Cleanup old used tokens (older than 30 days).
      */
     public static function cleanup_old_tokens() {
+        if (!WC_B2B_Mode::is_full()) {
+            return 0;
+        }
         global $wpdb;
         
         $table_name = $wpdb->prefix . 'wc_b2b_verification_tokens';

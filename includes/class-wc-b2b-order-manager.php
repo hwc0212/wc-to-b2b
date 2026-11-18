@@ -58,6 +58,9 @@ class WC_B2B_Order_Manager {
     }
 
     private static function automation_since($task) {
+        if (!WC_B2B_Mode::is_full()) {
+            return 0;
+        }
         list($option) = self::AUTOMATION[$task];
         return get_option($option, 'no') === 'yes' ? (int) get_option($option . '_since', 0) : 0;
     }

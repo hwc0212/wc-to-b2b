@@ -140,7 +140,7 @@ class WC_B2B_Account {
                 <div class="wc-b2b-payment-instructions"><h3><?php esc_html_e('Offline Payment Information', 'wc-to-b2b'); ?></h3><?php echo wpautop(wp_kses_post($instructions)); ?></div>
             <?php endif; ?>
 
-            <?php if ('quote-sent' === $order->get_status()) : ?>
+            <?php if (WC_B2B_Mode::is_full() && $order->get_status() === 'quote-sent' && WC_B2B_Quote::is_quote_valid($order)) : ?>
                 <p class="wc-b2b-quote-actions">
                     <a class="button" href="<?php echo esc_url(WC_B2B_Quote::get_action_url($order, 'confirm')); ?>"><?php esc_html_e('Accept Quote', 'wc-to-b2b'); ?></a>
                     <?php if ($paid <= 0) : ?><a class="button" href="<?php echo esc_url(WC_B2B_Quote::get_action_url($order, 'cancel')); ?>"><?php esc_html_e('Cancel Order', 'wc-to-b2b'); ?></a><?php endif; ?>

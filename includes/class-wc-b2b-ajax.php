@@ -15,13 +15,15 @@ class WC_B2B_Ajax {
     /**
      * Constructor.
      */
-    public function __construct() {
+    public function __construct($workflow = true) {
+        add_action('template_redirect', array($this, 'handle_url_actions'));
+        if (!$workflow) {
+            return;
+        }
         // Frontend AJAX actions
         add_action('wp_ajax_wc_b2b_customer_action', array($this, 'handle_customer_action'));
         add_action('wp_ajax_nopriv_wc_b2b_customer_action', array($this, 'handle_customer_action'));
         
-        // Handle URL-based actions
-        add_action('template_redirect', array($this, 'handle_url_actions'));
         
         // Enqueue frontend scripts
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_scripts'));
@@ -74,8 +76,11 @@ class WC_B2B_Ajax {
             return;
         }
         
-        $action = sanitize_text_field($_GET['wc_b2b_action']);
-        $order_id = intval($_GET['order_id']);
+        $action = sanitize_key(wp_unslash($_GET['wc_b2b_action']));
+        if ($action !== 'view' && !WC_B2B_Mode::is_full()) {
+            return;
+        }
+        $order_id = absint($_GET['order_id'] ?? 0);
         $token = isset($_GET['token']) ? sanitize_text_field(wp_unslash($_GET['token'])) : '';
         
         if (!$order_id) {
@@ -127,6 +132,7 @@ class WC_B2B_Ajax {
                     wp_safe_redirect(home_url('/'));
                     exit;
                 }
+                nocache_headers();
                 $this->show_order_details($order);
                 exit;
         }
@@ -222,8 +228,8 @@ class WC_B2B_Ajax {
     private function display_order_details_template($order) {
         $status = $order->get_status();
         $show_prices = !class_exists('WC_B2B_Membership') || WC_B2B_Membership::can_display_order_prices($order);
-        $can_confirm = ($status === 'quote-sent');
-        $can_cancel = in_array($status, array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true) && WC_B2B_Fulfillment::get_paid_total($order) <= 0;
+        $can_confirm = WC_B2B_Mode::is_full() && $status === 'quote-sent' && WC_B2B_Quote::is_quote_valid($order);
+        $can_cancel = WC_B2B_Mode::is_full() && in_array($status, array('quote-sent', 'quote-accepted', 'b2b-verifying', 'pending-verificat', 'verified'), true) && WC_B2B_Fulfillment::get_paid_total($order) <= 0;
         ?>
         <div class="wc-b2b-order-details" style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: Arial, sans-serif;">
             <h1><?php printf(__('Order #%s Details', 'wc-to-b2b'), $order->get_order_number()); ?></h1>

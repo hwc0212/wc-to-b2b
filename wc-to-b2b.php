@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce to B2B
  * Plugin URI: https://github.com/hwc0212/wc-to-b2b
  * Description: B2B membership pricing, online quotations, offline payment records, shipment tracking, customer account history, and email notifications for WooCommerce.
- * Version: 2.1.2
+ * Version: 2.2.0
  * Author: huwencai.com
  * Author URI: https://huwencai.com
  * Text Domain: wc-to-b2b
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WC_TO_B2B_VERSION', '2.1.2');
+define('WC_TO_B2B_VERSION', '2.2.0');
 define('WC_TO_B2B_PLUGIN_FILE', __FILE__);
 define('WC_TO_B2B_PLUGIN_BASENAME', plugin_basename(__FILE__));
 define('WC_TO_B2B_PLUGIN_PATH', plugin_dir_path(__FILE__));
@@ -77,14 +77,35 @@ final class WC_To_B2B {
             return;
         }
 
-        $this->includes();
-        $this->init_classes();
+        $mode = WC_B2B_Mode::get();
+        new WC_B2B_Mode();
+        foreach (array('membership', 'quote', 'order', 'fulfillment', 'account', 'ajax') as $module) {
+            require_once WC_TO_B2B_PLUGIN_PATH . 'includes/class-wc-b2b-' . $module . '.php';
+        }
+        // Preserve registered statuses, existing account history and signed
+        // quote views even when the business workflow is paused.
+        new WC_B2B_Order($mode === 'full');
+        new WC_B2B_Account();
+        new WC_B2B_Ajax($mode === 'full');
+
+        if ($mode === 'catalog') {
+            require_once WC_TO_B2B_PLUGIN_PATH . 'includes/class-wc-b2b-catalog.php';
+            new WC_B2B_Catalog();
+        } elseif ($mode === 'full') {
+            $this->includes();
+            $this->init_classes();
+        }
     }
     
     /**
      * Initialize the plugin.
      */
     public function init() {
+        if (!$this->is_woocommerce_active() || !WC_B2B_Mode::is_full()) {
+            WC_B2B_Install::cleanup_events();
+            return;
+        }
+
         // Before init action.
         do_action('wc_to_b2b_before_init');
 
@@ -92,6 +113,8 @@ final class WC_To_B2B {
             WC_B2B_Install::install();
         }
         
+        WC_B2B_Install::schedule_cleanup_events();
+
         // Add cleanup event handlers
         add_action('wc_b2b_cleanup_expired_tokens', array('WC_B2B_Install', 'cleanup_expired_tokens'));
         add_action('wc_b2b_cleanup_old_tokens', array('WC_B2B_Install', 'cleanup_old_tokens'));
@@ -126,16 +149,13 @@ final class WC_To_B2B {
             'class-wc-b2b-registration.php',
             'class-wc-b2b-checkout.php',
             'class-wc-b2b-quote.php',
-            'class-wc-b2b-order.php',
             'class-wc-b2b-order-manager.php',
             'class-wc-b2b-fulfillment.php',
-            'class-wc-b2b-account.php',
             'class-wc-b2b-email.php',
             'class-wc-b2b-notifications.php',
             'class-wc-b2b-admin.php',
             'class-wc-b2b-whatsapp.php',
-            'class-wc-b2b-whatsapp-button.php',
-            'class-wc-b2b-ajax.php'
+            'class-wc-b2b-whatsapp-button.php'
         );
         
         foreach ($includes as $file) {
@@ -157,16 +177,13 @@ final class WC_To_B2B {
             'WC_B2B_Registration',
             'WC_B2B_Checkout',
             'WC_B2B_Quote',
-            'WC_B2B_Order',
             'WC_B2B_Order_Manager',
             'WC_B2B_Fulfillment',
-            'WC_B2B_Account',
             'WC_B2B_Email',
             'WC_B2B_Notifications',
             'WC_B2B_Admin',
             'WC_B2B_WhatsApp',
-            'WC_B2B_WhatsApp_Button',
-            'WC_B2B_Ajax'
+            'WC_B2B_WhatsApp_Button'
         );
         
         foreach ($classes as $class) {
@@ -230,6 +247,8 @@ function WC_To_B2B() {
 
 // Global for backwards compatibility.
 $GLOBALS['wc_to_b2b'] = WC_To_B2B();
+
+require_once WC_TO_B2B_PLUGIN_PATH . 'includes/class-wc-b2b-mode.php';
 
 // The installer must be available when WordPress invokes the activation callback.
 if (!class_exists('WC_B2B_Install')) {
